@@ -1,96 +1,82 @@
 <div align="center">
-  <img src="https://github.com/VoperAD/SlimeFrame/blob/main/images/SFrame-Banner.png" alt="SlimeFrame-Banner_2" width="1280" height="500">
+  <img src="https://github.com/VoperAD/SlimeFrame/raw/main/images/SFrame-Banner.png" alt="SlimeFrame-Banner_2" width="1280" height="500">
 </div>
 
-<details>
-  <summary>Table of Contents</summary>
-  <ol>
-    <li><a href="#download">Download</a></li>
-    <li><a href="#about-the-addon">About The Project</a></li>
-    <li><a href="#requirements">Requirements</a></li>
-    <li><a href="#commands">Commands</a></li>
-    <li>
-      <a href="#what-does-it-add">What does it add?</a>
-      <ul>
-        <li><a href="#new-resources">New Resources</a></li>
-        <li><a href="#relics">Relics</a></li>
-        <li><a href="#cumulative-generators">Cumulative Generators</a></li>
-        <li><a href="#auto-trader">Auto Trader</a></li>
-      </ul>
-    </li>
-    <li><a href="#credits">Credits</a></li>
-    <li><a href="#donate">Donate</a></li>
-  </ol>
-</details>
+## 下载
 
-## Download
+[![Build Status](https://builds.guizhanss.com/SlimefunGuguProject/SlimeFrame/main/badge.svg)](https://builds.guizhanss.com/SlimefunGuguProject/SlimeFrame/main)
 
-- <a href="https://www.spigotmc.org/resources/slimeframe.111432/">Download from Spigot</a>
+## 关于本附属
 
-## About the Addon
+SlimeFrame（粘液战甲）是一个受到 WarFrame 启发的 Slimefun 附属，添加了新的机器、发电机以及其他的物品，能让你的游戏体验变得更加丰富。  
+添加的物品有：
+- 自动交易机：可以自动化村民交易
+- 物品投影仪：可以展示物品投影
+- 混凝土/羊毛生成器
 
-SlimeFrame is a Slimefun addon inspired by Warframe that adds new machines, energy generators, and a lot of other items to make your gameplay even more fun. Among the added items are the Auto Trader, capable of making automatic trades with villagers, the Item Projector, which is basically a hologram for items, concrete and wool generators, and much more. Take your time to explore the full potential of this addon!
+花一点时间来发掘更多的内容！
 
-## Requirements
+## 需求
 
-Minecraft Version: 1.19+ (_it might work on servers that support lower versions as long as 1.19 is supported too_)
-Slimefun Version: RC-32+
+Minecraft 版本：1.19+
+Slimefun 版本：RC-32+
 
-## Commands
+## 指令
 
-### Anyone Permission:
+### 允许所有人使用
 
-- /sframe relics -> Open your relics inventory
+- /sframe relics -> 打开遗物背包
 - /sframe refine <refinement> -> Refine the relic that is in your hand.
-- /sframe traces [player] -> Show the amount of void traces a player has
+- /sframe traces [player] -> 查看玩家的虚空光体数量（不输入玩家名则查看自己的）
 
-### Admin Permission:
+### 需要管理员权限
 
-- /sframe invsee <player> -> Open a player's relics inventory
+- /sframe invsee <player> -> 查看玩家的遗物背包
 
-## What Does It Add?
+## 这个附属有什么？
 
-### New Resources
+### 新资源
 
-There are a lot of new resources used to craft the new machines and generators. Some of them are new ores that you can get by mining Minecraft ores using a Nosam Pickaxe, a special pickaxe from the addon. **Placed blocks do not drop these ores.**
+有很多新资源用于制作新的机器和发电机。其中一些是通过使用诺萨姆切割器在Minecraft矿石上采矿获得的新矿石。**放置的方块不会掉落这些矿石**。
 
-### Relics
+### 遗物
 
-Relics are items used to obtain Prime Components, which are components required to craft Prime-Tier machines, the best machines of the addon. Every relic has 3 Bronze rewards, 2 Silver rewards, and 1 Gold reward (common, uncommon, and rare). There are four types of relics:
+遗物是用于获取 Prime 组件的物品，而这些组件是制作 Prime 机器所必需的。每个遗物都有3个铜奖励、2个银奖励和1个金奖励（普通、罕见和稀有）。共有四种类型的遗物：
 
-- Lith: Obtained every 50 fishes caught.
-- Meso: Obtained every 750 entities killed.
-- Neo: Obtained every 10000 blocks broken.
-- Axi: Obtained every 750 blocks placed.
+- 古纪（Lith）：捕获50条鱼获得。
+- 前纪（Meso）：消灭750个实体获得。
+- 中纪（Neo）：破坏10000个方块获得。
+- 后纪（Axi）：放置750个方块获得。
 
-Use the command ```/sframe relics``` to check your relic inventory.
-Server owners can configure these numbers in the config.yml file.
+使用命令```/sframe relics```来查看你的遗物库存。
+服主可以在config.yml文件中配置这些数量。
 
-#### How to Open a Relic?
+#### 如何打开遗物？
 
-Relics have two attributes shown in their lore: Reactants and Refinement. To open a relic, you must fill it up with 10 reactants. To get reactants, put **ONE** relic in your off hand and kill Endermen until it fills up. Every Enderman killed has a 25% chance to give you a reactant. When it reaches 10 reactants, simply right-click with the relic in your hand, and it will open, giving you a reward.
+遗物有两个在描述中显示的属性：反应物和精炼度。要打开遗物，你必须用10个反应物填充它。要获得反应物，将**一个**遗物放在副手，并杀死末影人直到它被填满。每杀死一个末影人，有25%的几率获得一个反应物。当达到10个反应物时，只需右键点击手中的遗物，它将打开并给予你奖励。
 
-***Bedrock Players:*** If you are a Bedrock player, you must put the relic in your first slot from the left to the right (_it is experimental and still under testing, so if you have any issues, please make a report_).
+***基岩版玩家：***如果你是基岩版玩家，你必须将遗物放在快捷栏的第一个槽位中（这是实验性的并且仍在测试中，所以如果有任何问题，请进行报告）。
 
-#### Relic Refinements
+#### 遗物精炼
 
-Relics can be refined to increase the chances of getting rarer rewards. To refine a relic, use the command ```/sframe refine <refinement>```. To refine a relic, you will need **Void Traces**, which you get every time you open a relic (you get a random amount of void traces between 1 and 20). To check how many void traces you have, use the command ```/sframe traces```. There are four refinements:
+遗物可以精炼以增加获得更稀有奖励的几率。要精炼遗物，使用命令```/sframe refine <精炼等级（英文）>```。要精炼遗物，你需要**虚空光体**，每次打开遗物都会得到1到20个随机数量的虚空光体。要检查你有多少虚空光体，请使用命令```/sframe traces```。共有四种精炼：
 
-- INTACT: The default refinement.
-- EXCEPTIONAL: Costs 25 void traces.
-- FLAWLESS: Costs 50 void traces.
-- RADIANT: Costs 100 void traces.
+- 完整（INTACT）：默认精炼。
+- 优良（EXCEPTIONAL）：需要25个虚空光体。
+- 无暇（FLAWLESS）：需要50个虚空光体。
+- 光辉（RADIANT）：需要100个虚空光体。
 
-### Cumulative Generators
+### 叠加式发电机
 
-A new type of energy generator that checks if the blocks beside, above, or below it are also Cumulative Generators. For each Cumulative Generator detected, an amount of energy, indicated by a new attribute in the generator's description called **Bonus Energy**, will be added to the total generated energy.
-**Note:** Diagonal blocks are not counted. This means the cumulative energy generator will check a total of 6 blocks (1 for each side, 1 above, and 1 below).
+一种新型的能量发电机，它会检查其旁边、上方或下方的方块是否也是叠加式发电机。对于每个检测到的叠加式发电机，将会增加一定量的能量，该能量由发电机描述中的新属性**奖励能量**指示。
+**注意：**不会计算对角线方向的方块。这意味着叠加式能量发电机将检查总共6个方块（每个侧面1个，上方1个，下方1个）。
 
-### Auto Trader
+### 自动交易机
 
-A new machine that can automatically trade with villagers. To make it work, you will need a ***Merchant Soul Contract***. Once you have a contract, choose a villager and right-click it with the contract in your hand. It will kill the villager and fill the contract with its trades. After that, put the contract in the Auto Trader and select one of the trades.
+一种可以自动与村民交易的新机器。要使其工作，你需要一份***商人灵魂契约***。获得契约后，选择一个村民并用手中的契约右键点击它。它将杀死该村民并将其交易填入契约中。之后，将契约放入自动交易机并选择其中一项交易。
 
-**Automating the Farm of the New Ores:** This machine can be used to automatically produce the new ores that you get using the Nosam Pickaxe. Every time a villager gets a new trade, there is a small chance that it offers one of the new addon resources. In that case, use the Merchant Soul Contract again and use the Auto Trader with this new contract.
+**自动化新矿石的农场：**该机器可用于自动生产使用诺萨姆切割器获取的新矿石。每当村民获得新的交易时，它有很小的几率提供附加组件中的新资源之一。在这种情况下，再次使用商人灵魂契约并使用自动交易机与这份新契约进行交易。
+
 
 ## Credits
 
