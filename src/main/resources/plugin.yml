@@ -4,7 +4,7 @@ description: A Warframe based Slimefun addon
 main: me.voper.slimeframe.SlimeFrame
 website: https://github.com/VoperYT/SlimeFrame
 version: ${project.version}
-api-version: 1.14
+api-version: 1.19
 depend:
 - Slimefun
 softdepend:

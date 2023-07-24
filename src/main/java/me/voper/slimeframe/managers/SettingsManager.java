@@ -46,9 +46,9 @@ public final class SettingsManager {
         ORE_TRADE_CHANCE("options.ore-trade-chance", 1),
 
         LITH_RELIC("relics.lith", 50),
-        MESO_RELIC("relics.meso", 500),
-        NEO_RELIC("relics.neo", 1000),
-        AXI_RELIC("relics.axi", 1000),
+        MESO_RELIC("relics.meso", 750),
+        NEO_RELIC("relics.neo", 10000),
+        AXI_RELIC("relics.axi", 750),
 
         SLIMEFRAME_CMD("commands.slimeframe"),
         INVENTORY_CMD("commands.inventory"),

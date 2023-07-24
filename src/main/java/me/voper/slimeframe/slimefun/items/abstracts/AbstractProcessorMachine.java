@@ -77,7 +77,7 @@ public abstract class AbstractProcessorMachine extends AbstractMachine implement
         if (operation != null) {
             if (!operation.isFinished()) {
                 updateProgress(menu, b);
-                operation.addProgress(1);
+                operation.addProgress(processingSpeed);
             } else {
                 MachineUtils.replaceExistingItemViewer(menu, getStatusSlot(), MachineUtils.FINISHED);
                 for (ItemStack output: operation.getResults()) {

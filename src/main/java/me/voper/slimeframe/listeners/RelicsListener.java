@@ -89,8 +89,9 @@ public final class RelicsListener implements Listener {
 
     @EventHandler(priority = EventPriority.LOW)
     public void updateBlocksBroken(BlockBreakEvent e) {
-        Player p = e.getPlayer();
+        if (e.isCancelled()) return;
 
+        Player p = e.getPlayer();
         int blocksBroken = PersistentDataAPI.getInt(p, Keys.BLOCKS_BROKEN_COUNTER, 0) + 1;
 
         if (blocksBroken % settings.getInt(SettingsManager.ConfigField.NEO_RELIC) == 0) {

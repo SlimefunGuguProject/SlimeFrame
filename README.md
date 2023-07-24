@@ -60,8 +60,8 @@ Relics are items used to obtain Prime Components, which are components required 
 
 - Lith: Obtained every 50 fishes caught.
 - Meso: Obtained every 750 entities killed.
-- Neo: Obtained every 1000 blocks broken.
-- Axi: Obtained every 500 blocks placed.
+- Neo: Obtained every 10000 blocks broken.
+- Axi: Obtained every 750 blocks placed.
 
 Use the command ```/sframe relics``` to check your relic inventory.
 Server owners can configure these numbers in the config.yml file.
