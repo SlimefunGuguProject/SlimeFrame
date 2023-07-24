@@ -83,13 +83,13 @@ public class CryoticExtractor extends AbstractMachine {
     @Override
     protected void onCraftConditionsNotMet(BlockMenu menu) {
         MachineUtils.replaceExistingItemViewer(menu, getStatusSlot(),
-                new CustomItemStack(Material.BARRIER, ChatColor.RED + "There isn't any cryotic in this Biome!",
-                        ChatColor.WHITE + "Valid Biomes:",
-                        ChatColor.BLUE + "Snowy Taiga",
-                        ChatColor.BLUE + "Snowy Plains",
-                        ChatColor.BLUE + "Snowy Slopes",
-                        ChatColor.BLUE + "Snowy Beach",
-                        ChatColor.BLUE + "Ice Spikes"
+                new CustomItemStack(Material.BARRIER, ChatColor.RED + "该生物群系没有永冻晶体！",
+                        ChatColor.WHITE + "有效的生物群系：",
+                        ChatColor.BLUE + "积雪针叶林",
+                        ChatColor.BLUE + "雪原",
+                        ChatColor.BLUE + "积雪山坡",
+                        ChatColor.BLUE + "积雪沙滩",
+                        ChatColor.BLUE + "冰刺之地"
                 )
         );
     }
@@ -119,7 +119,8 @@ public class CryoticExtractor extends AbstractMachine {
     }
 
     private void updateProgress(BlockMenu menu, int progress) {
-        ChestMenuUtils.updateProgressbar(menu, getStatusSlot(), TIME - progress, TIME, new CustomItemStack(Material.GREEN_STAINED_GLASS_PANE, ChatColor.GREEN + "Extracting..."));
+        ChestMenuUtils.updateProgressbar(menu, getStatusSlot(), TIME - progress, TIME,
+            new CustomItemStack(Material.GREEN_STAINED_GLASS_PANE, ChatColor.GREEN + "提取中..."));
     }
 
 }

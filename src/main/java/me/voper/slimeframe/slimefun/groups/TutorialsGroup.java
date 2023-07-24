@@ -61,7 +61,7 @@ public class TutorialsGroup extends FlexItemGroup {
             history.add(this, page);
         }
 
-        ChestMenu menu = new ChestMenu(Colors.CRAYOLA_BLUE + "SlimeFrame Tutorials");
+        ChestMenu menu = new ChestMenu(Colors.CRAYOLA_BLUE + "粘液战甲教程");
         SurvivalSlimefunGuide guide = (SurvivalSlimefunGuide) Slimefun.getRegistry().getSlimefunGuide(mode);
 
         menu.setEmptySlotsClickable(false);
@@ -80,14 +80,16 @@ public class TutorialsGroup extends FlexItemGroup {
         });
 
         // Relics Tutorial
-        menu.replaceExistingItem(RELICS_TUTORIAL, new CustomItemStack(Material.ENCHANTED_BOOK, Colors.BRONZE + "Relics Tutorial"));
+        menu.replaceExistingItem(RELICS_TUTORIAL, new CustomItemStack(Material.ENCHANTED_BOOK, Colors.BRONZE +
+            "遗物教程"));
         menu.addMenuClickHandler(RELICS_TUTORIAL, ((player1, i, itemStack, clickAction) -> {
             player1.getInventory().addItem(getRelicsTutorial());
             return false;
         }));
 
         // Generators Tutorial
-        menu.replaceExistingItem(GENERATORS_TUTORIAL, new CustomItemStack(Material.ENCHANTED_BOOK, Colors.BRONZE + "Energy Generators Tutorial"));
+        menu.replaceExistingItem(GENERATORS_TUTORIAL, new CustomItemStack(Material.ENCHANTED_BOOK, Colors.BRONZE +
+            "发电机教程"));
         menu.addMenuClickHandler(GENERATORS_TUTORIAL, ((player1, i, itemStack, clickAction) -> {
             player1.getInventory().addItem(getGeneratorsTutorial());
             return false;
@@ -95,7 +97,8 @@ public class TutorialsGroup extends FlexItemGroup {
         menu.open(player);
 
         // Special Ores Farm
-        menu.replaceExistingItem(SPECIAL_ORES_TUTORIAL, new CustomItemStack(Material.ENCHANTED_BOOK, Colors.BRONZE + "New Resources Farm Tutorial"));
+        menu.replaceExistingItem(SPECIAL_ORES_TUTORIAL, new CustomItemStack(Material.ENCHANTED_BOOK, Colors.BRONZE +
+            "资源农场教程"));
         menu.addMenuClickHandler(SPECIAL_ORES_TUTORIAL, ((player1, i, itemStack, clickAction) -> {
             player1.getInventory().addItem(getSpecialOresTutorial());
             return false;
@@ -108,35 +111,40 @@ public class TutorialsGroup extends FlexItemGroup {
         ItemStack book = new ItemStack(Material.WRITTEN_BOOK);
         BookMeta itemMeta = (BookMeta) book.getItemMeta();
         itemMeta.setAuthor("Voper");
-        itemMeta.setTitle(ChatColor.BLUE + "Relics Tutorial");
+        itemMeta.setTitle(ChatColor.BLUE + "遗物教程");
 
         ArrayList<BaseComponent[]> components = new ArrayList<>();
-        components.add(new ComponentBuilder("What are Relics for?\n\n").color(Colors.CRAYOLA_BLUE).underlined(true)
-                .append("Relics are used to obtain Prime components for crafting Prime-tier machines. Each relic has 3 Bronze rewards, 2 Silver rewards, and 1 Gold reward.").underlined(false).color(ChatColor.BLACK)
+        components.add(new ComponentBuilder("遗物是干什么的？\n\n").color(Colors.CRAYOLA_BLUE).underlined(true)
+                .append("遗物是用来获得 Prime 组件，以用合成 Prime 物品的。" +
+                    "每个遗物拥有3个铜奖励，2个银奖励，与1个金奖励。").underlined(false).color(ChatColor.BLACK)
                 .create());
 
-        components.add(new ComponentBuilder("How to obtain Relics?\n\n").color(Colors.CRAYOLA_BLUE).underlined(true)
-                .append("You can check the Relics tab, but basically, there are four types of Relics: Lith, Meso, Neo, and Axi. You get Lith by fishing, Meso by killing mobs, Neo by breaking blocks, and Axi by placing blocks.").underlined(false).color(ChatColor.BLACK)
+        components.add(new ComponentBuilder("如何获得遗物？\n\n").color(Colors.CRAYOLA_BLUE).underlined(true)
+                .append("查看遗物分类了解详情。总体来说，一共有4种类型的遗物：古纪，前纪，中纪，后纪。" +
+                    "通过钓鱼来获得古纪遗物，击杀生物来获得前纪遗物，破坏方块来获得中纪遗物，放置方块来获得后纪遗物。").underlined(false).color(ChatColor.BLACK)
                 .create());
 
-        components.add(new ComponentBuilder("How to open Relics?\n\n").color(Colors.CRAYOLA_BLUE).underlined(true)
-                .append("Hold ONE Relic in your off hand and kill endermans until your Relic's reactant count reaches 10. After that, right-click with the Relic in hand to receive your reward.").underlined(false).color(ChatColor.BLACK)
+        components.add(new ComponentBuilder("如何开启遗物？\n\n").color(Colors.CRAYOLA_BLUE).underlined(true)
+                .append("副手手持遗物，并击杀末影人，直到反应物数量达到10。" +
+                    "在这之后，手持遗物右键点击即可获得奖励。").underlined(false).color(ChatColor.BLACK)
                 .create());
 
-        components.add(new ComponentBuilder("Bedrock Players\n\n").color(Colors.CRAYOLA_BLUE).underlined(true)
-                .append("If you are a Bedrock player, the Relic must be in the first slot of your hotbar to obtain the reactants.").underlined(false).color(ChatColor.BLACK)
+        components.add(new ComponentBuilder("基岩版玩家\n\n").color(Colors.CRAYOLA_BLUE).underlined(true)
+                .append("如果你是基岩版玩家，遗物必须在你快捷栏的第一格，才能积攒反应物。").underlined(false).color(ChatColor.BLACK)
                 .create());
 
-        components.add(new ComponentBuilder("Void Traces\n\n").color(Colors.CRAYOLA_BLUE).underlined(true)
-                .append("Void Traces are used to refine Relics and increase chances of obtaining rarer items. You earn traces each time you open a Relic. To check your trace count, use /sframe traces.").underlined(false).color(ChatColor.BLACK)
+        components.add(new ComponentBuilder("虚空光体\n\n").color(Colors.CRAYOLA_BLUE).underlined(true)
+                .append("虚空光体可以用来精炼遗物，增加稀有物品掉落几率。" +
+                    "每次开启遗物后，你可以获得虚空光体。使用指令/sframe traces 来查询虚空光体数量。").underlined(false).color(ChatColor.BLACK)
                 .create());
 
-        components.add(new ComponentBuilder("How to refine Relics?\n\n").color(Colors.CRAYOLA_BLUE).underlined(true)
-                .append("To refine a Relic, use the command /sframe refine <refinement>. The chance of obtaining rarer items increases depending on the refinement level.").underlined(false).color(ChatColor.BLACK)
+        components.add(new ComponentBuilder("如何精炼遗物？\n\n").color(Colors.CRAYOLA_BLUE).underlined(true)
+                .append("要精炼遗物，使用指令 /sframe refine <精炼等级（英文）>。精炼等级的提升会增加获取稀有物品的几率。").underlined(false).color(ChatColor.BLACK)
                 .create());
 
-        components.add(new ComponentBuilder("Refinements\n\n").color(Colors.CRAYOLA_BLUE).underlined(true)
-                .append("EXCEPTIONAL - requires 25 Void Traces\n\nFLAWLESS - requires 50 Void Traces\n\nRADIANT - requires 100 Void Traces").underlined(false).color(ChatColor.BLACK)
+        components.add(new ComponentBuilder("精炼等级\n\n").color(Colors.CRAYOLA_BLUE).underlined(true)
+                .append("EXCEPTIONAL（优良）：需要25虚空光体\n\nFLAWLESS（无暇）：需要50虚空光体\n\n" +
+                    "RADIANT（光辉）：需要100虚空光体").underlined(false).color(ChatColor.BLACK)
                 .create());
 
         itemMeta.spigot().setPages(components);
@@ -149,21 +157,23 @@ public class TutorialsGroup extends FlexItemGroup {
         ItemStack book = new ItemStack(Material.WRITTEN_BOOK);
         BookMeta itemMeta = (BookMeta) book.getItemMeta();
         itemMeta.setAuthor("Voper");
-        itemMeta.setTitle(ChatColor.BLUE + "Energy Generators Tutorial");
+        itemMeta.setTitle(ChatColor.BLUE + "发电机教程");
 
         ArrayList<BaseComponent[]> components = new ArrayList<>();
-        components.add(new ComponentBuilder("Cumulative Generators\n\n").color(Colors.CRAYOLA_BLUE).underlined(true)
-                .append("Some of SlimeFrame's energy generators have an additional attribute: ").color(ChatColor.BLACK).underlined(false)
-                .append("Bonus Energy.").bold(true)
+        components.add(new ComponentBuilder("叠加式发电机\n\n").color(Colors.CRAYOLA_BLUE).underlined(true)
+                .append("部分粘液战甲的发电机拥有额外的属性：").color(ChatColor.BLACK).underlined(false)
+                .append("额外能量").bold(true)
                 .create());
 
-        components.add(new ComponentBuilder("Bonus Energy\n\n").color(Colors.CRAYOLA_BLUE).underlined(true)
-                .append("The generator will check if the blocks around, above, and below it are also cumulative generators. ").color(ChatColor.BLACK).underlined(false)
-                .append("For each cumulative generator found, the bonus energy will be added to the total generated energy.")
+        components.add(new ComponentBuilder("额外能量\n\n").color(Colors.CRAYOLA_BLUE).underlined(true)
+                .append("发电机会检测其6个方向的相邻方块是否为叠加式发电机。").color(ChatColor.BLACK).underlined(false)
+                .append("每个叠加式发电机会增加一次额外能量到总发电量中。")
                 .create());
 
-        components.add(new ComponentBuilder("Example\n\n").color(Colors.CRAYOLA_BLUE).underlined(true)
-                .append("If a generator has 1000J of bonus energy and 2000J of standard energy, and all the blocks around it are cumulative generators, the total generated energy will be 8000J (6 * 1000J + 2000J).").color(ChatColor.BLACK).underlined(false)
+        components.add(new ComponentBuilder("示例\n\n").color(Colors.CRAYOLA_BLUE).underlined(true)
+                .append("如果一个发电机基础发电 2,000 J，额外能量为 1,000 J，" +
+                    "当6个方向的发电机都是叠加式发电机时，" +
+                    "总共产出的能量为 8,000J（6 * 1,000 + 2,000）。").color(ChatColor.BLACK).underlined(false)
                 .create());
 
         itemMeta.spigot().setPages(components);
@@ -176,42 +186,39 @@ public class TutorialsGroup extends FlexItemGroup {
         ItemStack book = new ItemStack(Material.WRITTEN_BOOK);
         BookMeta itemMeta = (BookMeta) book.getItemMeta();
         itemMeta.setAuthor("Voper");
-        itemMeta.setTitle(ChatColor.BLUE + "New Resources Farm Tutorial");
+        itemMeta.setTitle(ChatColor.BLUE + "新资源教程");
 
         ArrayList<BaseComponent[]> components = new ArrayList<>();
-        components.add(new ComponentBuilder("New Ores\n\n").color(Colors.CRAYOLA_BLUE).underlined(true)
-                .append("In the resources tab, you can find new \"ores\" obtained using the new pickaxe (Nosam Pickaxe). ").color(ChatColor.BLACK).underlined(false)
-                .append("Currently, there's only one way to create a farm for these resources.")
+        components.add(new ComponentBuilder("新的矿石\n\n").color(Colors.CRAYOLA_BLUE).underlined(true)
+                .append("你可以在资源页面中找到新的矿石，可通过诺萨姆切割器挖掘。").color(ChatColor.BLACK).underlined(false)
+                .append("当前，只有一种方式能自动化获取这些资源。")
                 .create());
 
-        components.add(new ComponentBuilder("The Auto Trader\n\n").color(Colors.CRAYOLA_BLUE).underlined(true)
-                .append("To create a farm for these new ores, you'll need to build a new machine: the ").color(ChatColor.BLACK).underlined(false)
-                .append("Auto Trader").bold(true)
-                .append(". This machine can automatically trade with villagers.").bold(false)
+        components.add(new ComponentBuilder("自动交易机\n\n").color(Colors.CRAYOLA_BLUE).underlined(true)
+                .append("你需要新的机器：").color(ChatColor.BLACK).underlined(false)
+                .append("自动交易机").bold(true)
+                .append("来进行矿石资源自动化。该机器可自动与村民进行交易。").bold(false)
                 .create());
 
-        components.add(new ComponentBuilder("The Contracts\n\n").color(Colors.CRAYOLA_BLUE).underlined(true)
-                .append("For the Auto Trader to work, you'll need to put a valid contract inside it. ").color(ChatColor.BLACK).underlined(false)
-                .append("These contracts can be obtained from the ")
-                .append("Merchant Soul Contract.").bold(true)
+        components.add(new ComponentBuilder("契约\n\n").color(Colors.CRAYOLA_BLUE).underlined(true)
+                .append("为了使自动交易机工作，你需要放入商人灵魂契约。").color(ChatColor.BLACK).underlined(false)
                 .create());
 
-        components.add(new ComponentBuilder("Trading with Villagers\n\n").color(Colors.CRAYOLA_BLUE).underlined(true)
-                .append("Once you have the previous items, you'll need to ").color(ChatColor.BLACK).underlined(false)
-                .append("find a villager offering one of the new addon resources. ")
-                .append("The chance is low, and the villager's profession doesn't matter; it can be any.")
+        components.add(new ComponentBuilder("与村民交易\n\n").color(Colors.CRAYOLA_BLUE).underlined(true)
+                .append("当你拥有契约后，您需要找到一位").color(ChatColor.BLACK).underlined(false)
+                .append("提供新资源交易的村民。")
+                .append("概率很低，但与村民的职业无关。任何村民都有可能提供。")
                 .create());
 
-        components.add(new ComponentBuilder("Final Step\n\n").color(Colors.CRAYOLA_BLUE).underlined(true)
-                .append("When you find a villager offering the required trade, ").color(ChatColor.BLACK).underlined(false)
-                .append("right-click on them with the Merchant Contract in hand. ")
-                .append("Attention: ").color(ChatColor.DARK_RED)
-                .append("this will kill them!").color(ChatColor.BLACK)
+        components.add(new ComponentBuilder("最后一步\n\n").color(Colors.CRAYOLA_BLUE).underlined(true)
+                .append("当你找到符合条件的村民后，").color(ChatColor.BLACK).underlined(false)
+                .append("手持商人灵魂契约，并右键点击村民来激活。")
+                .append("注意：").color(ChatColor.DARK_RED)
+                .append("这会杀死村民！").color(ChatColor.BLACK)
                 .create());
 
-        components.add(new ComponentBuilder("With the valid contract and the Auto Trader in hand, simply insert it into ")
-                .append("the machine and select the trade inside. After that, just supply the machine ")
-                .append("with the necessary resources!")
+        components.add(new ComponentBuilder("当拥有了合适的契约后，")
+                .append("放入自动交易机，并提供足够的资源即可。")
                 .create());
 
         itemMeta.spigot().setPages(components);

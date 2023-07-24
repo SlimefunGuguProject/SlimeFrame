@@ -78,7 +78,7 @@ public class ThermiaExtractor extends AbstractMachine {
                 // Output slots are full
                 if (!menu.fits(SFrameStacks.DILUTED_THERMIA, getOutputSlots())) {
                     MachineUtils.replaceExistingItemViewer(menu, getStatusSlot(),
-                            new CustomItemStack(Material.BARRIER, ChatColor.DARK_RED + "No space!"));
+                            new CustomItemStack(Material.BARRIER, ChatColor.DARK_RED + "没有空间！"));
                     return true;
                 }
 
@@ -88,7 +88,8 @@ public class ThermiaExtractor extends AbstractMachine {
                     completed = false;
                 } else {
                     menu.replaceExistingItem(getProgressSlots()[coolantCanisters], new CustomItemStack(Material.GRAY_STAINED_GLASS_PANE, " "));
-                    menu.replaceExistingItem(getStatusSlot(), new CustomItemStack(Material.GREEN_STAINED_GLASS_PANE, Colors.ORANGE + "Diluting Thermia..."));
+                    menu.replaceExistingItem(getStatusSlot(), new CustomItemStack(Material.GREEN_STAINED_GLASS_PANE,
+                        Colors.ORANGE + "正在稀释热美亚..."));
                 }
 
                 COUNTER_MAP.put(blockPosition, ++progress);
@@ -102,7 +103,8 @@ public class ThermiaExtractor extends AbstractMachine {
             return true;
         }
 
-        menu.replaceExistingItem(getStatusSlot(), new CustomItemStack(Material.PURPLE_STAINED_GLASS_PANE, ChatColor.WHITE + "Coolant Canisters: " + ChatColor.RED + coolantCanisters + "/5"));
+        menu.replaceExistingItem(getStatusSlot(), new CustomItemStack(Material.PURPLE_STAINED_GLASS_PANE,
+            ChatColor.WHITE + "冷却液罐: " + ChatColor.RED + coolantCanisters + "/5"));
         COUNTER_MAP.put(blockPosition, ++progress);
         return true;
     }
@@ -115,9 +117,8 @@ public class ThermiaExtractor extends AbstractMachine {
     @Override
     protected void onCraftConditionsNotMet(BlockMenu menu) {
         MachineUtils.replaceExistingItemViewer(menu, getStatusSlot(),
-                new CustomItemStack(Material.BARRIER, ChatColor.DARK_RED + "Error",
-                        ChatColor.RED + "This machine must be in the nether",
-                        ChatColor.RED + "and above a Magma Block")
+                new CustomItemStack(Material.BARRIER, ChatColor.DARK_RED + "错误",
+                        ChatColor.RED + "该机器必须在下界的岩浆块上方")
         );
     }
 
@@ -135,7 +136,8 @@ public class ThermiaExtractor extends AbstractMachine {
             for (int i = 0; i < progress; i++) {
                 menu.replaceExistingItem(getProgressSlots()[i], new CustomItemStack(Material.RED_STAINED_GLASS_PANE, " "));
             }
-            menu.replaceExistingItem(getStatusSlot(), new CustomItemStack(Material.PURPLE_STAINED_GLASS_PANE, ChatColor.WHITE + "Progress: " + Colors.ORANGE + locationInfo + "/5"));
+            menu.replaceExistingItem(getStatusSlot(), new CustomItemStack(Material.PURPLE_STAINED_GLASS_PANE,
+                ChatColor.WHITE + "进度: " + Colors.ORANGE + locationInfo + "/5"));
             this.coolantCanisters = progress;
         }
 

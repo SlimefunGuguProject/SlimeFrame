@@ -52,7 +52,7 @@ public class RelicInventoryListener implements Listener {
                 ItemUtils.consumeItem(currentItem, consume, false);
 //                currentItem.setAmount(currentItem.getAmount() - 1);
             } else {
-                p.sendMessage(ChatColor.RED + "Your inventory is full!");
+                p.sendMessage(ChatColor.RED + "你的物品栏已满！");
             }
             return;
         }

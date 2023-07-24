@@ -90,6 +90,6 @@ public class OrokinWand extends LimitedUseItem implements RecipeDisplayItem {
     @Nonnull
     @Override
     public String getRecipeSectionLabel(@Nonnull Player p) {
-        return "Blocks that can be obtained";
+        return "可获取的方块";
     }
 }

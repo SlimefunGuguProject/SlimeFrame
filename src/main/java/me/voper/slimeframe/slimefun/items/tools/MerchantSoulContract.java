@@ -15,6 +15,7 @@ import me.voper.slimeframe.utils.ChatUtils;
 import me.voper.slimeframe.utils.Colors;
 import me.voper.slimeframe.utils.Keys;
 import me.voper.slimeframe.utils.Utils;
+import net.guizhanss.guizhanlib.minecraft.helper.inventory.ItemStackHelper;
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.Particle;
@@ -68,14 +69,14 @@ public class MerchantSoulContract extends SimpleSlimefunItem<EntityInteractHandl
 
                 if (PersistentDataAPI.has(meta, Keys.MERCHANT_RECIPE, new MerchantRecipeListDataType())) {
                     e.setCancelled(true);
-                    e.getPlayer().sendMessage("Contract already sealed");
+                    e.getPlayer().sendMessage("已签订过契约！");
                     return;
                 }
 
                 final List<MerchantRecipe> recipes = new ArrayList<>(merchant.getRecipes());
                 if (recipes.isEmpty()) {
                     e.setCancelled(true);
-                    e.getPlayer().sendMessage("This merchant does not have any trade available for you");
+                    e.getPlayer().sendMessage("该商人没有任何可用交易！");
                     return;
                 }
 
@@ -98,22 +99,19 @@ public class MerchantSoulContract extends SimpleSlimefunItem<EntityInteractHandl
                 meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
 
                 List<String> lore = new ArrayList<>();
-                lore.add(ChatColor.GREEN + "Trades:");
+                lore.add(ChatColor.GREEN + "交易：");
                 lore.add(" ");
 
                 recipes.forEach(recipe -> {
                     List<String> ingredientsNames = recipe.getIngredients().stream()
                             .filter(itemStack -> itemStack.getItemMeta() != null)
-                            .map(itemStack -> itemStack.getAmount() + " " + (
-                                            itemStack.getItemMeta().hasDisplayName() ?
-                                            itemStack.getItemMeta().getDisplayName() :
-                                                    Utils.formatMaterialString(itemStack.getType()))
+                            .map(itemStack -> itemStack.getAmount() + " " + ItemStackHelper.getDisplayName(itemStack)
                             )
                             .toList();
 
                     ItemMeta resultMeta = recipe.getResult().getItemMeta();
                     if (resultMeta == null) return;
-                    String resultName = resultMeta.hasDisplayName() ? resultMeta.getDisplayName() : Utils.formatMaterialString(recipe.getResult().getType());
+                    String resultName = ItemStackHelper.getDisplayName(recipe.getResult());
                     resultName = recipe.getResult().getAmount() + " " + resultName;
 
                     lore.add(ChatColor.WHITE + String.valueOf(recipes.indexOf(recipe) + 1) + " - " +
@@ -135,7 +133,7 @@ public class MerchantSoulContract extends SimpleSlimefunItem<EntityInteractHandl
 
                 e.setCancelled(true);
                 merchant.setHealth(0);
-                ChatUtils.sendMessage(e.getPlayer(), "Soul Contract successfully sealed");
+                ChatUtils.sendMessage(e.getPlayer(), "契约已订好！");
             }
         };
     }

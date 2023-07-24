@@ -35,21 +35,21 @@ public class RelicItemStack extends SlimefunItemStack {
             itemMeta.setDisplayName(nameColor + name);
             List<String> lore = new ArrayList<>();
             lore.add("");
-            lore.add(ChatColor.AQUA + "Reactants: " + ChatColor.WHITE + "0/10");
-            lore.add(ChatColor.AQUA + "Refinement: " + ChatColor.WHITE + Relic.Refinement.INTACT.name());
+            lore.add(ChatColor.AQUA + "反应物：" + ChatColor.WHITE + "0/10");
+            lore.add(ChatColor.AQUA + "精炼：" + ChatColor.WHITE + Relic.Refinement.INTACT.name());
             lore.add("");
-            lore.add(Colors.BRONZE + String.valueOf(ChatColor.BOLD) + "Common rewards:");
+            lore.add(Colors.BRONZE + String.valueOf(ChatColor.BOLD) + "普通奖励：");
             for (SlimefunItemStack commonDrop: commonDrops) {
-                lore.add(ChatColor.WHITE + ChatColor.stripColor(commonDrop.getDisplayName()));
+                lore.add(ChatColor.WHITE + commonDrop.getDisplayName());
             }
             lore.add("");
-            lore.add(Colors.SILVER + String.valueOf(ChatColor.BOLD) + "Uncommon rewards:");
+            lore.add(Colors.SILVER + String.valueOf(ChatColor.BOLD) + "罕见奖励：");
             for (SlimefunItemStack uncommonDrop: uncommonDrops) {
-                lore.add(ChatColor.WHITE + ChatColor.stripColor(uncommonDrop.getDisplayName()));
+                lore.add(ChatColor.WHITE + uncommonDrop.getDisplayName());
             }
             lore.add("");
-            lore.add(Colors.GOLD_2 + String.valueOf(ChatColor.BOLD) + "Rare reward:");
-            lore.add(ChatColor.WHITE + ChatColor.stripColor(rareDrop.getDisplayName()));
+            lore.add(Colors.GOLD_2 + String.valueOf(ChatColor.BOLD) + "稀有奖励：");
+            lore.add(ChatColor.WHITE + rareDrop.getDisplayName());
             itemMeta.setLore(lore);
         }));
 

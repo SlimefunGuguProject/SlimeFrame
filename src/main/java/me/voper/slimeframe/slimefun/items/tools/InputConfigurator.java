@@ -69,7 +69,7 @@ public class InputConfigurator extends SimpleSlimefunItem<ItemUseHandler> {
                                 applyConfiguration(item, e.getItem(), inventory, p, input);
                             }
                         } else {
-                            p.sendMessage(item.getItemName() + ChatColor.RED + " has no input slots");
+                            p.sendMessage(item.getItemName() + ChatColor.RED + " 没有输入栏位！");
                         }
 //                        }
                     }
@@ -117,7 +117,7 @@ public class InputConfigurator extends SimpleSlimefunItem<ItemUseHandler> {
         itemMeta.getPersistentDataContainer().set(ITEMSTACK_ARRAY, DataType.ITEM_STACK_ARRAY, itemStacks);
         PersistentDataAPI.set(itemMeta, MACHINE_ID, PersistentDataType.STRING, sfItem.getId());
         item.setItemMeta(itemMeta);
-        ChatUtils.sendMessage(player, ChatColor.GREEN + "Configuration successfully set");
+        ChatUtils.sendMessage(player, ChatColor.GREEN + "已设置！");
     }
 
     private void applyConfiguration(SlimefunItem sfItem, ItemStack item, BlockMenu menu, Player player, int[] input) {
@@ -128,12 +128,12 @@ public class InputConfigurator extends SimpleSlimefunItem<ItemUseHandler> {
         String machineID = PersistentDataAPI.get(itemMeta, MACHINE_ID, PersistentDataType.STRING);
 
         if (itemsStored == null || machineID == null) {
-            player.sendMessage(Colors.ORANGE + "The input configurator is not configured");
+            player.sendMessage(Colors.ORANGE + "输入配置器没有进行设置。");
             return;
         }
 
         if (!machineID.equals(sfItem.getId())) {
-            player.sendMessage(ChatColor.RED + "The input configurator is set to the following machine: " + machineID);
+            player.sendMessage(ChatColor.RED + "输入配置器已设置为机器：" + machineID);
             return;
         }
 
@@ -154,14 +154,14 @@ public class InputConfigurator extends SimpleSlimefunItem<ItemUseHandler> {
                         if (stack.getAmount() >= itemToAdd.getAmount()) {
                             ItemUtils.consumeItem(stack, itemToAdd.getAmount(), false);
                             menu.replaceExistingItem(input[i], itemToAdd);
-                            player.sendMessage(ItemUtils.getItemName(itemToAdd) + ChatColor.GREEN + " was successfully added");
+                            player.sendMessage(ItemUtils.getItemName(itemToAdd) + ChatColor.GREEN + " 已成功添加！");
                             worked = true;
                             break;
                         }
                     }
                 }
                 if (!worked) {
-                    player.sendMessage(Colors.ORANGE + "Not enough items to fill the machine");
+                    player.sendMessage(Colors.ORANGE + "没有足够的物品来填充输入栏位！");
                 }
             }
             i++;

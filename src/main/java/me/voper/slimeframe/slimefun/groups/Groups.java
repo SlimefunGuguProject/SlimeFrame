@@ -23,7 +23,7 @@ public class Groups {
     public static final String GEAR_NAME = Colors.SILVER + "<" + Colors.CRAYOLA_BLUE + "粘液战甲 - 装备" + Colors.SILVER +
         ">";
     public static final String PRIME_COMPONENTS_NAME =
-        Colors.SILVER + "<" + Colors.CRAYOLA_BLUE + "粘液战甲 - 高级组件" + Colors.SILVER + ">";
+        Colors.SILVER + "<" + Colors.CRAYOLA_BLUE + "粘液战甲 - Prime 组件" + Colors.SILVER + ">";
 
     public static final MasterGroup MAIN_GROUP = new MasterGroup(
             Keys.CAT_MAIN,
@@ -107,7 +107,7 @@ public class Groups {
     public static final ChildGroup PRIME_COMPONENTS = new ChildGroup(
             Keys.CAT_PRIME_COMPONENTS,
             MAIN_GROUP,
-            new CustomItemStack(Material.CONDUIT, Colors.CRAYOLA_BLUE + "高级组件")
+            new CustomItemStack(Material.CONDUIT, Colors.CRAYOLA_BLUE + "Prime 组件")
     );
 
 }

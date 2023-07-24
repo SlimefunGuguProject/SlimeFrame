@@ -13,17 +13,17 @@ public class Lore {
 
     @Nonnull
     public static String production(int production) {
-        return "&8⇨ &b⚡ &7Production: &b" + production + 'x';
+        return "&8⇨ &b⚡ &7产量：&b" + production + 'x';
     }
 
     @Nonnull
     public static String speed(int speed) {
-        return "&8⇨ &b⚡ &7Speed: &b" + speed + 'x';
+        return "&8⇨ &b⚡ &7速度：&b" + speed + 'x';
     }
 
     @Nonnull
     public static String bonusPower(int power) {
-        return "&8⇨ &e⚡ &7Bonus energy: " + format.format(Utils.energyPerTickToSeconds(power)) + " J/s";
+        return "&8⇨ &e⚡ &7额外能量：" + format.format(Utils.energyPerTickToSeconds(power)) + " J/s";
     }
 
     @Nonnull
@@ -33,7 +33,7 @@ public class Lore {
 
     @Nonnull
     public static String powerBuffer(int power) {
-        return power(power, " Buffer");
+        return power(power, " 可储存");
     }
 
     @Nonnull
@@ -43,7 +43,7 @@ public class Lore {
 
     @Nonnull
     public static String usesLeft(int usesLeft) {
-        return "&e" + usesLeft + ' ' + (usesLeft > 1 ? "Uses" : "Use") + " &7left";
+        return "&7还可使用 &e" + usesLeft + " &7次";
     }
 
 }

@@ -137,7 +137,7 @@ public class WoolGenerator extends AbstractSelectorMachine implements RecipeDisp
 
     @Override
     protected void onCraftConditionsNotMet(BlockMenu menu) {
-        menu.replaceExistingItem(getStatusSlot(), new CustomItemStack(Material.BARRIER, ChatColor.RED + "Select a wool to generate!"));
+        menu.replaceExistingItem(getStatusSlot(), new CustomItemStack(Material.BARRIER, ChatColor.RED + "选择需要生产的羊毛！"));
     }
 
     @Override

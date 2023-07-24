@@ -86,7 +86,8 @@ public class ChunkEater extends AbstractMachine {
                     ItemStack blockItem = new ItemStack(block.getType());
                     if (menu.fits(blockItem, getOutputSlots())) {
                         menu.pushItem(blockItem, getOutputSlots());
-                        MachineUtils.replaceExistingItemViewer(menu, getStatusSlot(), new CustomItemStack(Material.TNT, ChatColor.GREEN + "Working..."));
+                        MachineUtils.replaceExistingItemViewer(menu, getStatusSlot(),
+                            new CustomItemStack(Material.TNT, ChatColor.GREEN + "工作中..."));
                     } else {
                         MachineUtils.replaceExistingItemViewer(menu, getStatusSlot(), MachineUtils.NO_SPACE);
                     }
@@ -104,7 +105,7 @@ public class ChunkEater extends AbstractMachine {
             return true;
         }
 
-        MachineUtils.replaceExistingItemViewer(menu, getStatusSlot(), new CustomItemStack(Material.TNT, ChatColor.GREEN + "Working..."));
+        MachineUtils.replaceExistingItemViewer(menu, getStatusSlot(), new CustomItemStack(Material.TNT, ChatColor.GREEN + "工作中..."));
         PROGRESS_MAP.put(blockPosition, ++progress);
         ITERATOR_MAP.put(blockPosition, iterator);
         return true;
@@ -172,7 +173,7 @@ public class ChunkEater extends AbstractMachine {
             } else {
                 e.setCancelled(true);
                 BlockStorage.clearBlockInfo(b);
-                ChatUtils.sendMessage(e.getPlayer(), ChatColor.RED + "You can only place 1 Chunk Eater per chunk");
+                ChatUtils.sendMessage(e.getPlayer(), ChatColor.RED + "你只能在区块中放置1个区块吞噬者。");
                 return;
             }
         } else {

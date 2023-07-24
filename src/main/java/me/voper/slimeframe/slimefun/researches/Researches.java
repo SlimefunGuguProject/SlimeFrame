@@ -25,38 +25,40 @@ public final class Researches {
     public static void setup() {
         if (!sm.getBoolean(SettingsManager.ConfigField.RESEARCHES_ENABLED)) return;
 
-        create(Keys.ORES_RESEARCH, 1, "SlimeFrame ores", 50, SpecialOre.SOURCE_ORE_MAP.values().toArray(SpecialOre[]::new));
-        create(Keys.ALLOYS_RESEARCH, 2, "Unveiling the secrets of rare Alloys", 50, SFrameItems.ALLOYS.toArray(SlimefunItem[]::new));
+        create(Keys.ORES_RESEARCH, 1, "粘液战甲矿石", 50, SpecialOre.SOURCE_ORE_MAP.values().toArray(SpecialOre[]::new));
+        create(Keys.ALLOYS_RESEARCH, 2, "揭开稀有合金的秘密", 50, SFrameItems.ALLOYS.toArray(SlimefunItem[]::new));
 
-        create(Keys.NOSAM_RESEARCH, 3, "Nosam Pickaxe", 30, SFrameStacks.NOSAM_PICK);
-        create(Keys.FOCUSED_NOSAM_RESEARCH, 4, "Sharpening your knowledge to wield the Focused Nosam Pickaxe with precision", 60, SFrameStacks.FOCUSED_NOSAM_PICK);
-        create(Keys.PRIME_NOSAM_RESEARCH, 5, "Attaining mastery over the Prime Nosam Pickaxe", 90, SFrameStacks.PRIME_NOSAM_PICK);
+        create(Keys.NOSAM_RESEARCH, 3, "诺萨姆切割器", 30, SFrameStacks.NOSAM_PICK);
+        create(Keys.FOCUSED_NOSAM_RESEARCH, 4, "可以更加熟练地使用诺萨姆切割器", 60, SFrameStacks.FOCUSED_NOSAM_PICK);
+        create(Keys.PRIME_NOSAM_RESEARCH, 5, "精通诺萨姆切割器", 90, SFrameStacks.PRIME_NOSAM_PICK);
 
-        create(Keys.MACHINES_RESEARCH, 6, "Unearthing the essence of fundamental machines to expand your technological arsenal", 30, Groups.MACHINES.getItems().stream()
-                .filter(item -> !item.getItemName().contains("Prime ") && !item.getItemName().contains("Advanced "))
+        create(Keys.MACHINES_RESEARCH, 6, "使用基本机器", 30, Groups.MACHINES.getItems().stream()
+                .filter(item -> !item.getItemName().contains("Prime") && !item.getItemName().contains("高级"))
                 .toList());
 
-        create(Keys.ADV_MACHINES_RESEARCH, 7, "Delving into advanced machinery", 50, Groups.MACHINES.getItems().stream()
-                .filter(item -> item.getItemName().contains("Advanced "))
+        create(Keys.ADV_MACHINES_RESEARCH, 7, "使用高级机器", 50, Groups.MACHINES.getItems().stream()
+                .filter(item -> item.getItemName().contains("高级"))
                 .toList());
 
-        create(Keys.PRIME_MACHINES_RESEARCH, 8, "Ascending to the pinnacle of technological prowess with Prime-tier machines", 60, Groups.MACHINES.getItems().stream()
-                .filter(item -> item.getItemName().contains("Prime "))
+        create(Keys.PRIME_MACHINES_RESEARCH, 8, "使用 Prime 机器", 60, Groups.MACHINES.getItems().stream()
+                .filter(item -> item.getItemName().contains("Prime"))
                 .toList());
 
-        create(Keys.CRYO_SUIT_RESEARCH, 9, "Unleashing the potential of Cryo technology", 50, SFrameStacks.CRYO_BOOTS, SFrameStacks.CRYO_CHESTPLATE, SFrameStacks.CRYO_HELMET, SFrameStacks.CRYO_LEGGINGS);
-        create(Keys.ALLOY_PLATES_RESEARCH, 10, "Studying the intricacies of Alloy Plates, vital components in advanced equipment", 30, SFrameItems.ALLOY_PLATES_MAP.values().toArray(new SlimefunItemStack[0]));
+        create(Keys.CRYO_SUIT_RESEARCH, 9, "释放低温技术的潜力", 50,
+            SFrameStacks.CRYO_BOOTS, SFrameStacks.CRYO_CHESTPLATE, SFrameStacks.CRYO_HELMET, SFrameStacks.CRYO_LEGGINGS);
+        create(Keys.ALLOY_PLATES_RESEARCH, 10, "研究复杂的合金版，是高级装备的重要组件", 30, SFrameItems.ALLOY_PLATES_MAP.values().toArray(new SlimefunItemStack[0]));
 
-        create(Keys.ENERGY_GEN_RESEARCH, 11, "Tapping into the power of advanced Energy Generators", 40,
+        create(Keys.ENERGY_GEN_RESEARCH, 11, "利用高级发电机", 40,
                 SFrameStacks.GRAVITECH_ENERCELL, SFrameStacks.ARCANE_FLUX_DYNAMO, SFrameStacks.SPECTRA_REACTOR,
                 SFrameStacks.PRISMA_POWER_CORE, SFrameStacks.VOIDFORGE_CELESTIUM_GENERATOR, SFrameStacks.AXIOM_ENERGENESIS_ENGINE,
                 SFrameStacks.CHRONOS_INFINITY_DYNAMO, SFrameStacks.PRIMORDIAL_ETERNACORE_REACTOR, SFrameStacks.VOIDLIGHT_FUSION_GENERATOR);
 
-        create(Keys.ASTRAL_GEN_RESEARCH, 12, "Achieving celestial heights with the Astral Prime Generator, a testament to energy mastery", 50, SFrameStacks.ASTRAL_PRIME_GENERATOR);
+        create(Keys.ASTRAL_GEN_RESEARCH, 12, "使用 Prime 发电机主宰能量", 50, SFrameStacks.ASTRAL_PRIME_GENERATOR);
         create(Keys.MULTIBLOCKS_RESEARCH, 13, "Comprehending the complexities of SlimeFrame Multiblocks", 30, SFrameStacks.FOUNDRY);
-        create(Keys.CONDENSED_PLATE_RESEARCH, 14, "Unlocking the secrets of Condensed Plates", 40, SFrameStacks.CONDENSED_PLATE);
+        create(Keys.CONDENSED_PLATE_RESEARCH, 14, "揭开浓缩板的秘密", 40,
+            SFrameStacks.CONDENSED_PLATE);
 
-        create(Keys.GENERAL_RESOURCES_RESEARCH, 15 , "General SlimeFrame resources", 25,
+        create(Keys.GENERAL_RESOURCES_RESEARCH, 15 , "粘液战甲通用资源", 25,
                 SFrameStacks.CRYOTIC, SFrameStacks.COOLANT_CANISTER, SFrameStacks.TELLURIUM_FRAGMENT, SFrameStacks.TELLURIUM,
                 SFrameStacks.DILUTED_THERMIA, SFrameStacks.RUBEDO, SFrameStacks.ARGON_CRYSTAL, SFrameStacks.CUBIC_DIODES,
                 SFrameStacks.PLASTIDS, SFrameStacks.CONTROL_MODULE, SFrameStacks.GALLIUM, SFrameStacks.SALVAGE,

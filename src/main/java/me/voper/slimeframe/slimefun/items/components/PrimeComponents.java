@@ -58,18 +58,17 @@ public class PrimeComponents {
             return COMPONENTS_MAP.get(item).getControlUnit();
         }
 
-        String displayName = ChatColor.stripColor(item.getDisplayName()).replace("Prime ", "");
+        String displayName = ChatColor.stripColor(item.getDisplayName()).replace("Prime", "");
         String itemId = item.getItemId();
 
         SlimefunItemStack controlUnit = SFrameTheme.sfStackFromTheme(
                 itemId + "_CONTROL_UNIT",
                 HeadTextures.MACHINE_CONTROL,
                 SFrameStacks.PRIME_COMPONENTS_THEME.withNameColor(Colors.BRONZE),
-                displayName + " Control",
-                "Empowering Prime-tier machines with seamless",
-                "coordination and precision, the Control Unit",
-                "is a vital nexus of technological prowess",
-                "Required to craft: " + item.getDisplayName()
+                displayName + " 控制单元",
+                "控制单元是 Prime 技术的重要部分，",
+                "它能为 Prime 机器提供无缝协调与精准度。",
+                "用于合成：" + item.getDisplayName()
         );
 
         PrimeComponents primeComponents = COMPONENTS_MAP.get(item);
@@ -87,19 +86,18 @@ public class PrimeComponents {
             return COMPONENTS_MAP.get(item).getPowerCell();
         }
 
-        String displayName = ChatColor.stripColor(item.getDisplayName()).replace("Prime ", "");
+        String displayName = ChatColor.stripColor(item.getDisplayName()).replace("Prime", "");
         String itemId = item.getItemId();
 
         SlimefunItemStack powerCell = SFrameTheme.sfStackFromTheme(
                 itemId + "_POWER_CELL",
                 HeadTextures.MACHINE_POWER_CELL,
                 SFrameStacks.PRIME_COMPONENTS_THEME.withNameColor(Colors.SILVER),
-                displayName + " Power Cell",
-                "The Power Cell, an essential component for",
-                "Prime-tier machines, holds boundless energy",
-                "within its compact form, fueling the pinnacle",
-                "of technological achievements",
-                "Required to craft: " + item.getDisplayName()
+                displayName + " 能量单元",
+                "能量单元，Prime 机器的基础组件，",
+                "在其紧凑的外形中蕴含无尽的的能量，",
+                "为巅峰之作提供动力。",
+                "用于合成：" + item.getDisplayName()
         );
 
         PrimeComponents primeComponents = COMPONENTS_MAP.get(item);
@@ -117,19 +115,18 @@ public class PrimeComponents {
             return COMPONENTS_MAP.get(item).getCoreModule();
         }
 
-        String displayName = ChatColor.stripColor(item.getDisplayName()).replace("Prime ", "");
+        String displayName = ChatColor.stripColor(item.getDisplayName()).replace("Prime", "");
         String itemId = item.getItemId();
 
         SlimefunItemStack coreModule = SFrameTheme.sfStackFromTheme(
                 itemId + "_CORE",
                 HeadTextures.MACHINE_CORE,
                 SFrameStacks.PRIME_COMPONENTS_THEME.withNameColor(Colors.GOLD_2),
-                displayName + " Core Module",
-                "The Core Module, a crucial component in",
-                "crafting Prime-tier machines, unlocks true",
-                "potential with advanced functionalities",
-                "and intricate circuitry",
-                "Required to craft: " + item.getDisplayName()
+                displayName + " 核心模块",
+                "核心模块是制作 Prime 机器的关键组件，",
+                "通过先进的功能与复杂的技术",
+                "释放出机器真正的潜能。",
+                "用于合成：" + item.getDisplayName()
         );
 
         PrimeComponents primeComponents = COMPONENTS_MAP.get(item);

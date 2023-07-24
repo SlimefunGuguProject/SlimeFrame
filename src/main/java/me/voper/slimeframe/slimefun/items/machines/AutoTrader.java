@@ -45,7 +45,8 @@ import java.util.Map;
 public class AutoTrader extends AbstractProcessorMachine implements RecipeDisplayItem {
 
     private static final String BLOCK_KEY = "auto_trader";
-    private static final ItemStack SELECT_TRADE = new CustomItemStack(Material.GREEN_STAINED_GLASS_PANE, ChatColor.GREEN + "Valid Contract", ChatColor.WHITE + "Select one of the trades");
+    private static final ItemStack SELECT_TRADE = new CustomItemStack(Material.GREEN_STAINED_GLASS_PANE,
+        ChatColor.GREEN + "有效的契约", ChatColor.WHITE + "选择一个交易");
 
     private List<MerchantRecipe> merchantRecipes = null;
     private int selectedTrade = -1;
@@ -161,9 +162,10 @@ public class AutoTrader extends AbstractProcessorMachine implements RecipeDispla
 
     @Override
     protected void onCraftConditionsNotMet(BlockMenu menu) {
-        MachineUtils.replaceExistingItemViewer(menu, getStatusSlot(), new CustomItemStack(Material.BARRIER, ChatColor.DARK_RED + "Merchant Soul Contract required",
-                ChatColor.RED + "There must be a valid merchant contract",
-                ChatColor.RED + "in the contract slot!")
+        MachineUtils.replaceExistingItemViewer(menu, getStatusSlot(), new CustomItemStack(Material.BARRIER,
+            ChatColor.DARK_RED + "需要商人灵魂契约",
+                ChatColor.RED + "契约栏位必须有一个",
+                ChatColor.RED + "有效的商人灵魂契约！")
         );
         MachineUtils.replaceExistingItemViewer(menu, getTradesSlots(), new CustomItemStack(Material.RED_STAINED_GLASS_PANE, " "));
     }

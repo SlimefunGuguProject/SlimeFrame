@@ -63,13 +63,13 @@ public final class RelicsListener implements Listener {
                 // Support for bedrock players
                 boolean isBedrockPlayer =  SlimeFrame.getGeyserApi() != null && SlimeFrame.getGeyserApi().isBedrockPlayer(killer.getUniqueId());
                 ItemStack relic = isBedrockPlayer ? killer.getInventory().getItem(0) : killer.getInventory().getItemInOffHand();
-                String slot = isBedrockPlayer ? "first slot" : "off hand";
+                String slot = isBedrockPlayer ? "第一格快捷栏" : "副手";
 
                 SlimefunItem sfItem = SlimefunItem.getByItem(relic);
                 if (sfItem != null && sfItem instanceof Relic) {
                     if (relic.getAmount() > 1) {
-                        ChatUtils.sendMessage(killer, ChatColor.RED + "It wasn't possible to deliver a reactant to you",
-                                ChatColor.RED + "Make sure that you only have one relic in your " + slot);
+                        ChatUtils.sendMessage(killer, ChatColor.RED + "无法获取反应物！",
+                                ChatColor.RED + "确保你的" + slot + "仅有1个遗物！");
                     } else {
                         Relic.incrementReactants(killer, relic);
                     }

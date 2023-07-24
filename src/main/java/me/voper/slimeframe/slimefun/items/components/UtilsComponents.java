@@ -48,19 +48,19 @@ public class UtilsComponents {
             return COMPONENTS_MAP.get(item).getVoidShardEssence();
         }
 
-        String displayName = ChatColor.stripColor(item.getDisplayName()).replace("Prime ", "");
+        String displayName = ChatColor.stripColor(item.getDisplayName()).replace("Prime", "");
         String itemId = item.getItemId();
 
         SlimefunItemStack voidShardEssence = SFrameTheme.sfStackFromTheme(
                 itemId + "_VSE",
                 HeadTextures.VOID_SHARD_ESSENCE,
                 SFrameStacks.PRIME_COMPONENTS_THEME.withNameColor(Colors.BRONZE),
-                displayName + " Void Shard",
-                "A condensed fragment of Void energy, resonating",
-                "with untapped power. This essence radiates an",
-                "otherworldly aura, a key component for forging",
-                "Prime-tier utility tools",
-                "Required to craft: " + item.getDisplayName()
+                displayName + " 虚空碎片",
+                "一块浓缩的虚空能量碎片，",
+                "蕴含着未开发的力量。",
+                "这种精华散发着超凡脱俗的气息，",
+                "是制作 Prime 物品的必要材料。",
+                "用于合成" + item.getDisplayName()
         );
 
         UtilsComponents utilsComponents = COMPONENTS_MAP.get(item);
@@ -77,19 +77,19 @@ public class UtilsComponents {
             return COMPONENTS_MAP.get(item).getTemporalCogwheel();
         }
 
-        String displayName = ChatColor.stripColor(item.getDisplayName()).replace("Prime ", "");
+        String displayName = ChatColor.stripColor(item.getDisplayName()).replace("Prime", "");
         String itemId = item.getItemId();
 
         SlimefunItemStack temporalCog = SFrameTheme.sfStackFromTheme(
                 itemId + "_TC",
                 HeadTextures.TEMPORAL_COGWHEEL,
                 SFrameStacks.PRIME_COMPONENTS_THEME.withNameColor(Colors.SILVER),
-                displayName + " Temporal Cogwheel",
-                "A precision-engineered cogwheel infused with",
-                "temporal energies, resonating with the flow",
-                "of time. Its intricate design enables the",
-                "manipulation of chronal forces",
-                "Required to craft: " + item.getDisplayName()
+                displayName + " 时间齿轮",
+                "精密制作的齿轮注入了时间能量，",
+                "可与时间的流动产生共鸣。",
+                "其复杂的设计允许其",
+                "操控时间的力量。",
+                "用于合成：" + item.getDisplayName()
         );
 
         UtilsComponents utilsComponents = COMPONENTS_MAP.get(item);
@@ -106,18 +106,17 @@ public class UtilsComponents {
             return COMPONENTS_MAP.get(item).getNeuralNexusCore();
         }
 
-        String displayName = ChatColor.stripColor(item.getDisplayName()).replace("Prime ", "");
+        String displayName = ChatColor.stripColor(item.getDisplayName()).replace("Prime", "");
         String itemId = item.getItemId();
 
         SlimefunItemStack neuralNexus = SFrameTheme.sfStackFromTheme(
                 itemId + "_NNC",
                 HeadTextures.NEURAL_NEXUS_CORE,
                 SFrameStacks.PRIME_COMPONENTS_THEME.withNameColor(Colors.GOLD_2),
-                displayName + " Neural Nexus Core",
-                "A specialized core infused with neural pathways",
-                "and synaptic circuits, harnessing the power",
-                "of advanced Warframe technology",
-                "Required to craft: " + item.getDisplayName()
+                displayName + " 神经网络核心",
+                "注入神经通路和突触电路的专用核心，",
+                "利用了先进 Warframe 科技的力量。",
+                "用于合成：" + item.getDisplayName()
         );
 
         UtilsComponents utilsComponents = COMPONENTS_MAP.get(item);

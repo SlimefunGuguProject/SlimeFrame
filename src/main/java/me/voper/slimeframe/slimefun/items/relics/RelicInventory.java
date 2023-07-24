@@ -25,7 +25,7 @@ public class RelicInventory {
 
     public RelicInventory(@Nonnull Player owner) {
         this.owner = owner.getUniqueId();
-        this.inventory = Bukkit.createInventory(owner, SIZE, ChatColor.WHITE + owner.getName() + "'s Relics Inventory");
+        this.inventory = Bukkit.createInventory(owner, SIZE, ChatColor.WHITE + owner.getName() + "的遗物背包");
     }
 
     public void addRelic(@Nonnull RelicItemStack relic) {
@@ -35,18 +35,20 @@ public class RelicInventory {
         if (player == null) return;
 
         if (result.isEmpty()) {
-            BaseComponent[] baseComponents = new ComponentBuilder("You have just received a ").color(ChatColor.GREEN)
+            BaseComponent[] baseComponents =
+                new ComponentBuilder("你获得了一个").color(ChatColor.GREEN)
                     .append(relic.getDisplayName())
-                    .append(" Relic. Click this message or check your personal Relic Inventory - /sframe inventory").color(ChatColor.GREEN)
+                    .append("遗物。点击该信息或通过指令 /sframe inventory 打开遗物背包").color(ChatColor.GREEN)
                     .create();
 
             TextComponent message = new TextComponent(baseComponents);
             message.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/sframe inventory"));
-            message.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new Text(new ComponentBuilder("Open Relic Inventory").create())));
+            message.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT,
+                new Text(new ComponentBuilder("打开遗物背包").create())));
 
             ChatUtils.sendMessage(player, message);
         } else {
-            ChatUtils.sendMessage(player, ChatColor.RED + "You couldn't receive a relic because your relic inventory is full");
+            ChatUtils.sendMessage(player, ChatColor.RED + "你不能获取新的遗物，因为你的遗物背包已经满了！");
         }
     }
 

@@ -93,7 +93,8 @@ public class FlowerGenerator extends AbstractMachine {
 
     @Override
     protected void onCraftConditionsNotMet(BlockMenu menu) {
-        menu.replaceExistingItem(getStatusSlot(), new CustomItemStack(Material.FLOWER_POT, ChatColor.RED + "There must be a potted flower above this machine."));
+        menu.replaceExistingItem(getStatusSlot(), new CustomItemStack(Material.FLOWER_POT, ChatColor.RED +
+            "机器上方必须有带植物的花盆。"));
     }
 
     private void updateProgress(BlockMenu menu, int progress) {
