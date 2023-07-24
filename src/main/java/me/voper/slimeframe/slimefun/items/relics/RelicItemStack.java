@@ -36,7 +36,7 @@ public class RelicItemStack extends SlimefunItemStack {
             List<String> lore = new ArrayList<>();
             lore.add("");
             lore.add(ChatColor.AQUA + "反应物：" + ChatColor.WHITE + "0/10");
-            lore.add(ChatColor.AQUA + "精炼：" + ChatColor.WHITE + Relic.Refinement.INTACT.name());
+            lore.add(ChatColor.AQUA + "精炼：" + ChatColor.WHITE + Relic.Refinement.INTACT.getDisplayName());
             lore.add("");
             lore.add(Colors.BRONZE + String.valueOf(ChatColor.BOLD) + "普通奖励：");
             for (SlimefunItemStack commonDrop: commonDrops) {
