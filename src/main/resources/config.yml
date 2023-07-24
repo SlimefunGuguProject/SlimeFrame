@@ -1,20 +1,20 @@
 options:
   auto-update: true
   enable-researches: false
-  # If the server has the plugin AdvancedEnchantments enabled, this option will enable Soul Contracts to
-  # have trades with AE items if set to true
+  # 如果服务器安装了 AdvancedEnchantments
+  # 该选项会使灵魂契约提供AE的物品
   enable-ae-items-in-soul-contracts: false
-  # Probability of a villager obtaining a trade with one of the SlimeFrame ores in %
+  # 村民提供包含粘液战甲的矿石交易的几率（百分比）
   ore-trade-chance: 1
 
 relics:
-  # One lith relic every X fishes caught
+  # 每钓到多少条鱼可获得古纪遗物
   lith: 50
-  # One meso relic every X mobs killed
+  # 每击杀多少生物可获得前纪遗物
   meso: 750
-  # One neo relic every X blocks broken
+  # 每破坏多少方块可获得中纪遗物
   neo: 1000
-  # One axi relic every X blocks placed
+  # 每放置多少方块可获得后纪遗物
   axi: 500
 
 commands:
@@ -34,7 +34,7 @@ commands:
     - 'traces'
 
 messages:
-  prefix: '&f[&bSlimeFrame&f]'
+  prefix: '&f[&b粘液战甲&f]'
   prefix-enabled: false
   # When a player tries to open a relic with insufficient reactants
   insufficient-reactants:

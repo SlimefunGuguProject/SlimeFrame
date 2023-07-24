@@ -12,6 +12,7 @@ import me.voper.slimeframe.slimefun.datatypes.MerchantRecipeListDataType;
 import me.voper.slimeframe.slimefun.researches.Researches;
 import me.voper.slimeframe.tasks.ArmorMonitorTask;
 import me.voper.slimeframe.tasks.CoolantRaknoidsTask;
+import net.guizhanss.guizhanlibplugin.updater.GuizhanUpdater;
 import org.bstats.bukkit.Metrics;
 import org.bukkit.Bukkit;
 import org.bukkit.block.Block;
@@ -24,6 +25,7 @@ import org.jetbrains.annotations.Nullable;
 import javax.annotation.Nonnull;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.logging.Level;
 
 public class SlimeFrame extends JavaPlugin implements SlimefunAddon {
 
@@ -45,6 +47,13 @@ public class SlimeFrame extends JavaPlugin implements SlimefunAddon {
     @Override
     public void onEnable() {
         instance = this;
+
+        if (!getServer().getPluginManager().isPluginEnabled("GuizhanLibPlugin")) {
+            getLogger().log(Level.SEVERE, "本插件需要 鬼斩前置库插件(GuizhanLibPlugin) 才能运行!");
+            getLogger().log(Level.SEVERE, "从此处下载: https://50l.cc/gzlib");
+            getServer().getPluginManager().disablePlugin(this);
+            return;
+        }
 
         new Metrics(this, 19212);
 
@@ -68,6 +77,11 @@ public class SlimeFrame extends JavaPlugin implements SlimefunAddon {
         this.setupEvents();
         this.startTasks();
         this.logStart();
+
+        if (settingsManager.getBoolean(SettingsManager.ConfigField.AUTO_UPDATE) && getPluginVersion().startsWith(
+            "Build")) {
+            GuizhanUpdater.start(this, getFile(), "SlimefunGuguProject", "SlimeFrame", "main");
+        }
     }
 
     @Override
@@ -88,7 +102,7 @@ public class SlimeFrame extends JavaPlugin implements SlimefunAddon {
 
     @Override
     public String getBugTrackerURL() {
-        return "https://github.com/VoperAD/SlimeFrame/issues";
+        return "https://github.com/SlimefunGuguProject/SlimeFrame/issues";
     }
 
     @Nonnull
