@@ -38,6 +38,6 @@ messages:
   prefix-enabled: false
   # When a player tries to open a relic with insufficient reactants
   insufficient-reactants:
-    - '&cYou need 10 reactants to open this relic!'
+    - '&c你需要10个反应物才能打开该遗物！'
   freezing-item:
-    - '&cWarning! You have been exposed to a freezing item. Throw it away or wear a Cryogenic Suit.'
+    - '&c警告！你已经收到冰冻物品的影响！丢掉它或者穿上永冻套装！'
