@@ -87,10 +87,8 @@ public final class RelicsListener implements Listener {
         PersistentDataAPI.setInt(killer, Keys.KILL_COUNTER, kills);
     }
 
-    @EventHandler(priority = EventPriority.LOW)
+    @EventHandler(ignoreCancelled = true, priority = EventPriority.LOW)
     public void updateBlocksBroken(BlockBreakEvent e) {
-        if (e.isCancelled()) return;
-
         Player p = e.getPlayer();
         int blocksBroken = PersistentDataAPI.getInt(p, Keys.BLOCKS_BROKEN_COUNTER, 0) + 1;
 
@@ -102,7 +100,7 @@ public final class RelicsListener implements Listener {
         PersistentDataAPI.setInt(p, Keys.BLOCKS_BROKEN_COUNTER, blocksBroken);
     }
 
-    @EventHandler(priority = EventPriority.LOW)
+    @EventHandler(ignoreCancelled = true, priority = EventPriority.LOW)
     public void updateBlocksPlaced(BlockPlaceEvent e) {
         Player p = e.getPlayer();
 
