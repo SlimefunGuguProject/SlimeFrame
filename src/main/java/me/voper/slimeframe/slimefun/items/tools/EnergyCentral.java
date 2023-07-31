@@ -35,10 +35,13 @@ public class EnergyCentral extends AbstractTickingContainer {
     private static final int TIME = 10;
 
     private static final DecimalFormat format = new DecimalFormat("###,###,###.##", DecimalFormatSymbols.getInstance(Locale.ROOT));
-    private static final CustomItemStack capacitors = new CustomItemStack(HeadTexture.CAPACITOR_100.getAsItemStack(), ChatColor.BLUE + "Capacitors");
-    private static final CustomItemStack generators = new CustomItemStack(Material.DAYLIGHT_DETECTOR, ChatColor.GREEN + "Generators");
-    private static final CustomItemStack consumers = new CustomItemStack(Material.FURNACE, ChatColor.RED + "Consumers");
-    private static final CustomItemStack noEnergyNet = new CustomItemStack(Material.BARRIER, ChatColor.DARK_RED + "Energy net not found");
+    private static final CustomItemStack capacitors = new CustomItemStack(HeadTexture.CAPACITOR_100.getAsItemStack(),
+        ChatColor.BLUE + "电容");
+    private static final CustomItemStack generators = new CustomItemStack(Material.DAYLIGHT_DETECTOR,
+        ChatColor.GREEN + "发电机");
+    private static final CustomItemStack consumers = new CustomItemStack(Material.FURNACE, ChatColor.RED + "机器");
+    private static final CustomItemStack noEnergyNet = new CustomItemStack(Material.BARRIER, ChatColor.DARK_RED +
+        "未找到能源网络");
 
     private final int generatorsSlot = 19;
     private final int capacitorsSlot = 22;
@@ -106,22 +109,22 @@ public class EnergyCentral extends AbstractTickingContainer {
 
             menu.replaceExistingItem(getCapacitorsSlot(), new CustomItemStack(capacitors, (meta) -> {
                 List<String> lore = new ArrayList<>();
-                lore.add(ChatColor.AQUA + "Total: " + Colors.CRAYOLA_BLUE + netCapacitors.size());
-                lore.add(ChatColor.AQUA + "Capacity (from capacitors): " + Colors.CRAYOLA_BLUE + format.format(capacitorsCapacity) + " J");
-                lore.add(ChatColor.AQUA + "Total Capacity: " + Colors.CRAYOLA_BLUE + format.format(totalCapacity) + " J");
+                lore.add(ChatColor.AQUA + "累计：" + Colors.CRAYOLA_BLUE + netCapacitors.size());
+                lore.add(ChatColor.AQUA + "来自电容的电容：" + Colors.CRAYOLA_BLUE + format.format(capacitorsCapacity) + " J");
+                lore.add(ChatColor.AQUA + "累计电容：" + Colors.CRAYOLA_BLUE + format.format(totalCapacity) + " J");
                 meta.setLore(lore);
             }));
 
             menu.replaceExistingItem(getGeneratorsSlot(), new CustomItemStack(generators, (meta) -> {
                 List<String> lore = new ArrayList<>();
-                lore.add(ChatColor.AQUA + "Total: " + Colors.CRAYOLA_BLUE + netGenerators.size());
-                lore.add(ChatColor.AQUA + "Energy Generated: " + Colors.CRAYOLA_BLUE + format.format(energyGenerated) + " J/s");
+                lore.add(ChatColor.AQUA + "累计：" + Colors.CRAYOLA_BLUE + netGenerators.size());
+                lore.add(ChatColor.AQUA + "能量生产：" + Colors.CRAYOLA_BLUE + format.format(energyGenerated) + " J/s");
                 meta.setLore(lore);
             }));
 
             menu.replaceExistingItem(getConsumersSlot(), new CustomItemStack(consumers, (meta) -> {
                 List<String> lore = new ArrayList<>();
-                lore.add(ChatColor.AQUA + "Total: " + Colors.CRAYOLA_BLUE + netConsumers.size());
+                lore.add(ChatColor.AQUA + "累计：" + Colors.CRAYOLA_BLUE + netConsumers.size());
                 meta.setLore(lore);
             }));
 

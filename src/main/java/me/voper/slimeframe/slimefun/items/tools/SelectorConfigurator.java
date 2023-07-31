@@ -58,7 +58,7 @@ public class SelectorConfigurator extends SimpleSlimefunItem<ItemUseHandler> {
                             }
                         }
                     } else {
-                        ChatUtils.sendMessage(p, ChatColor.RED + "You cannot use this item in this machine!");
+                        ChatUtils.sendMessage(p, ChatColor.RED + "你不能对该机器使用此物品。");
                     }
                 }
             }
@@ -83,7 +83,7 @@ public class SelectorConfigurator extends SimpleSlimefunItem<ItemUseHandler> {
         PersistentDataAPI.setInt(itemMeta, INDEX_STORED, index);
         configurator.setItemMeta(itemMeta);
 
-        ChatUtils.sendMessage(player, ChatColor.GREEN + "Configuration successfully set");
+        ChatUtils.sendMessage(player, ChatColor.GREEN + "已配置机器。");
     }
 
     protected void applyConfiguration(AbstractSelectorMachine selectorMachine, BlockMenu menu, ItemStack configurator, Player player) {
@@ -93,17 +93,17 @@ public class SelectorConfigurator extends SimpleSlimefunItem<ItemUseHandler> {
         String id = PersistentDataAPI.getString(itemMeta, MACHINE_ID);
 
         if (index == -1 || id == null) {
-            ChatUtils.sendMessage(player, Colors.ORANGE + "The selector configurator is not configured");
+            ChatUtils.sendMessage(player, Colors.ORANGE + "选择配置器未存储任何配置！");
             return;
         }
 
         if (!selectorMachine.getId().contains(id)) {
-            ChatUtils.sendMessage(player, ChatColor.RED + "The input configurator is set to the following machine: " + id);
+            ChatUtils.sendMessage(player, ChatColor.RED + "该配置器绑定的机器为：" + id);
             return;
         }
 
         selectorMachine.select(menu, index);
-        ChatUtils.sendMessage(player, ChatColor.GREEN + "Configuration successfully applied");
+        ChatUtils.sendMessage(player, ChatColor.GREEN + "已应用设置！");
     }
 
 }

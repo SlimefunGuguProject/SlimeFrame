@@ -68,7 +68,8 @@ public class DustGenerator extends AbstractSelectorMachine implements RecipeDisp
 
     @Override
     protected void onCraftConditionsNotMet(BlockMenu menu) {
-        MachineUtils.replaceExistingItemViewer(menu, getStatusSlot(), new CustomItemStack(Material.BARRIER, ChatColor.RED + "Select a dust to generate!"));
+        MachineUtils.replaceExistingItemViewer(menu, getStatusSlot(), new CustomItemStack(Material.BARRIER,
+            ChatColor.RED + "选择需要生成的矿粉！"));
     }
     
     @Nonnull
