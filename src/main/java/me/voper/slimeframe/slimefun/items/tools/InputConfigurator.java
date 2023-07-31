@@ -31,6 +31,8 @@ import org.bukkit.persistence.PersistentDataType;
 import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @SuppressWarnings("deprecation")
@@ -41,6 +43,7 @@ public class InputConfigurator extends SimpleSlimefunItem<ItemUseHandler> {
     private static final NamespacedKey MACHINE_ID = Keys.createKey("wf_input_config_machine_id");
 
     private static final String SIMULATION_CHAMBER_ID = "MOB_SIMULATION_CHAMBER";
+    private static final List<String> IE_QUARRIES = new ArrayList<>(List.of("BASIC_QUARRY", "ADVANCED_QUARRY", "VOID_QUARRY", "INFINITY_QUARRY"));
 
     public InputConfigurator(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);
@@ -59,8 +62,6 @@ public class InputConfigurator extends SimpleSlimefunItem<ItemUseHandler> {
                 if (Slimefun.getProtectionManager().hasPermission(p, block, Interaction.INTERACT_BLOCK) && item != null) {
                     BlockMenu inventory = BlockStorage.getInventory(block);
                     if (inventory != null) {
-//                        int[] slotsAccessedByItemTransport = ((DirtyChestMenu) inventory).getPreset().getSlotsAccessedByItemTransport((DirtyChestMenu) inventory, ItemTransportFlow.INSERT, null);
-//                        if (item instanceof InventoryBlock || hasGetInputSlots(item)) {
                         int[] input = getInputSlots(item, inventory);
                         if (input.length != 0) {
                             if (p.isSneaking()) {
@@ -97,6 +98,10 @@ public class InputConfigurator extends SimpleSlimefunItem<ItemUseHandler> {
 
         if (item.getId().equals(SIMULATION_CHAMBER_ID)) {
             return new int[]{37};
+        }
+
+        if (IE_QUARRIES.contains(item.getId())) {
+            return new int[]{49};
         }
 
         return new int[0];

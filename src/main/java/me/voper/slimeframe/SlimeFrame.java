@@ -12,6 +12,7 @@ import me.voper.slimeframe.slimefun.datatypes.MerchantRecipeListDataType;
 import me.voper.slimeframe.slimefun.researches.Researches;
 import me.voper.slimeframe.tasks.ArmorMonitorTask;
 import me.voper.slimeframe.tasks.CoolantRaknoidsTask;
+import net.guizhanss.guizhanlib.updater.UpdaterConfig;
 import net.guizhanss.guizhanlibplugin.updater.GuizhanUpdater;
 import org.bstats.bukkit.Metrics;
 import org.bukkit.Bukkit;
@@ -30,6 +31,7 @@ import java.util.logging.Level;
 public class SlimeFrame extends JavaPlugin implements SlimefunAddon {
 
     private static SlimeFrame instance;
+    public static final int RESOURCE_ID = 111432;
 
     private SettingsManager settingsManager;
     private RelicInventoryManager relicInventoryManager;
@@ -78,9 +80,10 @@ public class SlimeFrame extends JavaPlugin implements SlimefunAddon {
         this.startTasks();
         this.logStart();
 
-        if (settingsManager.getBoolean(SettingsManager.ConfigField.AUTO_UPDATE) && getPluginVersion().startsWith(
-            "Build")) {
-            GuizhanUpdater.start(this, getFile(), "SlimefunGuguProject", "SlimeFrame", "main");
+        if (getPluginVersion().startsWith("Build")) {
+            UpdaterConfig updaterConfig =
+                UpdaterConfig.builder().checkOnly(!settingsManager.getBoolean(SettingsManager.ConfigField.AUTO_UPDATE)).build();
+            GuizhanUpdater.start(this, getFile(), "SlimefunGuguProject", "SlimeFrame", "main", updaterConfig);
         }
     }
 

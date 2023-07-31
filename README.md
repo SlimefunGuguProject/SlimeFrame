@@ -19,19 +19,18 @@ SlimeFrame（粘液战甲）是一个受到 WarFrame 启发的 Slimefun 附属�
 ## 需求
 
 Minecraft 版本：1.19+
-Slimefun 版本：RC-32+
+Slimefun 版本：RC-34+
 
 ## 指令
 
-### 允许所有人使用
-
-- /sframe relics -> 打开遗物背包
-- /sframe refine <refinement> -> Refine the relic that is in your hand.
-- /sframe traces [player] -> 查看玩家的虚空光体数量（不输入玩家名则查看自己的）
-
-### 需要管理员权限
-
-- /sframe invsee <player> -> 查看玩家的遗物背包
+|              指令               |             权限              |       说明        |
+|:-----------------------------:|:---------------------------:|:---------------:|
+|               -               |     slimeframe.anyone.*     | 允许使用 _访问其他人_ 指令 |
+|        /sframe relics         | slimeframe.anyone.inventory |    打开自己的遗物背包    |
+| /sframe refine \<refinement\> |  slimeframe.anyone.refine   |     精炼手持的遗物     |
+|    /sframe traces [player]    |  slimeframe.anyone.traces   |   显示拥有多少虚空光体    |
+|               -               |     slimeframe.admin.*      |  允许使用 _管理员_ 指令  |
+|   /sframe invsee \<player\>   |   slimeframe.admin.invsee   |   打开指定玩家的遗物背包   |
 
 ## 这个附属有什么？
 

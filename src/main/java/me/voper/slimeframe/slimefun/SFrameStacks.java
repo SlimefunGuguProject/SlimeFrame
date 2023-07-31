@@ -154,6 +154,19 @@ public final class SFrameStacks {
                 "粘贴配置"
     );
 
+    public static final SlimefunItemStack SELECTOR_CONFIGURATOR = SFrameTheme.sfStackFromTheme(
+            "WF_SELECTOR_CONFIG",
+            enchantedItem(Material.BLAZE_ROD),
+            UTILS_TOOLS_THEME.withNameColor(Colors.FERRARI_RED),
+            "选择配置器",
+            "将机器内选择器的配置",
+            "复制到同类型的机器中。",
+            "",
+            ChatColor.GREEN + "右键点击" + UTILS_TOOLS_THEME.getLoreColor() + "复制配置",
+            ChatColor.DARK_GREEN + "蹲下+" + ChatColor.GREEN + "右键点击" + UTILS_TOOLS_THEME.getLoreColor() +
+                "粘贴配置"
+    );
+
     public static final SlimefunItemStack ITEM_PROJECTOR = SFrameTheme.sfStackFromTheme(
             "WF_ITEM_PROJECTOR",
             Material.BLACKSTONE_SLAB,
@@ -161,6 +174,16 @@ public final class SFrameStacks {
             "物品投影仪",
             "这种由 Corpus 制作的设备",
             "可以为任何物品生成全息投影。"
+    );
+
+    public static final SlimefunItemStack ENERGY_CENTRAL = SFrameTheme.sfStackFromTheme(
+            "WF_ENERGY_CENTRAL",
+            Material.BEACON,
+            UTILS_TOOLS_THEME.withNameColor(ChatColor.YELLOW),
+            "能源中控",
+            "一个可以显示能源网络信息的设备，",
+            "例如总生产、存储与消耗，",
+            "以及发电机与电容等。"
     );
 
     // ---- Gear ----
@@ -390,6 +413,17 @@ public final class SFrameStacks {
             "可以人工合成。"
     );
 
+    public static final SlimefunItemStack BOOSTED_TELLURIUM = SFrameTheme.sfStackFromTheme(
+            "WF_BOOSTED_TELLURIUM",
+            enchantedItem(Material.ECHO_SHARD),
+            RESOURCES_THEME.withNameColor(Colors.BLUE_VIOLET),
+            "增强碲",
+            "增强过的碲，",
+            "可以用来合成某些机器。",
+            "",
+            LoreBuilder.radioactive(Radioactivity.VERY_DEADLY)
+    );
+
     public static final SlimefunItemStack COOLANT_CANISTER = SFrameTheme.sfStackFromTheme(
             "WF_COOLANT_CANISTER",
             createPotion(PotionType.NIGHT_VISION),
@@ -458,8 +492,8 @@ public final class SFrameStacks {
             "由金辉锻造而成的更为坚固的金属。"
     );
 
-    public static final SlimefunItemStack FEERSTEEL_ALLOY = SFrameTheme.sfStackFromTheme(
-            "WF_FEERSTEEL_ALLOY",
+    public static final SlimefunItemStack FERSTEEL_ALLOY = SFrameTheme.sfStackFromTheme(
+            "WF_FERSTEEL_ALLOY",
             Material.IRON_INGOT,
             RESOURCES_THEME.withNameColor(ChatColor.GRAY),
             "钢化铁岩",
@@ -517,9 +551,21 @@ public final class SFrameStacks {
             LoreBuilder.machine(MachineTier.GOOD, MachineType.MACHINE),
             Lore.powerPerSecond(512)
     );
-    
-    public static final SlimefunItemStack PRIME_CRYOTIC_EXTRACTOR = SFrameTheme.sfStackFromTheme(
+
+    public static final SlimefunItemStack ADV_CRYOTIC_EXTRACTOR = SFrameTheme.sfStackFromTheme(
             "WF_CRYO_EXTRACTOR_2",
+            Material.BEACON,
+            MACHINES_THEME.withNameColor(ChatColor.DARK_BLUE),
+            "高级永冻晶矿提取器",
+            "改进版本的永冻晶矿提取器。",
+            "",
+            LoreBuilder.machine(MachineTier.ADVANCED, MachineType.MACHINE),
+            Lore.powerPerSecond(1024),
+            Lore.speed(4)
+    );
+
+    public static final SlimefunItemStack PRIME_CRYOTIC_EXTRACTOR = SFrameTheme.sfStackFromTheme(
+            "WF_CRYO_EXTRACTOR_3",
             Material.BEACON,
             MACHINES_THEME,
             ChatColor.DARK_BLUE + "永冻晶矿提取器 " + ChatColor.GOLD + "Prime",
@@ -527,8 +573,8 @@ public final class SFrameStacks {
             "使用 Orokin 科技来获得更高的效率。",
             "",
             LoreBuilder.machine(MachineTier.END_GAME, MachineType.MACHINE),
-            Lore.powerPerSecond(1024),
-            Lore.speed(10)
+            Lore.powerPerSecond(2048),
+            Lore.speed(20)
     );
 
     public static final SlimefunItemStack THERMIA_EXTRACTOR = SFrameTheme.sfStackFromTheme(
@@ -748,11 +794,12 @@ public final class SFrameStacks {
             "区块吞噬者",
             "破坏区块内所有在机器下方的方块。",
             "",
-            LoreBuilder.machine(MachineTier.ADVANCED, MachineType.MACHINE),
-            Lore.powerPerSecond(1024)
+            LoreBuilder.machine(MachineTier.GOOD, MachineType.MACHINE),
+            Lore.powerPerSecond(1024),
+            Lore.speed(1)
     );
 
-    public static final SlimefunItemStack ADVANCED_CHUNK_EATER = SFrameTheme.sfStackFromTheme(
+    public static final SlimefunItemStack ADV_CHUNK_EATER = SFrameTheme.sfStackFromTheme(
             "WF_CHUNK_EATER_2",
             Material.CRYING_OBSIDIAN,
             MACHINES_THEME.withNameColor(ChatColor.DARK_PURPLE),
@@ -760,8 +807,21 @@ public final class SFrameStacks {
             "改进版本的区块吞噬者，",
             "能收集破坏的方块。",
             "",
+            LoreBuilder.machine(MachineTier.ADVANCED, MachineType.MACHINE),
+            Lore.powerPerSecond(2048),
+            Lore.speed(1)
+    );
+
+    public static final SlimefunItemStack PRIME_CHUNK_EATER = SFrameTheme.sfStackFromTheme(
+            "WF_CHUNK_EATER_3",
+            enchantedItem(Material.CRYING_OBSIDIAN),
+            MACHINES_THEME,
+            Colors.BLUE_VIOLET + "区块吞噬者 " + ChatColor.GOLD + "Prime",
+            "吞噬区块内的每一层。",
+            "",
             LoreBuilder.machine(MachineTier.END_GAME, MachineType.MACHINE),
-            Lore.powerPerSecond(2048)
+            Lore.powerPerSecond(4096),
+            Lore.speed(16)
     );
 
     public static final SlimefunItemStack TREE_PEELER = SFrameTheme.sfStackFromTheme(
@@ -839,7 +899,7 @@ public final class SFrameStacks {
             Material.FURNACE,
             MACHINES_THEME.withNameColor(Colors.ORANGE),
             "高级硫酸盐生成器",
-            "从玄武岩中提取硫酸盐。",
+            "改进版本的硫酸盐生成器。",
             "",
             LoreBuilder.machine(MachineTier.ADVANCED, MachineType.MACHINE),
             Lore.powerPerSecond(256),
@@ -852,12 +912,90 @@ public final class SFrameStacks {
             Material.FURNACE,
             MACHINES_THEME,
             ChatColor.RED + "硫酸盐生成器 " + ChatColor.GOLD + "Prime",
-            "从玄武岩中提取硫酸盐。",
+            "尖端版本的硫酸盐生成器。",
             "",
             LoreBuilder.machine(MachineTier.END_GAME, MachineType.MACHINE),
             Lore.powerPerSecond(512),
             Lore.speed(30),
             Lore.production(8)
+    );
+
+    public static final SlimefunItemStack DUST_GENERATOR = SFrameTheme.sfStackFromTheme(
+            "WF_DUST_GEN",
+            Material.FURNACE,
+            MACHINES_THEME.withNameColor(Colors.CRAYOLA_BLUE),
+            "矿粉生成器",
+            "你可以选择需要生产的矿粉！",
+            "",
+            LoreBuilder.machine(MachineTier.GOOD, MachineType.MACHINE),
+            Lore.powerPerSecond(256),
+            Lore.speed(1)
+    );
+
+    public static final SlimefunItemStack ADV_DUST_GENERATOR = SFrameTheme.sfStackFromTheme(
+            "WF_DUST_GEN_2",
+            Material.FURNACE,
+            MACHINES_THEME.withNameColor(Colors.CRAYOLA_BLUE),
+            "高级矿粉生成器",
+            "改进版本的矿粉生成器。",
+            "",
+            LoreBuilder.machine(MachineTier.ADVANCED, MachineType.MACHINE),
+            Lore.powerPerSecond(512),
+            Lore.speed(2),
+            Lore.production(4)
+    );
+
+    public static final SlimefunItemStack PRIME_DUST_GENERATOR = SFrameTheme.sfStackFromTheme(
+            "WF_DUST_GEN_3",
+            Material.FURNACE,
+            MACHINES_THEME,
+            Colors.CRAYOLA_BLUE + "矿粉生成器 " + ChatColor.GOLD + "Prime",
+            "尖端版本的矿粉生成器。",
+            "",
+            LoreBuilder.machine(MachineTier.END_GAME, MachineType.MACHINE),
+            Lore.powerPerSecond(1024),
+            Lore.speed(4),
+            Lore.production(32)
+    );
+
+    public static final SlimefunItemStack GLASS_GENERATOR = SFrameTheme.sfStackFromTheme(
+            "WF_GLASS_GENERATOR",
+            Material.GLASS,
+            MACHINES_THEME.withNameColor(Colors.SAVOY_BLUE),
+            "玻璃生成器",
+            "一种万用的机器，",
+            "可以生产各种颜色的玻璃。",
+            "",
+            LoreBuilder.machine(MachineTier.GOOD, MachineType.MACHINE),
+            Lore.powerPerSecond(128),
+            Lore.speed(1)
+    );
+
+    public static final SlimefunItemStack ADV_GLASS_GENERATOR = SFrameTheme.sfStackFromTheme(
+            "WF_GLASS_GENERATOR_2",
+            Material.LIGHT_BLUE_STAINED_GLASS,
+            MACHINES_THEME.withNameColor(Colors.CRAYOLA_BLUE),
+            "高级玻璃生成器",
+            "改进版本的玻璃生成器。",
+            "",
+            LoreBuilder.machine(MachineTier.ADVANCED, MachineType.MACHINE),
+            Lore.powerPerSecond(256),
+            Lore.speed(5),
+            Lore.production(2)
+    );
+
+    public static final SlimefunItemStack PRIME_GLASS_GENERATOR = SFrameTheme.sfStackFromTheme(
+            "WF_GLASS_GENERATOR_3",
+            Material.BLUE_STAINED_GLASS,
+            MACHINES_THEME,
+            Colors.NEON_BLUE + "玻璃生成器 " + ChatColor.GOLD + "Prime",
+            "使用 Orokin 科技制作的",
+            "尖端版玻璃生成器。",
+            "",
+            LoreBuilder.machine(MachineTier.END_GAME, MachineType.MACHINE),
+            Lore.powerPerSecond(512),
+            Lore.speed(30),
+            Lore.production(6)
     );
 
     // Energy Generators
@@ -1011,7 +1149,7 @@ public final class SFrameStacks {
             "前纪 B1",
             Relic.Era.MESO,
             new SlimefunItemStack[]{PrimeComponents.createControlUnit(PRIME_CRYOTIC_EXTRACTOR), SlimefunItems.REINFORCED_ALLOY_INGOT, SFrameStacks.PYROTIC_ALLOY},
-            new SlimefunItemStack[]{PrimeComponents.createPowerCell(ASTRAL_PRIME_GENERATOR), SlimefunItems.LAVA_GENERATOR},
+            new SlimefunItemStack[]{PrimeComponents.createPowerCell(ASTRAL_PRIME_GENERATOR), PrimeComponents.createPowerCell(PRIME_GLASS_GENERATOR)},
             PrimeComponents.createCoreModule(PRIME_BASALT_GEN)
     );
 
@@ -1051,7 +1189,7 @@ public final class SFrameStacks {
             "中纪 A1",
             Relic.Era.NEO,
             new SlimefunItemStack[]{PrimeComponents.createControlUnit(PRIME_ARTIFICIAL_MANGROVE), UtilsComponents.createVoidShard(PRIME_NOSAM_PICK), SlimefunItems.CARBONADO},
-            new SlimefunItemStack[]{PrimeComponents.createPowerCell(PRIME_TREE_PEELER), SlimefunItems.CARBONADO_EDGED_CAPACITOR},
+            new SlimefunItemStack[]{PrimeComponents.createPowerCell(PRIME_TREE_PEELER), SlimefunItems.BIG_CAPACITOR},
             PrimeComponents.createCoreModule(ASTRAL_PRIME_GENERATOR)
     );
 
@@ -1059,14 +1197,14 @@ public final class SFrameStacks {
             "后纪 N1",
             Relic.Era.AXI,
             new SlimefunItemStack[]{SlimefunItems.BLANK_RUNE, SlimefunItems.HOLOGRAM_PROJECTOR, SFrameStacks.SALVAGE},
-            new SlimefunItemStack[]{SFrameStacks.TELLURIUM, SlimefunItems.FLUID_PUMP},
+            new SlimefunItemStack[]{SFrameStacks.TELLURIUM_FRAGMENT, SlimefunItems.FLUID_PUMP},
             UtilsComponents.createNeuralNexus(PRIME_NOSAM_PICK)
     );
 
     public static final RelicItemStack LITH_O1 = new RelicItemStack(
             "古纪 O1",
             Relic.Era.LITH,
-            new SlimefunItemStack[]{SlimefunItems.TRASH_CAN, SFrameStacks.AURON, SFrameStacks.PLASTIDS},
+            new SlimefunItemStack[]{SlimefunItems.TRASH_CAN, PrimeComponents.createControlUnit(PRIME_DUST_GENERATOR), SFrameStacks.PLASTIDS},
             new SlimefunItemStack[]{SlimefunItems.SOULBOUND_RUNE, SlimefunItems.ELECTRIC_DUST_WASHER_2},
             UtilsComponents.createNeuralNexus(PRIME_OROKIN_WAND)
     );
@@ -1075,8 +1213,32 @@ public final class SFrameStacks {
             "前纪 S1",
             Relic.Era.MESO,
             new SlimefunItemStack[]{PrimeComponents.createControlUnit(PRIME_BASALT_GEN), SlimefunItems.SMALL_CAPACITOR, SlimefunItems.CARBONADO},
-            new SlimefunItemStack[]{HESPAZYM_ALLOY, SlimefunItems.RAINBOW_RUNE},
+            new SlimefunItemStack[]{PrimeComponents.createPowerCell(PRIME_DUST_GENERATOR), SlimefunItems.RAINBOW_RUNE},
             PrimeComponents.createCoreModule(PRIME_SULFATE_PRODUCER)
+    );
+
+    public static final RelicItemStack NEO_D1 = new RelicItemStack(
+            "中纪 D1",
+            Relic.Era.NEO,
+            new SlimefunItemStack[]{SlimefunItems.WITHER_PROOF_OBSIDIAN, SlimefunItems.ELECTRIC_MOTOR, SlimefunItems.CARBON},
+            new SlimefunItemStack[]{PrimeComponents.createPowerCell(PRIME_WOOL_GENERATOR), PrimeComponents.createPowerCell(PRIME_CHUNK_EATER)},
+            PrimeComponents.createCoreModule(PRIME_DUST_GENERATOR)
+    );
+
+    public static final RelicItemStack AXI_G1 = new RelicItemStack(
+            "后纪 G1",
+            Relic.Era.AXI,
+            new SlimefunItemStack[]{PrimeComponents.createControlUnit(PRIME_CHUNK_EATER), SlimefunItems.URANIUM, SlimefunItems.GOLD_24K},
+            new SlimefunItemStack[]{SlimefunItems.ELECTRIC_DUST_WASHER_2, SlimefunItems.MEDIUM_CAPACITOR},
+            PrimeComponents.createCoreModule(PRIME_GLASS_GENERATOR)
+    );
+
+    public static final RelicItemStack LITH_C1 = new RelicItemStack(
+            "古纪 C1",
+            Relic.Era.LITH,
+            new SlimefunItemStack[]{PrimeComponents.createControlUnit(PRIME_TREE_PEELER), PrimeComponents.createControlUnit(PRIME_GLASS_GENERATOR), SlimefunItems.REINFORCED_PLATE},
+            new SlimefunItemStack[]{PrimeComponents.createPowerCell(PRIME_FLOWER_GENERATOR), SlimefunItems.STAFF_ELEMENTAL},
+            PrimeComponents.createCoreModule(PRIME_CHUNK_EATER)
     );
 
     static {

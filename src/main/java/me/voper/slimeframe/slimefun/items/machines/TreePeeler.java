@@ -53,7 +53,9 @@ public class TreePeeler extends AbstractProcessorMachine implements RecipeDispla
 
     static {
         STRIPPED_WOODS_LOGS.put(XMaterial.CRIMSON_STEM, XMaterial.STRIPPED_CRIMSON_STEM);
+        STRIPPED_WOODS_LOGS.put(XMaterial.CRIMSON_HYPHAE, XMaterial.STRIPPED_CRIMSON_HYPHAE);
         STRIPPED_WOODS_LOGS.put(XMaterial.WARPED_STEM, XMaterial.STRIPPED_WARPED_STEM);
+        STRIPPED_WOODS_LOGS.put(XMaterial.WARPED_HYPHAE, XMaterial.STRIPPED_WARPED_HYPHAE);
     }
 
 }

@@ -94,6 +94,7 @@ public abstract class AbstractProcessorMachine extends AbstractMachine implement
                 updateProgress(menu, b);
                 return true;
             }
+            MachineUtils.replaceExistingItemViewer(menu, getStatusSlot(), MachineUtils.WAITING);
             return false;
         }
     }

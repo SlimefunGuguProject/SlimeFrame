@@ -46,6 +46,7 @@ public class ChunkEater extends AbstractMachine {
             .thenComparing(Block::getZ);
 
     private boolean collectDestroyedBlocks = false;
+    private Mode mode = Mode.LINE;
 
     public ChunkEater(SlimefunItemStack item, ItemStack[] recipe) {
         super(Groups.MACHINES, item, Foundry.RECIPE_TYPE, recipe);
@@ -70,7 +71,10 @@ public class ChunkEater extends AbstractMachine {
 
             while (iterator.hasNext()) {
                 Block peek = iterator.peek();
-                if (initial.getY() != peek.getY() || initial.getX() != peek.getX()) {
+
+                if (mode == Mode.LINE && (initial.getY() != peek.getY() || initial.getX() != peek.getX())) {
+                    break;
+                } else if (initial.getY() != peek.getY()) {
                     break;
                 }
 
@@ -132,7 +136,8 @@ public class ChunkEater extends AbstractMachine {
         OWNERS_MAP.put(blockPosition, owner);
 
         Location corner1 = new Location(chunk.getWorld(), chunk.getX() << 4, b.getY() - 1, chunk.getZ() << 4);
-        Location corner2 = corner1.clone().add(15, -64, 15);
+        Location corner2 = corner1.clone().add(15, 0, 15);
+        corner2.setY(-64);
 
         Cuboid cuboid = new Cuboid(corner1, corner2);
         List<Block> blockList = cuboid.blockList().stream()
@@ -198,8 +203,13 @@ public class ChunkEater extends AbstractMachine {
         preset.addItem(getStatusSlot(), MachineUtils.STATUS);
     }
 
-    public ChunkEater setCollectDestroyedBlocks(boolean collectDestroyedBlocks) {
-        this.collectDestroyedBlocks = collectDestroyedBlocks;
+    public ChunkEater setCollectDestroyedBlocks() {
+        this.collectDestroyedBlocks = true;
+        return this;
+    }
+
+    public ChunkEater setLayerMode() {
+        this.mode = Mode.LAYER;
         return this;
     }
 
@@ -232,6 +242,11 @@ public class ChunkEater extends AbstractMachine {
     protected int getChunkInfo(Chunk chunk) {
         String chunkEaterAmount = BlockStorage.getChunkInfo(chunk.getWorld(), chunk.getX(), chunk.getZ(), "chunkEaterAmount");
         return chunkEaterAmount == null ? 0 : Integer.parseInt(chunkEaterAmount);
+    }
+
+    public enum Mode {
+        LINE,
+        LAYER
     }
 
 }

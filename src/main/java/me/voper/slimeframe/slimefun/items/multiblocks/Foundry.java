@@ -60,7 +60,7 @@ public class Foundry extends MultiBlockMachine {
                 }
             }
 
-            if (SlimefunUtils.isInventoryEmpty(inv)) {
+            if (inv.isEmpty()) {
                 Slimefun.getLocalization().sendMessage(p, "machines.inventory-empty", true);
             } else {
                 Slimefun.getLocalization().sendMessage(p, "machines.pattern-not-found", true);
