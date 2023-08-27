@@ -118,11 +118,7 @@ public class MasterGroup extends FlexItemGroup {
             ItemGroup itemGroup = subGroups.get(target);
             menu.addItem(index, itemGroup.getItem(p));
             menu.addMenuClickHandler(index, (pl, slot, item, action) -> {
-                if (mode != SlimefunGuideMode.CHEAT_MODE) {
-                    guide.openItemGroup(profile, itemGroup, history.getMainMenuPage());
-                } else {
-                    SlimefunGuide.openItemGroup(profile, itemGroup, mode, 1);
-                }
+                SlimefunGuide.openItemGroup(profile, itemGroup, mode, 1);
                 return false;
             });
 

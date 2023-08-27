@@ -1,6 +1,6 @@
 package me.voper.slimeframe.slimefun.datatypes;
 
-import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
+import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import org.bukkit.configuration.serialization.ConfigurationSerializable;
 import org.bukkit.configuration.serialization.SerializableAs;
 import org.bukkit.inventory.ItemStack;
@@ -135,14 +135,15 @@ public class MerchantRecipeListDataType implements PersistentDataType<byte[], Li
 
                 // Save every element in the list
                 for (int i = 0; i < items.length; i++) {
-                    // TODO testing
-                    if (items[i] instanceof SlimefunItemStack slimefunItemStack) {
-                        SerializableSlimefunItemStack serializableSlimefunItemStack = new SerializableSlimefunItemStack(slimefunItemStack);
-                        dataOutput.writeObject(serializableSlimefunItemStack);
-                        continue;
+                    SlimefunItem sfItem = SlimefunItem.getByItem(items[i]);
+                    if (sfItem != null) {
+                        ItemStack clone = sfItem.getItem().clone();
+                        clone.setAmount(items[i].getAmount());
+                        SerializableSlimefunItemStack serializableSfStack = new SerializableSlimefunItemStack(clone);
+                        dataOutput.writeObject(serializableSfStack);
+                    } else {
+                        dataOutput.writeObject(items[i]);
                     }
-
-                    dataOutput.writeObject(items[i]);
                 }
 
                 // Serialize that array
@@ -162,16 +163,12 @@ public class MerchantRecipeListDataType implements PersistentDataType<byte[], Li
 
                 // Read the serialized string
                 for (int i = 0; i < items.length; i++) {
-
-                    // TODO testing
                     Object o = dataInput.readObject();
                     if (o instanceof SerializableSlimefunItemStack sfStack) {
                         items[i] = sfStack.itemStack;
                     } else if (o instanceof ItemStack itemStack) {
                         items[i] = itemStack;
                     }
-
-//                    items[i] = (ItemStack) dataInput.readObject();
                 }
 
                 dataInput.close();
