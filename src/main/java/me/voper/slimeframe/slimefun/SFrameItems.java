@@ -11,6 +11,7 @@ import io.github.thebusybiscuit.slimefun4.implementation.items.misc.AlloyIngot;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
 import lombok.NonNull;
 import me.voper.slimeframe.SlimeFrame;
+import me.voper.slimeframe.managers.SettingsManager;
 import me.voper.slimeframe.slimefun.attributes.FreezingItem;
 import me.voper.slimeframe.slimefun.groups.Groups;
 import me.voper.slimeframe.slimefun.items.components.PrimeComponents;
@@ -24,13 +25,15 @@ import me.voper.slimeframe.slimefun.items.resources.*;
 import me.voper.slimeframe.slimefun.items.tools.*;
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.Material;
-import org.bukkit.entity.EntityType;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
 import javax.annotation.Nonnull;
-import java.util.*;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
 
 public final class SFrameItems {
 
@@ -38,6 +41,7 @@ public final class SFrameItems {
     public static final HashMap<SlimefunItemStack, SlimefunItemStack> ALLOY_PLATES_MAP = new HashMap<>();
 
     private final SlimeFrame plugin;
+    private final SettingsManager settingsManager = SlimeFrame.getSettingsManager();
 
     public SFrameItems(@NonNull SlimeFrame plugin) {
         this.plugin = plugin;
@@ -170,26 +174,19 @@ public final class SFrameItems {
         }).register(plugin);
 
         new MobDropItem(Groups.RESOURCES, SFrameStacks.MORPHICS)
-                .setMobChanceMap(Map.of(
-                        EntityType.WITHER, 5,
-                        EntityType.WARDEN, 10,
-                        EntityType.ELDER_GUARDIAN, 20))
+                .setMobChanceMap(settingsManager.getDropChanceMap(SettingsManager.ConfigField.MORPHICS_CHANCE))
                 .register(plugin);
 
         new MobDropItem(Groups.RESOURCES, SFrameStacks.NEURAL_SENSORS)
-                .setMobChanceMap(Map.of(EntityType.WARDEN, 5))
+                .setMobChanceMap(settingsManager.getDropChanceMap(SettingsManager.ConfigField.NEURAL_SENSORS))
                 .register(plugin);
 
         new MobDropItem(Groups.RESOURCES, SFrameStacks.NEURODES)
-                .setMobs(List.of(EntityType.ZOMBIE, EntityType.ZOMBIE_VILLAGER, EntityType.HUSK, EntityType.DROWNED))
-                .setDropChance(15)
+                .setMobChanceMap(settingsManager.getDropChanceMap(SettingsManager.ConfigField.NEURODES_CHANCE))
                 .register(plugin);
 
         new MobDropItem(Groups.RESOURCES, SFrameStacks.OROKIN_CELL)
-                .setMobChanceMap(Map.of(
-                        EntityType.WITHER, 1,
-                        EntityType.WARDEN, 1,
-                        EntityType.ENDER_DRAGON, 10))
+                .setMobChanceMap(settingsManager.getDropChanceMap(SettingsManager.ConfigField.OROKIN_CELL_CHANCE))
                 .register(plugin);
 
     }

@@ -35,13 +35,19 @@ public class CryoticExtractor extends AbstractMachine {
 
     private static final int TIME = Utils.secondsToSfTicks(5 * 60);
     private static final Map<BlockPosition, Integer> PROGRESS_MAP = new HashMap<>();
-    public static final Map<Biome, Integer> VALID_BIOMES = new EnumMap<>(Map.of(
-            Biome.SNOWY_TAIGA, 2,
-            Biome.SNOWY_PLAINS, 1,
-            Biome.SNOWY_SLOPES, 1,
-            Biome.SNOWY_BEACH, 1,
-            Biome.ICE_SPIKES, 3
-    ));
+    public static final Map<Biome, Integer> VALID_BIOMES = new EnumMap<>(Biome.class);
+
+    static {
+        VALID_BIOMES.put(Biome.SNOWY_TAIGA, 2);
+        VALID_BIOMES.put(Biome.SNOWY_PLAINS, 1);
+        VALID_BIOMES.put(Biome.SNOWY_SLOPES, 1);
+        VALID_BIOMES.put(Biome.SNOWY_BEACH, 1);
+        VALID_BIOMES.put(Biome.ICE_SPIKES, 3);
+        VALID_BIOMES.put(Biome.FROZEN_OCEAN, 2);
+        VALID_BIOMES.put(Biome.FROZEN_PEAKS, 2);
+        VALID_BIOMES.put(Biome.FROZEN_RIVER, 1);
+        VALID_BIOMES.put(Biome.DEEP_FROZEN_OCEAN, 3);
+    }
 
     @Setter
     private int processingSpeed = 1;

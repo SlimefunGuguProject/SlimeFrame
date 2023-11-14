@@ -2,11 +2,17 @@ package me.voper.slimeframe.managers;
 
 import lombok.AllArgsConstructor;
 import me.voper.slimeframe.SlimeFrame;
+import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.entity.EntityType;
 import org.bukkit.util.NumberConversions;
 
 import javax.annotation.Nonnull;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.logging.Level;
 
 public final class SettingsManager {
 
@@ -37,6 +43,24 @@ public final class SettingsManager {
         return config.getInt(field.path, NumberConversions.toInt(field.defaultValue));
     }
 
+    public Map<EntityType, Integer> getDropChanceMap(@Nonnull ConfigField field) {
+        ConfigurationSection configurationSection = config.getConfigurationSection(field.path);
+        Map<EntityType, Integer> dropChanceMap = new HashMap<>();
+
+        for (String key: configurationSection.getKeys(false)) {
+            EntityType entityType = EntityType.valueOf(key.toUpperCase());
+            int percentage = configurationSection.getInt(key);
+            if (percentage > 100 || percentage < 0) {
+                String warning = "The value for " + field.path + "." + entityType.name() + " must be in the range 0 - 100. The default values and entities will be used until this error is fixed.";
+                plugin.getLogger().log(Level.WARNING, warning);
+                return (Map<EntityType, Integer>) field.defaultValue;
+            }
+            dropChanceMap.put(entityType, percentage);
+        }
+
+        return dropChanceMap;
+    }
+
     @AllArgsConstructor
     public enum ConfigField{
 
@@ -49,6 +73,22 @@ public final class SettingsManager {
         MESO_RELIC("relics.meso", 750),
         NEO_RELIC("relics.neo", 10000),
         AXI_RELIC("relics.axi", 750),
+
+        MORPHICS_CHANCE("drop-chance.morphics", Map.of(
+                EntityType.WITHER, 5,
+                EntityType.WARDEN, 10,
+                EntityType.ELDER_GUARDIAN, 20)),
+        NEURAL_SENSORS("drop-chance.neural-sensors", Map.of(EntityType.WARDEN, 5)),
+        NEURODES_CHANCE("drop-chance.neurodes", Map.of(
+                EntityType.ZOMBIE, 15,
+                EntityType.ZOMBIE_VILLAGER, 15,
+                EntityType.HUSK, 15,
+                EntityType.DROWNED, 15)),
+        OROKIN_CELL_CHANCE("drop-chance.orokin-cell", Map.of(
+                EntityType.WITHER, 1,
+                EntityType.WARDEN, 1,
+                EntityType.ENDER_DRAGON, 10)),
+        REACTANTS_CHANCE("drop-chance.reactants", 25),
 
         SLIMEFRAME_CMD("commands.slimeframe"),
         INVENTORY_CMD("commands.inventory"),

@@ -17,6 +17,26 @@ relics:
   # 每放置多少方块可获得后纪遗物
   axi: 750
 
+# You can add any mob you want, but make sure to write their entity name correctly
+# The value is a percentage
+drop-chance:
+  morphics:
+    WITHER: 5
+    WARDEN: 10
+    ELDER_GUARDIAN: 20
+  neural-sensors:
+    WARDEN: 5
+  neurodes:
+    ZOMBIE: 15
+    ZOMBIE_VILLAGER: 15
+    HUSK: 15
+    DROWNED: 15
+  orokin-cell:
+    WITHER: 1
+    WARDEN: 1
+    ENDER_DRAGON: 10
+  reactants: 25
+
 commands:
   slimeframe:
     - 'slimeframe'

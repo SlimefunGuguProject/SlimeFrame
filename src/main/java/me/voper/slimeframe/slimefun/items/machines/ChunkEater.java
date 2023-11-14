@@ -37,7 +37,7 @@ public class ChunkEater extends AbstractMachine {
     private static final int TIME = Utils.secondsToSfTicks(1);
 
     private static final Map<BlockPosition, Integer> PROGRESS_MAP = new HashMap<>();
-    private static final Map<BlockPosition, Player> OWNERS_MAP = new HashMap<>();
+    private static final Map<BlockPosition, UUID> OWNERS_MAP = new HashMap<>();
     private static final Map<BlockPosition, PeekingIterator<Block>> ITERATOR_MAP = new HashMap<>();
 
     private static final Comparator<Block> blockComparator = Comparator
@@ -131,9 +131,8 @@ public class ChunkEater extends AbstractMachine {
         String locationInfo = BlockStorage.getLocationInfo(b.getLocation(), "owner");
         if (locationInfo == null) return;
 
-        final Player owner = Bukkit.getPlayer(UUID.fromString(locationInfo));
         final BlockPosition blockPosition = new BlockPosition(b);
-        OWNERS_MAP.put(blockPosition, owner);
+        OWNERS_MAP.put(blockPosition, UUID.fromString(locationInfo));
 
         Location corner1 = new Location(chunk.getWorld(), chunk.getX() << 4, b.getY() - 1, chunk.getZ() << 4);
         Location corner2 = corner1.clone().add(15, 0, 15);
@@ -151,7 +150,7 @@ public class ChunkEater extends AbstractMachine {
     }
 
     protected boolean canBreak(BlockPosition bp, Block block) {
-        return Slimefun.getProtectionManager().hasPermission(OWNERS_MAP.get(bp), block, Interaction.BREAK_BLOCK) &&
+        return Slimefun.getProtectionManager().hasPermission(Bukkit.getOfflinePlayer(OWNERS_MAP.get(bp)), block, Interaction.BREAK_BLOCK) &&
                 !(block.getState() instanceof InventoryHolder) &&
                 !SlimefunTag.UNBREAKABLE_MATERIALS.isTagged(block.getType()) &&
                 !SlimefunTag.COMMAND_BLOCKS.isTagged(block.getType()) &&
