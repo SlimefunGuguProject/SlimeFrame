@@ -31,7 +31,6 @@ import java.util.logging.Level;
 public class SlimeFrame extends JavaPlugin implements SlimefunAddon {
 
     private static SlimeFrame instance;
-    public static final int RESOURCE_ID = 111432;
 
     private SettingsManager settingsManager;
     private RelicInventoryManager relicInventoryManager;
