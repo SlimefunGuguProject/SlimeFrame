@@ -5,6 +5,7 @@ import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.core.attributes.RecipeDisplayItem;
 import io.github.thebusybiscuit.slimefun4.implementation.operations.CraftingOperation;
+import io.github.thebusybiscuit.slimefun4.libraries.dough.blocks.BlockPosition;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.data.persistent.PersistentDataAPI;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.inventory.InvUtils;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
@@ -48,8 +49,8 @@ public class AutoTrader extends AbstractProcessorMachine implements RecipeDispla
     private static final ItemStack SELECT_TRADE = new CustomItemStack(Material.GREEN_STAINED_GLASS_PANE,
         ChatColor.GREEN + "有效的契约", ChatColor.WHITE + "选择一个交易");
 
-    private List<MerchantRecipe> merchantRecipes = null;
-    private int selectedTrade = -1;
+    private static final Map<BlockPosition, List<MerchantRecipe>> recipesMap = new HashMap<>();
+    private static final Map<BlockPosition, Integer> selectedTradeMap = new HashMap<>();
 
     public AutoTrader(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);
@@ -57,9 +58,13 @@ public class AutoTrader extends AbstractProcessorMachine implements RecipeDispla
 
     @Override
     protected MachineRecipe findNextRecipe(@Nonnull BlockMenu menu) {
-        if (selectedTrade == -1) return null;
+        final BlockPosition bp = new BlockPosition(menu.getLocation());
+        Integer trade = selectedTradeMap.get(bp);
 
-        MerchantRecipe selectedRecipe = merchantRecipes.get(selectedTrade);
+        if (trade == -1) return null;
+
+        List<MerchantRecipe> recipeList = recipesMap.get(bp);
+        MerchantRecipe selectedRecipe = recipeList.get(trade);
 
         // Creates a slot-ItemStack map according to the input slots
         Map<Integer, ItemStack> inv = new HashMap<>();
@@ -96,7 +101,7 @@ public class AutoTrader extends AbstractProcessorMachine implements RecipeDispla
         }
 
         if (found.size() == selectedRecipe.getIngredients().size()) {
-            MachineRecipe machineRecipe = new MachineRecipe(((selectedTrade + 1) * 10) / getProcessingSpeed(), selectedRecipe.getIngredients().toArray(new ItemStack[0]), new ItemStack[]{selectedRecipe.getResult()});
+            MachineRecipe machineRecipe = new MachineRecipe(((trade + 1) * 10) / getProcessingSpeed(), selectedRecipe.getIngredients().toArray(new ItemStack[0]), new ItemStack[]{selectedRecipe.getResult()});
             if (!InvUtils.fitAll(menu.toInventory(), machineRecipe.getOutput(), getOutputSlots())) {
                 MachineUtils.replaceExistingItemViewer(menu, getStatusSlot(), MachineUtils.NO_SPACE);
                 return null;
@@ -116,11 +121,13 @@ public class AutoTrader extends AbstractProcessorMachine implements RecipeDispla
 
     @Override
     protected boolean checkCraftConditions(@Nonnull BlockMenu menu) {
+        final BlockPosition bp = new BlockPosition(menu.getLocation());
+
         // There is no contract in the contract slot
         ItemStack contract = menu.getItemInSlot(getContractSlot());
         ItemMeta contractItemMeta = contract != null && contract.hasItemMeta() ? contract.getItemMeta() : null;
         if (contract == null || contract.getType() == Material.AIR || contractItemMeta == null) {
-            this.merchantRecipes = null;
+            recipesMap.put(bp, null);
             return false;
         }
 
@@ -128,14 +135,17 @@ public class AutoTrader extends AbstractProcessorMachine implements RecipeDispla
         List<MerchantRecipe> recipeList = PersistentDataAPI.get(contractItemMeta, Keys.MERCHANT_RECIPE, new MerchantRecipeListDataType());
         if (recipeList == null || recipeList.isEmpty()) return false;
 
-        if (merchantRecipes == null || !compareMerchantRecipes(recipeList, merchantRecipes)) {
-            this.merchantRecipes = recipeList;
-            this.selectedTrade = -1;
+        List<MerchantRecipe> recipes = recipesMap.get(bp);
+        Integer trade = selectedTradeMap.get(bp);
+
+        if (recipes == null || !compareMerchantRecipes(recipeList, recipes)) {
+            recipesMap.put(bp, recipeList);
+            selectedTradeMap.put(bp, -1);
             updateTradesSlots(menu, contractItemMeta);
         }
 
         // If no trade was selected
-        if (selectedTrade == -1) {
+        if (trade == -1) {
             menu.replaceExistingItem(getStatusSlot(), SELECT_TRADE);
         } else {
             // One of the trades is selected but the machine is not running an operation
@@ -187,6 +197,8 @@ public class AutoTrader extends AbstractProcessorMachine implements RecipeDispla
     protected void onNewInstance(BlockMenu menu, Block b) {
         super.onNewInstance(menu, b);
 
+        final BlockPosition bp = new BlockPosition(b);
+
         // Set up the interactions
         for (int slot : getTradesSlots()) {
             menu.addMenuClickHandler(slot, tradeSelectionHandler(menu));
@@ -195,9 +207,9 @@ public class AutoTrader extends AbstractProcessorMachine implements RecipeDispla
         // Init merchantRecipes variable
         ItemStack contract = menu.getItemInSlot(getContractSlot());
         if (contract != null && contract.getItemMeta() != null) {
-            List<MerchantRecipe> persistentData = PersistentDataAPI.get(contract.getItemMeta(), Keys.MERCHANT_RECIPE, new MerchantRecipeListDataType());
-            if (persistentData != null && !persistentData.isEmpty()) {
-                this.merchantRecipes = persistentData;
+            List<MerchantRecipe> merchantRecipeList = PersistentDataAPI.get(contract.getItemMeta(), Keys.MERCHANT_RECIPE, new MerchantRecipeListDataType());
+            if (merchantRecipeList != null && !merchantRecipeList.isEmpty()) {
+                recipesMap.put(bp, merchantRecipeList);
                 updateTradesSlots(menu, contract.getItemMeta());
             }
         }
@@ -205,11 +217,11 @@ public class AutoTrader extends AbstractProcessorMachine implements RecipeDispla
         // Init the selected trade
         if (!BlockStorage.hasBlockInfo(b) || BlockStorage.getLocationInfo(b.getLocation(), BLOCK_KEY) == null) {
             BlockStorage.addBlockInfo(b, BLOCK_KEY, String.valueOf(-1));
-            this.selectedTrade = -1;
+            selectedTradeMap.put(bp, -1);
         } else {
-            this.selectedTrade = Integer.parseInt(BlockStorage.getLocationInfo(b.getLocation(), BLOCK_KEY));
-            if (selectedTrade != -1) {
-                Utils.enchant(menu.getItemInSlot(getTradesSlots()[selectedTrade]));
+            selectedTradeMap.put(bp, Integer.parseInt(BlockStorage.getLocationInfo(b.getLocation(), BLOCK_KEY)));
+            if (selectedTradeMap.get(bp) != -1) {
+                Utils.enchant(menu.getItemInSlot(getTradesSlots()[selectedTradeMap.get(bp)]));
             }
         }
     }
@@ -237,22 +249,25 @@ public class AutoTrader extends AbstractProcessorMachine implements RecipeDispla
             List<Integer> tradesSlots = Arrays.stream(getTradesSlots()).boxed().toList();
             int tradeIndex = tradesSlots.indexOf(slot);
 
+            final BlockPosition bp = new BlockPosition(menu.getLocation());
+            Integer trade = selectedTradeMap.get(bp);
+
             // The clicked trade is already selected
-            if (tradeIndex == selectedTrade) {
-                selectedTrade = -1;
+            if (tradeIndex == trade) {
+                selectedTradeMap.put(bp, -1);
                 itemMeta.removeEnchant(Enchantment.LUCK);
             } else {
-                if (selectedTrade != -1) {
-                    ItemStack itemInSlot = menu.getItemInSlot(getTradesSlots()[selectedTrade]);
+                if (trade != -1) {
+                    ItemStack itemInSlot = menu.getItemInSlot(getTradesSlots()[trade]);
                     Utils.disenchant(itemInSlot);
                 }
-                selectedTrade = tradeIndex;
+                selectedTradeMap.put(bp, tradeIndex);
                 itemMeta.addEnchant(Enchantment.LUCK, 1, true);
             }
 
             itemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
             itemstack.setItemMeta(itemMeta);
-            BlockStorage.addBlockInfo(menu.getLocation(), BLOCK_KEY, String.valueOf(selectedTrade));
+            BlockStorage.addBlockInfo(menu.getLocation(), BLOCK_KEY, String.valueOf(selectedTradeMap.get(bp)));
             return false;
         };
     }

@@ -1,3 +1,17 @@
+# [1.4.0](https://github.com/VoperAD/SlimeFrame/compare/v1.3.2...v1.4.0) (2023-12-09)
+
+
+### Bug Fixes
+
+* **auto trader:** use static BlockPosition maps to store variables instead of non-static variables ([aca5aab](https://github.com/VoperAD/SlimeFrame/commit/aca5aab5ffa8fee701dcd46cd8b712f5d80c9ca4))
+
+
+### Features
+
+* **updater:** add logic for upgrading to major versions ([ba022c9](https://github.com/VoperAD/SlimeFrame/commit/ba022c96677341cae86d5157cfe4d872e0feef9d))
+
+
+
 ## [1.3.2](https://github.com/VoperAD/SlimeFrame/compare/v1.3.1...v1.3.2) (2023-11-18)
 
 

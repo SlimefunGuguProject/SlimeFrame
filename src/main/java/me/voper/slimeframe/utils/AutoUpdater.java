@@ -4,6 +4,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 import lombok.Getter;
 import me.voper.slimeframe.SlimeFrame;
+import me.voper.slimeframe.listeners.WarnOperatorsListener;
 import me.voper.slimeframe.managers.SettingsManager;
 import org.apache.maven.artifact.versioning.ComparableVersion;
 import org.jetbrains.annotations.Contract;
@@ -13,19 +14,25 @@ import javax.annotation.Nonnull;
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.logging.Logger;
 
 public final class AutoUpdater implements Runnable {
 
-    private static final String LATEST_RELEASE = "https://api.github.com/repos/VoperAD/SlimeFrame/releases/latest";
-    private static final String RELEASES = "https://github.com/VoperAD/SlimeFrame/releases";
+    public static final String LATEST_RELEASE = "https://api.github.com/repos/VoperAD/SlimeFrame/releases/latest";
+    public static final String RELEASES = "https://github.com/VoperAD/SlimeFrame/releases";
+    public static final String CHANGELOG = "https://github.com/VoperAD/SlimeFrame/blob/main/CHANGELOG.md";
 
     private final SlimeFrame plugin;
+    private final Logger logger;
     private final File updateFolder;
     private final File pluginFile;
     private final String userAgent;
 
+    private boolean isMajorUpdate = false;
+
     public AutoUpdater(@Nonnull SlimeFrame plugin, File pluginFile) {
         this.plugin = plugin;
+        this.logger = plugin.getLogger();
         this.updateFolder = plugin.getServer().getUpdateFolderFile();
         this.pluginFile = pluginFile;
         this.userAgent = " (" + plugin.getName() + "/" + plugin.getDescription().getVersion() + ", " +
@@ -44,6 +51,10 @@ public final class AutoUpdater implements Runnable {
 
         if (isLatestVersionNewer(latestRelease.getCleanVersion())) {
             if (isAutoUpdateEnabled()) {
+                if (isMajorUpdate && !isAutoUpdateMajorEnabled()) {
+                    handleMajorUpdate(latestRelease.getCleanVersion());
+                    return;
+                }
                 info("There is a new version of SlimeFrame available: " + latestRelease.getTagName());
                 info("Downloading...");
                 downloadUpdate(latestRelease.getDownloadUrl());
@@ -58,6 +69,17 @@ public final class AutoUpdater implements Runnable {
 
     private boolean isAutoUpdateEnabled() {
         return SlimeFrame.getSettingsManager().getBoolean(SettingsManager.ConfigField.AUTO_UPDATE);
+    }
+
+    private boolean isAutoUpdateMajorEnabled() {
+        return SlimeFrame.getSettingsManager().getBoolean(SettingsManager.ConfigField.AUTO_UPDATE_MAJOR);
+    }
+
+    private void handleMajorUpdate(String version) {
+        logger.warning("There is a new MAJOR version of SlimeFrame available!");
+        logger.warning("Download it here: " + RELEASES);
+        logger.warning("Check the changelog for more information: " + CHANGELOG);
+        plugin.getServer().getPluginManager().registerEvents(new WarnOperatorsListener(plugin, version), plugin);
     }
 
     private @Nullable Release getLatestRelease() {
@@ -80,6 +102,14 @@ public final class AutoUpdater implements Runnable {
     private boolean isLatestVersionNewer(String latest) {
         ComparableVersion latestVersion = new ComparableVersion(latest);
         ComparableVersion currentVersion = new ComparableVersion(plugin.getDescription().getVersion());
+
+        int latestMajor = Integer.parseInt(latestVersion.getCanonical().substring(0, 1));
+        int currentMajor = Integer.parseInt(currentVersion.getCanonical().substring(0, 1));
+        if (latestMajor > currentMajor) {
+            isMajorUpdate = true;
+            return true;
+        }
+
         return latestVersion.compareTo(currentVersion) > 0;
     }
 
@@ -112,7 +142,7 @@ public final class AutoUpdater implements Runnable {
     }
 
     private void info(String message) {
-        plugin.getLogger().info(message);
+        logger.info(message);
     }
 
     private static class Release {

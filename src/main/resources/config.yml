@@ -1,5 +1,9 @@
 options:
   auto-update: true
+  # If set to true, the plugin will automatically update to the latest major version
+  # This option is only available if auto-update is set to true
+  # Be careful with this option, as a new major version represents a breaking change
+  auto-update-major: false
   enable-researches: false
   # 如果服务器安装了 AdvancedEnchantments
   # 该选项会使灵魂契约提供AE的物品
