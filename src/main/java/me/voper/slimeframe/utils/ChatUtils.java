@@ -2,7 +2,7 @@ package me.voper.slimeframe.utils;
 
 import lombok.experimental.UtilityClass;
 import me.voper.slimeframe.SlimeFrame;
-import me.voper.slimeframe.managers.SettingsManager;
+import me.voper.slimeframe.core.managers.SettingsManager;
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.chat.BaseComponent;
 import net.md_5.bungee.api.chat.ComponentBuilder;
