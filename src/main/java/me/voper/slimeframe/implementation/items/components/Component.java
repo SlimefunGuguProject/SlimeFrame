@@ -41,6 +41,6 @@ public class Component extends UnplaceableBlock implements RecipeDisplayItem {
     @Nonnull
     @Override
     public String getRecipeSectionLabel(@Nonnull Player p) {
-        return "&7\u21E9 Dropped by \u21E9";
+        return "&7\u21E9 掉落于 \u21E9";
     }
 }
