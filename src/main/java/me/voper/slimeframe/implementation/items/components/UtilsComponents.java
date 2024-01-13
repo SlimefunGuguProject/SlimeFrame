@@ -1,25 +1,29 @@
 package me.voper.slimeframe.implementation.items.components;
 
+import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.annotation.ParametersAreNonnullByDefault;
+
+import org.bukkit.inventory.ItemStack;
+
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.experimental.Accessors;
+
 import me.voper.slimeframe.SlimeFrame;
 import me.voper.slimeframe.implementation.SFrameStacks;
 import me.voper.slimeframe.implementation.SFrameTheme;
 import me.voper.slimeframe.implementation.items.relics.RelicItemStack;
 import me.voper.slimeframe.utils.Colors;
 import me.voper.slimeframe.utils.HeadTextures;
-import net.md_5.bungee.api.ChatColor;
-import org.bukkit.inventory.ItemStack;
 
-import javax.annotation.ParametersAreNonnullByDefault;
-import java.lang.reflect.Field;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.experimental.Accessors;
+import net.md_5.bungee.api.ChatColor;
 
 @Getter
 @Setter
@@ -40,7 +44,8 @@ public class UtilsComponents {
         COMPONENTS_MAP.put(item, this);
     }
 
-    public UtilsComponents() {}
+    public UtilsComponents() {
+    }
 
     public static SlimefunItemStack createVoidShard(SlimefunItemStack item) {
         if (COMPONENTS_MAP.get(item) != null && COMPONENTS_MAP.get(item).getVoidShardEssence() != null) {
@@ -146,16 +151,16 @@ public class UtilsComponents {
         List<ItemStack> relicsTempCog = new ArrayList<>();
         List<ItemStack> relicsVoidShard = new ArrayList<>();
 
-        for (Field field: SFrameStacks.class.getDeclaredFields()) {
+        for (Field field : SFrameStacks.class.getDeclaredFields()) {
             if (field.getType() != RelicItemStack.class) continue;
             RelicItemStack relic = (RelicItemStack) field.get(null);
 
-            for (SlimefunItemStack common: relic.getCommonDrops()) {
+            for (SlimefunItemStack common : relic.getCommonDrops()) {
                 if (!SlimefunUtils.isItemSimilar(components.getVoidShardEssence(), common, true)) continue;
                 relicsVoidShard.add(relic);
             }
 
-            for (SlimefunItemStack uncommon: relic.getUncommonDrops()) {
+            for (SlimefunItemStack uncommon : relic.getUncommonDrops()) {
                 if (!SlimefunUtils.isItemSimilar(components.getTemporalCogwheel(), uncommon, true)) continue;
                 relicsTempCog.add(relic);
             }

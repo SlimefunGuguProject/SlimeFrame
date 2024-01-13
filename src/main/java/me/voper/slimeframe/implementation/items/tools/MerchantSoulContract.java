@@ -1,23 +1,13 @@
 package me.voper.slimeframe.implementation.items.tools;
 
-import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
-import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
-import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
-import io.github.thebusybiscuit.slimefun4.core.handlers.EntityInteractHandler;
-import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
-import io.github.thebusybiscuit.slimefun4.implementation.items.SimpleSlimefunItem;
-import io.github.thebusybiscuit.slimefun4.libraries.dough.data.persistent.PersistentDataAPI;
-import io.github.thebusybiscuit.slimefun4.libraries.dough.items.ItemUtils;
-import io.github.thebusybiscuit.slimefun4.libraries.dough.protection.Interaction;
-import me.voper.slimeframe.SlimeFrame;
-import me.voper.slimeframe.core.datatypes.MerchantRecipeListDataType;
-import me.voper.slimeframe.core.managers.SettingsManager;
-import me.voper.slimeframe.utils.ChatUtils;
-import me.voper.slimeframe.utils.Colors;
-import me.voper.slimeframe.utils.Keys;
-import me.voper.slimeframe.utils.Utils;
-import net.guizhanss.guizhanlib.minecraft.helper.inventory.ItemStackHelper;
-import net.md_5.bungee.api.ChatColor;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
+import java.util.function.Predicate;
+
+import javax.annotation.Nonnull;
+
 import org.bukkit.Material;
 import org.bukkit.Particle;
 import org.bukkit.Sound;
@@ -29,12 +19,26 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.MerchantRecipe;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import javax.annotation.Nonnull;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.concurrent.ThreadLocalRandom;
-import java.util.function.Predicate;
+import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
+import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
+import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
+import io.github.thebusybiscuit.slimefun4.core.handlers.EntityInteractHandler;
+import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
+import io.github.thebusybiscuit.slimefun4.implementation.items.SimpleSlimefunItem;
+import io.github.thebusybiscuit.slimefun4.libraries.dough.data.persistent.PersistentDataAPI;
+import io.github.thebusybiscuit.slimefun4.libraries.dough.items.ItemUtils;
+import io.github.thebusybiscuit.slimefun4.libraries.dough.protection.Interaction;
+
+import me.voper.slimeframe.SlimeFrame;
+import me.voper.slimeframe.core.datatypes.MerchantRecipeListDataType;
+import me.voper.slimeframe.core.managers.SettingsManager;
+import me.voper.slimeframe.utils.ChatUtils;
+import me.voper.slimeframe.utils.Colors;
+import me.voper.slimeframe.utils.Keys;
+import me.voper.slimeframe.utils.Utils;
+
+import net.guizhanss.guizhanlib.minecraft.helper.inventory.ItemStackHelper;
+import net.md_5.bungee.api.ChatColor;
 
 public class MerchantSoulContract extends SimpleSlimefunItem<EntityInteractHandler> {
 
@@ -42,7 +46,8 @@ public class MerchantSoulContract extends SimpleSlimefunItem<EntityInteractHandl
 
     private static final Predicate<MerchantRecipe> REMOVE_AE_TRADES = (merchantRecipe) -> {
         ItemStack result = merchantRecipe.getResult();
-        if (SlimeFrame.getSettingsManager().getBoolean(SettingsManager.ConfigField.ENABLE_AE_ITEMS_IN_SOUL_CONTRACTS) || !result.hasItemMeta()) return false;
+        if (SlimeFrame.getSettingsManager().getBoolean(SettingsManager.ConfigField.ENABLE_AE_ITEMS_IN_SOUL_CONTRACTS) || !result.hasItemMeta())
+            return false;
         ItemMeta itemMeta = result.getItemMeta();
         return itemMeta.toString().contains(AE_ITEM_IDENTIFIER);
     };
@@ -89,7 +94,7 @@ public class MerchantSoulContract extends SimpleSlimefunItem<EntityInteractHandl
                 recipes.removeIf(REMOVE_AE_TRADES);
 
                 // Filtering each recipe to remove any Material.AIR from their ingredients
-                for (MerchantRecipe recipe: recipes) {
+                for (MerchantRecipe recipe : recipes) {
                     List<ItemStack> ingredients = recipe.getIngredients().stream()
                             .filter(itemStack -> itemStack.getType() != Material.AIR)
                             .toList();

@@ -1,9 +1,8 @@
 package me.voper.slimeframe.implementation.listeners;
 
-import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
-import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
-import me.voper.slimeframe.SlimeFrame;
-import me.voper.slimeframe.core.attributes.AdvancedMobDrop;
+import java.util.Set;
+import java.util.concurrent.ThreadLocalRandom;
+
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -11,8 +10,11 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.inventory.ItemStack;
 
-import java.util.Set;
-import java.util.concurrent.ThreadLocalRandom;
+import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
+import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
+
+import me.voper.slimeframe.SlimeFrame;
+import me.voper.slimeframe.core.attributes.AdvancedMobDrop;
 
 public class AdvancedMobDropListener implements Listener {
 

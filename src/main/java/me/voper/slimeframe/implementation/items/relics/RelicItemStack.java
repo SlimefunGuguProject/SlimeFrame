@@ -1,16 +1,20 @@
 package me.voper.slimeframe.implementation.items.relics;
 
-import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
-import lombok.Getter;
-import lombok.Setter;
-import me.voper.slimeframe.utils.Colors;
-import me.voper.slimeframe.utils.HeadTextures;
-import net.md_5.bungee.api.ChatColor;
-import org.bukkit.inventory.ItemStack;
-
-import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.annotation.ParametersAreNonnullByDefault;
+
+import org.bukkit.inventory.ItemStack;
+
+import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
+
+import me.voper.slimeframe.utils.Colors;
+import me.voper.slimeframe.utils.HeadTextures;
+
+import lombok.Getter;
+import lombok.Setter;
+import net.md_5.bungee.api.ChatColor;
 
 @Getter
 @Setter
@@ -39,12 +43,12 @@ public class RelicItemStack extends SlimefunItemStack {
             lore.add(ChatColor.AQUA + "精炼：" + ChatColor.WHITE + Relic.Refinement.INTACT.getDisplayName());
             lore.add("");
             lore.add(Colors.BRONZE + String.valueOf(ChatColor.BOLD) + "普通奖励：");
-            for (SlimefunItemStack commonDrop: commonDrops) {
+            for (SlimefunItemStack commonDrop : commonDrops) {
                 lore.add(ChatColor.WHITE + commonDrop.getDisplayName());
             }
             lore.add("");
             lore.add(Colors.SILVER + String.valueOf(ChatColor.BOLD) + "罕见奖励：");
-            for (SlimefunItemStack uncommonDrop: uncommonDrops) {
+            for (SlimefunItemStack uncommonDrop : uncommonDrops) {
                 lore.add(ChatColor.WHITE + uncommonDrop.getDisplayName());
             }
             lore.add("");

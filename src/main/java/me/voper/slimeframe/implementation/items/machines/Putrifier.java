@@ -1,31 +1,35 @@
 package me.voper.slimeframe.implementation.items.machines;
 
-import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
-import io.github.thebusybiscuit.slimefun4.core.attributes.RecipeDisplayItem;
-import io.github.thebusybiscuit.slimefun4.libraries.dough.inventory.InvUtils;
-import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
-import io.github.thebusybiscuit.slimefun4.utils.itemstack.ItemStackWrapper;
-import lombok.Setter;
-import lombok.experimental.Accessors;
-import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.MachineRecipe;
-import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
-import me.voper.slimeframe.implementation.groups.Groups;
-import me.voper.slimeframe.implementation.items.abstracts.AbstractProcessorMachine;
-import me.voper.slimeframe.implementation.items.multiblocks.Foundry;
-import me.voper.slimeframe.utils.MachineUtils;
-import me.voper.slimeframe.utils.RandomItemStacks;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Stream;
+
+import javax.annotation.Nonnull;
+
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.SuspiciousStewMeta;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
-import javax.annotation.Nonnull;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Stream;
+import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
+import io.github.thebusybiscuit.slimefun4.core.attributes.RecipeDisplayItem;
+import io.github.thebusybiscuit.slimefun4.libraries.dough.inventory.InvUtils;
+import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
+import io.github.thebusybiscuit.slimefun4.utils.itemstack.ItemStackWrapper;
+
+import me.voper.slimeframe.implementation.groups.Groups;
+import me.voper.slimeframe.implementation.items.abstracts.AbstractProcessorMachine;
+import me.voper.slimeframe.implementation.items.multiblocks.Foundry;
+import me.voper.slimeframe.utils.MachineUtils;
+import me.voper.slimeframe.utils.RandomItemStacks;
+
+import lombok.Setter;
+import lombok.experimental.Accessors;
+import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.MachineRecipe;
+import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
 
 @Accessors(chain = true)
 public class Putrifier extends AbstractProcessorMachine implements RecipeDisplayItem {
@@ -60,7 +64,9 @@ public class Putrifier extends AbstractProcessorMachine implements RecipeDisplay
                 maxedSlots += 1;
             }
         }
-        if (maxedSlots == getOutputSlots().length) { return null; }
+        if (maxedSlots == getOutputSlots().length) {
+            return null;
+        }
 
         // For each recipe, we must check if the input actually matches the recipe input
         Map<Integer, Integer> found = new HashMap<>();

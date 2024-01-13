@@ -1,5 +1,9 @@
 package me.voper.slimeframe.implementation.items.resources;
 
+import javax.annotation.Nonnull;
+
+import org.bukkit.inventory.ItemStack;
+
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
@@ -7,12 +11,11 @@ import io.github.thebusybiscuit.slimefun4.core.attributes.NotHopperable;
 import io.github.thebusybiscuit.slimefun4.core.attributes.NotPlaceable;
 import io.github.thebusybiscuit.slimefun4.core.attributes.Radioactivity;
 import io.github.thebusybiscuit.slimefun4.implementation.items.RadioactiveItem;
+
 import me.voper.slimeframe.implementation.groups.Groups;
 import me.voper.slimeframe.utils.Utils;
-import org.bukkit.inventory.ItemStack;
-import org.jetbrains.annotations.Contract;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.Contract;
 
 public class Resource extends SlimefunItem implements NotPlaceable, NotHopperable {
 
@@ -27,11 +30,11 @@ public class Resource extends SlimefunItem implements NotPlaceable, NotHopperabl
     }
 
     public Resource(SlimefunItemStack item, RecipeType recipeType, ItemStack itemStack) {
-        this(item, recipeType, new ItemStack[]{itemStack,itemStack,itemStack,itemStack,itemStack,itemStack,itemStack,itemStack,itemStack});
+        this(item, recipeType, new ItemStack[]{itemStack, itemStack, itemStack, itemStack, itemStack, itemStack, itemStack, itemStack, itemStack});
     }
 
     public Resource(SlimefunItemStack item, ItemStack itemStack) {
-        this(item, new ItemStack[]{itemStack,itemStack,itemStack,itemStack,itemStack,itemStack,itemStack,itemStack,itemStack});
+        this(item, new ItemStack[]{itemStack, itemStack, itemStack, itemStack, itemStack, itemStack, itemStack, itemStack, itemStack});
     }
 
     public Resource(SlimefunItemStack item, RecipeType recipeType) {

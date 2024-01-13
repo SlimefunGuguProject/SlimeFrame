@@ -1,7 +1,8 @@
 package me.voper.slimeframe.core.managers;
 
-import lombok.Getter;
 import org.bukkit.Bukkit;
+
+import lombok.Getter;
 
 @Getter
 public class SupportedPluginManager {

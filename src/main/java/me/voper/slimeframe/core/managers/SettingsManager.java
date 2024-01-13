@@ -1,17 +1,20 @@
 package me.voper.slimeframe.core.managers;
 
-import lombok.AllArgsConstructor;
-import me.voper.slimeframe.SlimeFrame;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.logging.Level;
+
+import javax.annotation.Nonnull;
+
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.EntityType;
 import org.bukkit.util.NumberConversions;
 
-import javax.annotation.Nonnull;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.logging.Level;
+import me.voper.slimeframe.SlimeFrame;
+
+import lombok.AllArgsConstructor;
 
 public final class SettingsManager {
 
@@ -46,7 +49,7 @@ public final class SettingsManager {
         ConfigurationSection configurationSection = config.getConfigurationSection(field.path);
         Map<EntityType, Integer> dropChanceMap = new HashMap<>();
 
-        for (String key: configurationSection.getKeys(false)) {
+        for (String key : configurationSection.getKeys(false)) {
             EntityType entityType = EntityType.valueOf(key.toUpperCase());
             int percentage = configurationSection.getInt(key);
             if (percentage > 100 || percentage < 0) {
@@ -61,7 +64,7 @@ public final class SettingsManager {
     }
 
     @AllArgsConstructor
-    public enum ConfigField{
+    public enum ConfigField {
 
         AUTO_UPDATE("options.auto-update", true),
         AUTO_UPDATE_MAJOR("options.auto-update-major", false),

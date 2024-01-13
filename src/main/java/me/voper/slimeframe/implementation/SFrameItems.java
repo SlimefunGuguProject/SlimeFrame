@@ -1,6 +1,19 @@
 package me.voper.slimeframe.implementation;
 
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.annotation.Nonnull;
+
 import com.cryptomorin.xseries.XMaterial;
+
+import org.bukkit.Material;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
+
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
@@ -9,7 +22,7 @@ import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
 import io.github.thebusybiscuit.slimefun4.implementation.items.misc.AlloyIngot;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
-import lombok.NonNull;
+
 import me.voper.slimeframe.SlimeFrame;
 import me.voper.slimeframe.core.attributes.FreezingItem;
 import me.voper.slimeframe.core.managers.SettingsManager;
@@ -23,14 +36,8 @@ import me.voper.slimeframe.implementation.items.multiblocks.Foundry;
 import me.voper.slimeframe.implementation.items.relics.Relic;
 import me.voper.slimeframe.implementation.items.resources.*;
 import me.voper.slimeframe.implementation.items.tools.*;
-import net.md_5.bungee.api.ChatColor;
-import org.bukkit.Material;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.potion.PotionEffect;
-import org.bukkit.potion.PotionEffectType;
 
-import javax.annotation.Nonnull;
-import java.util.*;
+import net.md_5.bungee.api.ChatColor;
 
 public final class SFrameItems {
 
@@ -40,7 +47,7 @@ public final class SFrameItems {
     private final SlimeFrame plugin;
     private final SettingsManager settingsManager = SlimeFrame.getSettingsManager();
 
-    public SFrameItems(@NonNull SlimeFrame plugin) {
+    public SFrameItems(@Nonnull SlimeFrame plugin) {
         this.plugin = plugin;
     }
 
@@ -462,7 +469,7 @@ public final class SFrameItems {
     }
 
     private void registerGenerators() {
-        new CumulativeGenerator(SFrameStacks.GRAVITECH_ENERCELL , Foundry.RECIPE_TYPE, new ItemStack[]{
+        new CumulativeGenerator(SFrameStacks.GRAVITECH_ENERCELL, Foundry.RECIPE_TYPE, new ItemStack[]{
                 SFrameStacks.AUROXIUM_ALLOY, SlimefunItems.SOLAR_GENERATOR_4, SFrameStacks.AUROXIUM_ALLOY,
                 SFrameStacks.THAUMIC_DISTILLATE, SFrameStacks.PRISMATIC_ENERGIZED_CORE, SFrameStacks.THAUMIC_DISTILLATE,
                 SFrameStacks.AUROXIUM_ALLOY, SlimefunItems.SOLAR_GENERATOR_4, SFrameStacks.AUROXIUM_ALLOY
@@ -483,7 +490,7 @@ public final class SFrameItems {
         new CumulativeGenerator(SFrameStacks.PRISMA_POWER_CORE, Foundry.RECIPE_TYPE, new ItemStack[]{
                 getAlloyPlate(SFrameStacks.TRAVOCYTE_ALLOY), SFrameStacks.SPECTRA_REACTOR, getAlloyPlate(SFrameStacks.TRAVOCYTE_ALLOY),
                 getAlloyPlate(SFrameStacks.TRAVOCYTE_ALLOY), SFrameStacks.PRISMATIC_ENERGIZED_CORE, getAlloyPlate(SFrameStacks.TRAVOCYTE_ALLOY),
-                getAlloyPlate(SFrameStacks.TRAVOCYTE_ALLOY), SFrameStacks.SPECTRA_REACTOR,getAlloyPlate(SFrameStacks.TRAVOCYTE_ALLOY)
+                getAlloyPlate(SFrameStacks.TRAVOCYTE_ALLOY), SFrameStacks.SPECTRA_REACTOR, getAlloyPlate(SFrameStacks.TRAVOCYTE_ALLOY)
         }).setBonusEnergy(6000).setEnergyGenerated(8000).register(plugin);
 
         new CumulativeGenerator(SFrameStacks.VOIDLIGHT_FUSION_GENERATOR, Foundry.RECIPE_TYPE, new ItemStack[]{

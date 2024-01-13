@@ -1,15 +1,18 @@
 package me.voper.slimeframe.utils;
 
+import java.nio.charset.StandardCharsets;
+import java.util.Base64;
+
+import javax.annotation.Nonnull;
+
+import org.bukkit.inventory.ItemStack;
+
 import io.github.thebusybiscuit.slimefun4.libraries.commons.lang.Validate;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.common.CommonPatterns;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.skins.PlayerHead;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.skins.PlayerSkin;
-import lombok.experimental.UtilityClass;
-import org.bukkit.inventory.ItemStack;
 
-import javax.annotation.Nonnull;
-import java.nio.charset.StandardCharsets;
-import java.util.Base64;
+import lombok.experimental.UtilityClass;
 
 @UtilityClass
 public class HeadTextures {

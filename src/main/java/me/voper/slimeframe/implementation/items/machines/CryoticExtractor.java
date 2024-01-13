@@ -1,31 +1,35 @@
 package me.voper.slimeframe.implementation.items.machines;
 
+import java.util.EnumMap;
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.annotation.Nonnull;
+import javax.annotation.ParametersAreNonnullByDefault;
+
+import org.bukkit.Material;
+import org.bukkit.block.Biome;
+import org.bukkit.block.Block;
+import org.bukkit.inventory.ItemStack;
+
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.blocks.BlockPosition;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
 import io.github.thebusybiscuit.slimefun4.utils.ChestMenuUtils;
-import lombok.Setter;
-import lombok.experimental.Accessors;
-import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
-import me.mrCookieSlime.Slimefun.api.inventory.BlockMenuPreset;
+
 import me.voper.slimeframe.implementation.SFrameStacks;
 import me.voper.slimeframe.implementation.items.abstracts.AbstractMachine;
 import me.voper.slimeframe.utils.Keys;
 import me.voper.slimeframe.utils.MachineUtils;
 import me.voper.slimeframe.utils.Utils;
-import net.md_5.bungee.api.ChatColor;
-import org.bukkit.Material;
-import org.bukkit.block.Biome;
-import org.bukkit.block.Block;
-import org.bukkit.inventory.ItemStack;
 
-import javax.annotation.Nonnull;
-import javax.annotation.ParametersAreNonnullByDefault;
-import java.util.EnumMap;
-import java.util.HashMap;
-import java.util.Map;
+import lombok.Setter;
+import lombok.experimental.Accessors;
+import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
+import me.mrCookieSlime.Slimefun.api.inventory.BlockMenuPreset;
+import net.md_5.bungee.api.ChatColor;
 
 @Accessors(chain = true)
 @ParametersAreNonnullByDefault

@@ -1,5 +1,16 @@
 package me.voper.slimeframe.implementation.items.abstracts;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.annotation.Nonnull;
+import javax.annotation.ParametersAreNonnullByDefault;
+
+import org.bukkit.block.Block;
+import org.bukkit.inventory.ItemStack;
+
 import io.github.thebusybiscuit.slimefun4.api.SlimefunAddon;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
@@ -12,22 +23,15 @@ import io.github.thebusybiscuit.slimefun4.libraries.dough.inventory.InvUtils;
 import io.github.thebusybiscuit.slimefun4.utils.ChestMenuUtils;
 import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
 import io.github.thebusybiscuit.slimefun4.utils.itemstack.ItemStackWrapper;
+
+import me.voper.slimeframe.implementation.items.machines.MachineDesign;
+import me.voper.slimeframe.utils.MachineUtils;
+import me.voper.slimeframe.utils.Utils;
+
 import lombok.Getter;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.MachineRecipe;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenuPreset;
-import me.voper.slimeframe.implementation.items.machines.MachineDesign;
-import me.voper.slimeframe.utils.MachineUtils;
-import me.voper.slimeframe.utils.Utils;
-import org.bukkit.block.Block;
-import org.bukkit.inventory.ItemStack;
-
-import javax.annotation.Nonnull;
-import javax.annotation.ParametersAreNonnullByDefault;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 @ParametersAreNonnullByDefault
 public abstract class AbstractProcessorMachine extends AbstractMachine implements MachineProcessHolder<CraftingOperation> {
@@ -80,7 +84,7 @@ public abstract class AbstractProcessorMachine extends AbstractMachine implement
                 operation.addProgress(processingSpeed);
             } else {
                 MachineUtils.replaceExistingItemViewer(menu, getStatusSlot(), MachineUtils.FINISHED);
-                for (ItemStack output: operation.getResults()) {
+                for (ItemStack output : operation.getResults()) {
                     menu.pushItem(output.clone(), getOutputSlots());
                 }
                 processor.endOperation(b);
@@ -126,7 +130,9 @@ public abstract class AbstractProcessorMachine extends AbstractMachine implement
                 maxedSlots += 1;
             }
         }
-        if (maxedSlots == getOutputSlots().length) { return null; }
+        if (maxedSlots == getOutputSlots().length) {
+            return null;
+        }
 
         // For each recipe, we must check if the input actually matches the recipe input
         Map<Integer, Integer> found = new HashMap<>();
@@ -142,7 +148,7 @@ public abstract class AbstractProcessorMachine extends AbstractMachine implement
             }
 
             if (found.size() == recipe.getInput().length) {
-                if(!InvUtils.fitAll(menu.toInventory(), recipe.getOutput(), getOutputSlots())) {
+                if (!InvUtils.fitAll(menu.toInventory(), recipe.getOutput(), getOutputSlots())) {
                     MachineUtils.replaceExistingItemViewer(menu, getStatusSlot(), MachineUtils.NO_SPACE);
                     return null;
                 }

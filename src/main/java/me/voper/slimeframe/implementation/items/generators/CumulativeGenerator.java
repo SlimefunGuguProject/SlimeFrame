@@ -1,24 +1,29 @@
 package me.voper.slimeframe.implementation.items.generators;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.annotation.Nonnull;
+
 import com.google.common.base.Preconditions;
-import io.github.thebusybiscuit.slimefun4.api.SlimefunAddon;
-import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
-import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
-import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
-import lombok.Getter;
-import me.mrCookieSlime.Slimefun.api.BlockStorage;
-import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
-import me.mrCookieSlime.Slimefun.api.inventory.BlockMenuPreset;
-import me.voper.slimeframe.implementation.groups.Groups;
-import me.voper.slimeframe.implementation.items.abstracts.AbstractEnergyGenerator;
-import me.voper.slimeframe.utils.MachineUtils;
+
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.inventory.ItemStack;
 
-import javax.annotation.Nonnull;
-import java.util.ArrayList;
-import java.util.List;
+import io.github.thebusybiscuit.slimefun4.api.SlimefunAddon;
+import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
+import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
+import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
+
+import me.voper.slimeframe.implementation.groups.Groups;
+import me.voper.slimeframe.implementation.items.abstracts.AbstractEnergyGenerator;
+import me.voper.slimeframe.utils.MachineUtils;
+
+import lombok.Getter;
+import me.mrCookieSlime.Slimefun.api.BlockStorage;
+import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
+import me.mrCookieSlime.Slimefun.api.inventory.BlockMenuPreset;
 
 @Getter
 public class CumulativeGenerator extends AbstractEnergyGenerator {
@@ -51,7 +56,7 @@ public class CumulativeGenerator extends AbstractEnergyGenerator {
     private int checkRelatives(Block block) {
         int bonus = 0;
 
-        for (BlockFace face: facesToCheck) {
+        for (BlockFace face : facesToCheck) {
             SlimefunItem check = BlockStorage.check(block.getRelative(face));
             if (check == null) continue;
             if (check.getId().equals(this.getId())) {

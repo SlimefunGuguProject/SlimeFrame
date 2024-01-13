@@ -1,10 +1,11 @@
 package me.voper.slimeframe.utils;
 
-import lombok.experimental.UtilityClass;
+import javax.annotation.Nonnull;
+
 import org.bukkit.Location;
 import org.bukkit.entity.ArmorStand;
 
-import javax.annotation.Nonnull;
+import lombok.experimental.UtilityClass;
 
 @UtilityClass
 public class ArmorStandUtils {

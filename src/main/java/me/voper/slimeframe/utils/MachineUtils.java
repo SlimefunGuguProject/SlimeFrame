@@ -1,13 +1,15 @@
 package me.voper.slimeframe.utils;
 
-import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
-import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
-import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
-import net.md_5.bungee.api.ChatColor;
+import javax.annotation.ParametersAreNonnullByDefault;
+
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
-import javax.annotation.ParametersAreNonnullByDefault;
+import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
+import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
+
+import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
+import net.md_5.bungee.api.ChatColor;
 
 @ParametersAreNonnullByDefault
 public final class MachineUtils {
@@ -35,7 +37,7 @@ public final class MachineUtils {
     }
 
     public static void replaceExistingItemViewer(BlockMenu menu, int[] slots, ItemStack item) {
-        for (int slot: slots) {
+        for (int slot : slots) {
             replaceExistingItemViewer(menu, slot, item);
         }
     }

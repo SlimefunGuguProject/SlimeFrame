@@ -1,26 +1,30 @@
 package me.voper.slimeframe.implementation.items.components;
 
+import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.annotation.Nonnull;
+import javax.annotation.ParametersAreNonnullByDefault;
+
+import org.bukkit.inventory.ItemStack;
+
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.experimental.Accessors;
+
 import me.voper.slimeframe.SlimeFrame;
 import me.voper.slimeframe.implementation.SFrameStacks;
 import me.voper.slimeframe.implementation.SFrameTheme;
 import me.voper.slimeframe.implementation.items.relics.RelicItemStack;
 import me.voper.slimeframe.utils.Colors;
 import me.voper.slimeframe.utils.HeadTextures;
-import net.md_5.bungee.api.ChatColor;
-import org.bukkit.inventory.ItemStack;
 
-import javax.annotation.Nonnull;
-import javax.annotation.ParametersAreNonnullByDefault;
-import java.lang.reflect.Field;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.experimental.Accessors;
+import net.md_5.bungee.api.ChatColor;
 
 @Getter
 @Setter
@@ -42,7 +46,8 @@ public class PrimeComponents {
         COMPONENTS_MAP.put(item, this);
     }
 
-    public PrimeComponents() {}
+    public PrimeComponents() {
+    }
 
     @Nonnull
     public static SlimefunItemStack createControlUnit(SlimefunItemStack item) {
@@ -149,16 +154,16 @@ public class PrimeComponents {
         List<ItemStack> relicsPowerCell = new ArrayList<>();
         List<ItemStack> relicsControlUnit = new ArrayList<>();
 
-        for (Field field: SFrameStacks.class.getDeclaredFields()) {
+        for (Field field : SFrameStacks.class.getDeclaredFields()) {
             if (field.getType() != RelicItemStack.class) continue;
             RelicItemStack relic = (RelicItemStack) field.get(null);
 
-            for (SlimefunItemStack common: relic.getCommonDrops()) {
+            for (SlimefunItemStack common : relic.getCommonDrops()) {
                 if (!SlimefunUtils.isItemSimilar(components.getControlUnit(), common, true)) continue;
                 relicsControlUnit.add(relic);
             }
 
-            for (SlimefunItemStack uncommon: relic.getUncommonDrops()) {
+            for (SlimefunItemStack uncommon : relic.getUncommonDrops()) {
                 if (!SlimefunUtils.isItemSimilar(components.getPowerCell(), uncommon, true)) continue;
                 relicsPowerCell.add(relic);
             }

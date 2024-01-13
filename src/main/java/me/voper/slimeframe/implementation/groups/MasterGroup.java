@@ -1,5 +1,17 @@
 package me.voper.slimeframe.implementation.groups;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.annotation.Nonnull;
+import javax.annotation.ParametersAreNonnullByDefault;
+
+import org.bukkit.ChatColor;
+import org.bukkit.NamespacedKey;
+import org.bukkit.Sound;
+import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
+
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.groups.FlexItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.player.PlayerProfile;
@@ -13,27 +25,20 @@ import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.skins.PlayerHead;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.skins.PlayerSkin;
 import io.github.thebusybiscuit.slimefun4.utils.ChestMenuUtils;
+
 import lombok.Getter;
 import lombok.Setter;
 import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.ChestMenu;
-import org.bukkit.ChatColor;
-import org.bukkit.NamespacedKey;
-import org.bukkit.Sound;
-import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemStack;
-
-import javax.annotation.Nonnull;
-import javax.annotation.ParametersAreNonnullByDefault;
-import java.util.ArrayList;
-import java.util.List;
 
 @SuppressWarnings("deprecation")
 public class MasterGroup extends FlexItemGroup {
 
     private static final int GROUP_SIZE = 36;
 
-    @Setter private boolean visibility = true;
-    @Getter private final MasterGroup parentGroup;
+    @Setter
+    private boolean visibility = true;
+    @Getter
+    private final MasterGroup parentGroup;
     private final List<ItemGroup> subGroups = new ArrayList<>();
     private final String name;
 
@@ -155,7 +160,6 @@ public class MasterGroup extends FlexItemGroup {
     public boolean hasMaster() {
         return parentGroup != null;
     }
-
 
 
 }

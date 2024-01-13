@@ -1,5 +1,17 @@
 package me.voper.slimeframe.implementation.items.machines;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.annotation.Nonnull;
+import javax.annotation.ParametersAreNonnullByDefault;
+
+import org.bukkit.Material;
+import org.bukkit.World;
+import org.bukkit.block.Block;
+import org.bukkit.block.BlockFace;
+import org.bukkit.inventory.ItemStack;
+
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
@@ -8,26 +20,18 @@ import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.items.ItemUtils;
 import io.github.thebusybiscuit.slimefun4.utils.ChestMenuUtils;
 import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
-import me.mrCookieSlime.Slimefun.api.BlockStorage;
-import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
-import me.mrCookieSlime.Slimefun.api.inventory.BlockMenuPreset;
+
 import me.voper.slimeframe.implementation.SFrameStacks;
 import me.voper.slimeframe.implementation.items.abstracts.AbstractMachine;
 import me.voper.slimeframe.utils.Colors;
 import me.voper.slimeframe.utils.Keys;
 import me.voper.slimeframe.utils.MachineUtils;
 import me.voper.slimeframe.utils.Utils;
-import net.md_5.bungee.api.ChatColor;
-import org.bukkit.Material;
-import org.bukkit.World;
-import org.bukkit.block.Block;
-import org.bukkit.block.BlockFace;
-import org.bukkit.inventory.ItemStack;
 
-import javax.annotation.Nonnull;
-import javax.annotation.ParametersAreNonnullByDefault;
-import java.util.HashMap;
-import java.util.Map;
+import me.mrCookieSlime.Slimefun.api.BlockStorage;
+import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
+import me.mrCookieSlime.Slimefun.api.inventory.BlockMenuPreset;
+import net.md_5.bungee.api.ChatColor;
 
 @ParametersAreNonnullByDefault
 public class ThermiaExtractor extends AbstractMachine {
@@ -55,17 +59,18 @@ public class ThermiaExtractor extends AbstractMachine {
         final BlockPosition blockPosition = new BlockPosition(b);
         int progress = COUNTER_MAP.getOrDefault(blockPosition, 0);
 
-        if (coolantCanisters != lastValue) BlockStorage.addBlockInfo(b.getLocation(), BLOCK_KEY, String.valueOf(coolantCanisters));
+        if (coolantCanisters != lastValue)
+            BlockStorage.addBlockInfo(b.getLocation(), BLOCK_KEY, String.valueOf(coolantCanisters));
         lastValue = coolantCanisters;
 
         // The machine will only perform an action every 20 minecraft ticks (1 second)
         if (progress % TIME == 0) {
             if (coolantCanisters < 5 && !completed) {
-                for (int slot: getInputSlots()) {
+                for (int slot : getInputSlots()) {
                     ItemStack itemInSlot = menu.getItemInSlot(slot);
                     if (!SlimefunUtils.isItemSimilar(itemInSlot, SFrameStacks.COOLANT_CANISTER, true)) continue;
 
-                    ItemUtils.consumeItem(itemInSlot,false);
+                    ItemUtils.consumeItem(itemInSlot, false);
                     menu.replaceExistingItem(getProgressSlots()[coolantCanisters++], new CustomItemStack(Material.RED_STAINED_GLASS_PANE, " "));
                     completed = (coolantCanisters == 5);
                     COUNTER_MAP.put(blockPosition, ++progress);

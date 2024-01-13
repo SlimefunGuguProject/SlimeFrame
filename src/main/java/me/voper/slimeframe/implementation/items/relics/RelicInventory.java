@@ -1,20 +1,23 @@
 package me.voper.slimeframe.implementation.items.relics;
 
-import lombok.Getter;
-import me.voper.slimeframe.implementation.SFrameStacks;
-import me.voper.slimeframe.utils.ChatUtils;
-import net.md_5.bungee.api.ChatColor;
-import net.md_5.bungee.api.chat.*;
-import net.md_5.bungee.api.chat.hover.content.Text;
+import java.util.HashMap;
+import java.util.UUID;
+import java.util.concurrent.ThreadLocalRandom;
+
+import javax.annotation.Nonnull;
+
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
-import javax.annotation.Nonnull;
-import java.util.HashMap;
-import java.util.UUID;
-import java.util.concurrent.ThreadLocalRandom;
+import me.voper.slimeframe.implementation.SFrameStacks;
+import me.voper.slimeframe.utils.ChatUtils;
+
+import lombok.Getter;
+import net.md_5.bungee.api.ChatColor;
+import net.md_5.bungee.api.chat.*;
+import net.md_5.bungee.api.chat.hover.content.Text;
 
 @Getter
 public class RelicInventory {
@@ -59,7 +62,8 @@ public class RelicInventory {
             case MESO -> randomRelic = SFrameStacks.RANDOM_MESO_RELICS.getRandom();
             case NEO -> randomRelic = SFrameStacks.RANDOM_NEO_RELICS.getRandom();
             case AXI -> randomRelic = SFrameStacks.RANDOM_AXI_RELICS.getRandom();
-            default -> {}
+            default -> {
+            }
         }
         addRelic(randomRelic);
     }

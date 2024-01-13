@@ -1,6 +1,25 @@
 package me.voper.slimeframe.implementation.items.relics;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
+
+import javax.annotation.Nonnull;
+import javax.annotation.ParametersAreNonnullByDefault;
+
 import com.jeff_media.morepersistentdatatypes.DataType;
+
+import org.bukkit.Bukkit;
+import org.bukkit.GameMode;
+import org.bukkit.Material;
+import org.bukkit.Sound;
+import org.bukkit.entity.Player;
+import org.bukkit.event.block.BlockPlaceEvent;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.persistence.PersistentDataType;
+
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
@@ -12,33 +31,22 @@ import io.github.thebusybiscuit.slimefun4.libraries.commons.lang.Validate;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.data.persistent.PersistentDataAPI;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.items.ItemUtils;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
+
 import me.voper.slimeframe.SlimeFrame;
+import me.voper.slimeframe.api.events.PlayerOpenRelicEvent;
+import me.voper.slimeframe.api.events.PlayerRefineRelicEvent;
 import me.voper.slimeframe.core.managers.SettingsManager;
 import me.voper.slimeframe.implementation.groups.Groups;
 import me.voper.slimeframe.utils.ChatUtils;
 import me.voper.slimeframe.utils.Colors;
 import me.voper.slimeframe.utils.Keys;
 import me.voper.slimeframe.utils.Utils;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
 import net.md_5.bungee.api.ChatColor;
 import org.apache.commons.math3.distribution.EnumeratedDistribution;
 import org.apache.commons.math3.util.Pair;
-import org.bukkit.GameMode;
-import org.bukkit.Material;
-import org.bukkit.Sound;
-import org.bukkit.entity.Player;
-import org.bukkit.event.block.BlockPlaceEvent;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.persistence.PersistentDataType;
-
-import javax.annotation.Nonnull;
-import javax.annotation.ParametersAreNonnullByDefault;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.concurrent.ThreadLocalRandom;
 
 @Getter
 public class Relic extends SlimefunItem implements NotPlaceable {
@@ -82,7 +90,8 @@ public class Relic extends SlimefunItem implements NotPlaceable {
             case MESO -> relic = new Relic(Groups.MESO, relicItemStack, MESO_RECIPE_TYPE);
             case NEO -> relic = new Relic(Groups.NEO, relicItemStack, NEO_RECIPE_TYPE);
             case AXI -> relic = new Relic(Groups.AXI, relicItemStack, AXI_RECIPE_TYPE);
-            default -> {}
+            default -> {
+            }
         }
         Validate.notNull(relic, "An error has occurred while creating a new relic!");
         return relic;
@@ -104,10 +113,10 @@ public class Relic extends SlimefunItem implements NotPlaceable {
     }
 
     protected ItemUseHandler onRelicUse() {
-        return event -> {
-            event.cancel();
-            Player p = event.getPlayer();
-            ItemStack relic = event.getItem();
+        return e -> {
+            e.cancel();
+            Player p = e.getPlayer();
+            ItemStack relic = e.getItem();
 
             if (getReactants(relic) != 10) {
                 ChatUtils.sendMessage(p, SlimeFrame.getSettingsManager().getStringList(SettingsManager.ConfigField.INSUFFICIENT_REACTANTS));
@@ -118,26 +127,36 @@ public class Relic extends SlimefunItem implements NotPlaceable {
 
             int voidTraces = PersistentDataAPI.getInt(p, Keys.VOID_TRACES_OWNED, 0);
             int voidTracesReward = ThreadLocalRandom.current().nextInt(20) + 1;
-            voidTraces += voidTracesReward;
+            SlimefunItemStack reward = dropDistribution.sample();
+
+            PlayerOpenRelicEvent relicEvent = new PlayerOpenRelicEvent(p, reward, relic, voidTracesReward);
+            Bukkit.getPluginManager().callEvent(relicEvent);
+            if (relicEvent.isCancelled()) return;
+
+            PersistentDataAPI.set(p, Keys.VOID_TRACES_OWNED, PersistentDataType.INTEGER, voidTraces + relicEvent.getVoidTracesReward());
+
+            ItemUtils.consumeItem(relicEvent.getRelic(), false);
+
+            HashMap<Integer, ItemStack> result = p.getInventory().addItem(relicEvent.getReward());
+            if (!result.isEmpty()) {
+                p.getWorld().dropItemNaturally(p.getLocation(), relicEvent.getReward());
+            }
 
             ChatUtils.sendMessage(p, ChatColor.GREEN + "已打开遗物！");
             ChatUtils.sendMessage(p, ChatColor.GREEN + "你获得了 " + ChatColor.WHITE + voidTracesReward + ChatColor.GREEN +
                 " 虚空光体！");
 
-            PersistentDataAPI.set(p, Keys.VOID_TRACES_OWNED, PersistentDataType.INTEGER, voidTraces);
-
-            SlimefunItemStack reward = dropDistribution.sample();
-            ItemUtils.consumeItem(relic, false);
-
-            HashMap<Integer, ItemStack> result = p.getInventory().addItem(reward);
-            if (!result.isEmpty()) {
-                p.getWorld().dropItemNaturally(p.getLocation(), reward);
-            }
         };
     }
 
     @ParametersAreNonnullByDefault
     public static void refineRelic(Player p, ItemStack relic, Refinement refinement) {
+        PlayerRefineRelicEvent refineEvent = new PlayerRefineRelicEvent(p, relic, refinement);
+        Bukkit.getPluginManager().callEvent(refineEvent);
+        if (refineEvent.isCancelled()) return;
+
+        refinement = refineEvent.getNewRefinement();
+
         int tracesRequired = refinement.getTracesRequired() - getRefinement(relic).getTracesRequired();
         if (tracesRequired <= 0) {
             ChatUtils.sendMessage(p, ChatColor.RED + "你不能精炼至更低的等级！");
@@ -174,11 +193,11 @@ public class Relic extends SlimefunItem implements NotPlaceable {
 
         List<Pair<SlimefunItemStack, Double>> dropProbabilities = new ArrayList<>();
 
-        for (SlimefunItemStack common: commonDrops) {
+        for (SlimefunItemStack common : commonDrops) {
             dropProbabilities.add(new Pair<>(common, (relicRefinement.commonProbability / 100.0) / sumOfProbabilities));
         }
 
-        for (SlimefunItemStack uncommon: uncommonDrops) {
+        for (SlimefunItemStack uncommon : uncommonDrops) {
             dropProbabilities.add(new Pair<>(uncommon, (relicRefinement.uncommonProbability / 100.0) / sumOfProbabilities));
         }
 

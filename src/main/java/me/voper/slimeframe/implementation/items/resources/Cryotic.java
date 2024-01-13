@@ -2,6 +2,7 @@ package me.voper.slimeframe.implementation.items.resources;
 
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.core.attributes.NotPlaceable;
+
 import me.voper.slimeframe.core.attributes.FreezingItem;
 import me.voper.slimeframe.implementation.SFrameStacks;
 import me.voper.slimeframe.implementation.groups.Groups;

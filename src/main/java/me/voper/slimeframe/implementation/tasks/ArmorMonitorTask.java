@@ -1,5 +1,17 @@
 package me.voper.slimeframe.implementation.tasks;
 
+import java.util.Optional;
+import java.util.Set;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+
+import org.bukkit.Bukkit;
+import org.bukkit.Material;
+import org.bukkit.NamespacedKey;
+import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
+
 import io.github.thebusybiscuit.slimefun4.api.items.HashedArmorpiece;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
@@ -8,21 +20,12 @@ import io.github.thebusybiscuit.slimefun4.core.attributes.ProtectiveArmor;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.implementation.items.armor.SlimefunArmorPiece;
 import io.github.thebusybiscuit.slimefun4.utils.itemstack.ItemStackWrapper;
+
 import me.voper.slimeframe.SlimeFrame;
 import me.voper.slimeframe.core.attributes.FreezingItem;
 import me.voper.slimeframe.core.attributes.FreezingProtection;
 import me.voper.slimeframe.core.managers.SettingsManager;
 import me.voper.slimeframe.utils.ChatUtils;
-import org.bukkit.Bukkit;
-import org.bukkit.Material;
-import org.bukkit.NamespacedKey;
-import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemStack;
-
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-import java.util.Optional;
-import java.util.Set;
 
 public class ArmorMonitorTask implements Runnable {
 
@@ -35,7 +38,7 @@ public class ArmorMonitorTask implements Runnable {
 
     @Override
     public void run() {
-        for (Player p: Bukkit.getOnlinePlayers()) {
+        for (Player p : Bukkit.getOnlinePlayers()) {
             if (!p.isValid() || p.isDead()) continue;
             PlayerProfile.get(p, profile -> checkForFreezingItems(p, profile));
         }
@@ -43,7 +46,7 @@ public class ArmorMonitorTask implements Runnable {
 
     private void checkForFreezingItems(@Nonnull Player p, PlayerProfile profile) {
         if (!hasFullFreezingProtection(profile)) {
-            for (ItemStack item: p.getInventory()) {
+            for (ItemStack item : p.getInventory()) {
                 if (checkAndApplyFreezing(p, item)) break;
             }
         } else if (p.isFrozen()) {
@@ -61,11 +64,11 @@ public class ArmorMonitorTask implements Runnable {
             itemStack = ItemStackWrapper.wrap(item);
         }
 
-        for (SlimefunItem freezingItem: freezingItems) {
+        for (SlimefunItem freezingItem : freezingItems) {
             if (freezingItem.isItem(itemStack) && !freezingItem.isDisabledIn(p.getWorld())) {
                 ChatUtils.sendMessage(p, SlimeFrame.getSettingsManager().getStringList(SettingsManager.ConfigField.FREEZING_ITEM));
                 Slimefun.runSync(() -> {
-                    p.setFreezeTicks(140 + 10*20);
+                    p.setFreezeTicks(140 + 10 * 20);
                     double resultHealth = p.getHealth() - ((FreezingItem) freezingItem).getFreezingDamage();
                     p.setHealth(resultHealth < 0 ? 0 : resultHealth);
                 });

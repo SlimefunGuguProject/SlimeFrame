@@ -1,22 +1,26 @@
 package me.voper.slimeframe.implementation.items.components;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Stream;
+
+import javax.annotation.Nonnull;
+
+import org.bukkit.Material;
+import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
+
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.core.attributes.RecipeDisplayItem;
 import io.github.thebusybiscuit.slimefun4.implementation.items.blocks.UnplaceableBlock;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
+
 import me.voper.slimeframe.implementation.groups.Groups;
 import me.voper.slimeframe.utils.Keys;
 import me.voper.slimeframe.utils.Utils;
-import net.md_5.bungee.api.ChatColor;
-import org.bukkit.Material;
-import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemStack;
 
-import javax.annotation.Nonnull;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Stream;
+import net.md_5.bungee.api.ChatColor;
 
 public class Component extends UnplaceableBlock implements RecipeDisplayItem {
 

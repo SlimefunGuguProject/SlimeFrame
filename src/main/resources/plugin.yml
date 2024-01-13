@@ -2,11 +2,11 @@ name: SlimeFrame
 author: Voper
 description: A Warframe based Slimefun addon
 main: me.voper.slimeframe.SlimeFrame
-website: https://github.com/VoperYT/SlimeFrame
+website: https://github.com/VoperAD/SlimeFrame
 version: ${project.version}
 api-version: 1.19
 depend:
-- Slimefun
+  - Slimefun
 softdepend:
   - PlaceholderAPI
   - SlimeHUD

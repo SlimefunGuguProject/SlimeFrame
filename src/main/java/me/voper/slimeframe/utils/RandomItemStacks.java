@@ -1,14 +1,17 @@
 package me.voper.slimeframe.utils;
 
-import io.github.thebusybiscuit.slimefun4.libraries.commons.lang.Validate;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import org.bukkit.inventory.ItemStack;
-
-import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
+
+import javax.annotation.ParametersAreNonnullByDefault;
+
+import org.bukkit.inventory.ItemStack;
+
+import io.github.thebusybiscuit.slimefun4.libraries.commons.lang.Validate;
+
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
 @ParametersAreNonnullByDefault
@@ -22,7 +25,7 @@ public class RandomItemStacks<T extends ItemStack> {
     }
 
     public RandomItemStacks(RandomItemStacks<T>[] randomItemStacksArray) {
-        for (RandomItemStacks<T> randomItemStack: randomItemStacksArray) {
+        for (RandomItemStacks<T> randomItemStack : randomItemStacksArray) {
             this.items.addAll(randomItemStack.items);
         }
     }

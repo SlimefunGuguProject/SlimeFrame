@@ -1,5 +1,15 @@
 package me.voper.slimeframe.implementation.items.resources;
 
+import java.util.*;
+import java.util.stream.Collectors;
+
+import javax.annotation.Nonnull;
+
+import org.bukkit.Material;
+import org.bukkit.entity.EntityType;
+import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
+
 import io.github.thebusybiscuit.slimefun4.api.SlimefunAddon;
 import io.github.thebusybiscuit.slimefun4.api.events.PlayerRightClickEvent;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
@@ -11,20 +21,14 @@ import io.github.thebusybiscuit.slimefun4.core.handlers.ItemUseHandler;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.libraries.commons.lang.Validate;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
-import lombok.Getter;
+
 import me.voper.slimeframe.core.attributes.AdvancedMobDrop;
 import me.voper.slimeframe.utils.Keys;
 import me.voper.slimeframe.utils.Utils;
+
+import lombok.Getter;
 import net.guizhanss.guizhanlib.minecraft.helper.MaterialHelper;
 import net.md_5.bungee.api.ChatColor;
-import org.bukkit.Material;
-import org.bukkit.entity.EntityType;
-import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemStack;
-
-import javax.annotation.Nonnull;
-import java.util.*;
-import java.util.stream.Collectors;
 
 // An item dropped by mobs. The probability of an item dropping from a mob can vary depending on the mob
 @Getter

@@ -1,15 +1,17 @@
 package me.voper.slimeframe.implementation.items.abstracts;
 
+import org.bukkit.block.Block;
+import org.bukkit.inventory.ItemStack;
+
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
+
 import me.mrCookieSlime.CSCoreLibPlugin.Configuration.Config;
 import me.mrCookieSlime.Slimefun.Objects.handlers.BlockTicker;
 import me.mrCookieSlime.Slimefun.api.BlockStorage;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
-import org.bukkit.block.Block;
-import org.bukkit.inventory.ItemStack;
 
 /*
 Credits to ProfElements
@@ -44,6 +46,8 @@ public abstract class AbstractTickingContainer extends AbstractContainer {
 
     protected abstract void tick(BlockMenu menu, Block b);
 
-    protected boolean synchronous() { return false; }
+    protected boolean synchronous() {
+        return false;
+    }
 
 }

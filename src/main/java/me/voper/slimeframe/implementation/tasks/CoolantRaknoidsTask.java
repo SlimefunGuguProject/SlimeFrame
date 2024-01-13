@@ -1,17 +1,19 @@
 package me.voper.slimeframe.implementation.tasks;
 
-import me.voper.slimeframe.SlimeFrame;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Set;
+import java.util.UUID;
+
+import javax.annotation.Nonnull;
+
 import org.bukkit.Bukkit;
 import org.bukkit.Color;
 import org.bukkit.Location;
 import org.bukkit.Particle;
 import org.bukkit.entity.Entity;
 
-import javax.annotation.Nonnull;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Set;
-import java.util.UUID;
+import me.voper.slimeframe.SlimeFrame;
 
 // This class manages the particles around each CoolantRaknoid
 public class CoolantRaknoidsTask implements Runnable {

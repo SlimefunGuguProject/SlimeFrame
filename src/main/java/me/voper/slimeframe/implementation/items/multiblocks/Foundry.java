@@ -1,14 +1,9 @@
 package me.voper.slimeframe.implementation.items.multiblocks;
 
-import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
-import io.github.thebusybiscuit.slimefun4.core.multiblocks.MultiBlockMachine;
-import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
-import io.github.thebusybiscuit.slimefun4.libraries.dough.items.ItemUtils;
-import io.github.thebusybiscuit.slimefun4.libraries.paperlib.PaperLib;
-import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
-import me.voper.slimeframe.implementation.SFrameStacks;
-import me.voper.slimeframe.implementation.groups.Groups;
-import me.voper.slimeframe.utils.Keys;
+import java.util.List;
+
+import javax.annotation.Nonnull;
+
 import org.bukkit.Bukkit;
 import org.bukkit.Effect;
 import org.bukkit.Material;
@@ -21,8 +16,16 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
-import javax.annotation.Nonnull;
-import java.util.List;
+import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
+import io.github.thebusybiscuit.slimefun4.core.multiblocks.MultiBlockMachine;
+import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
+import io.github.thebusybiscuit.slimefun4.libraries.dough.items.ItemUtils;
+import io.github.thebusybiscuit.slimefun4.libraries.paperlib.PaperLib;
+import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
+
+import me.voper.slimeframe.implementation.SFrameStacks;
+import me.voper.slimeframe.implementation.groups.Groups;
+import me.voper.slimeframe.utils.Keys;
 
 public class Foundry extends MultiBlockMachine {
 
@@ -99,7 +102,7 @@ public class Foundry extends MultiBlockMachine {
             ItemStack item = inv.getContents()[j];
 
             if (item != null && item.getType() != Material.AIR && SlimefunUtils.isItemSimilar(inv.getContents()[j], recipe[j], true)) {
-                ItemUtils.consumeItem(item, recipe[j].getAmount(),true);
+                ItemUtils.consumeItem(item, recipe[j].getAmount(), true);
             }
         }
 

@@ -1,21 +1,25 @@
 package me.voper.slimeframe.implementation.items.machines;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.annotation.Nonnull;
+import javax.annotation.ParametersAreNonnullByDefault;
+
+import org.bukkit.Material;
+import org.bukkit.inventory.ItemStack;
+
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.core.attributes.RecipeDisplayItem;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
-import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
+
 import me.voper.slimeframe.implementation.items.abstracts.AbstractSelectorMachine;
 import me.voper.slimeframe.utils.MachineUtils;
-import net.md_5.bungee.api.ChatColor;
-import org.bukkit.Material;
-import org.bukkit.inventory.ItemStack;
 
-import javax.annotation.Nonnull;
-import javax.annotation.ParametersAreNonnullByDefault;
-import java.util.ArrayList;
-import java.util.List;
+import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
+import net.md_5.bungee.api.ChatColor;
 
 @ParametersAreNonnullByDefault
 public class WoolGenerator extends AbstractSelectorMachine implements RecipeDisplayItem {

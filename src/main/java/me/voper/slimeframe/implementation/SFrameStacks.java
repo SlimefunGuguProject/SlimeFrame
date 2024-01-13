@@ -1,6 +1,22 @@
 package me.voper.slimeframe.implementation;
 
+import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.annotation.Nonnull;
+
 import com.cryptomorin.xseries.XMaterial;
+
+import org.bukkit.Color;
+import org.bukkit.Material;
+import org.bukkit.enchantments.Enchantment;
+import org.bukkit.inventory.ItemFlag;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.PotionMeta;
+import org.bukkit.potion.PotionData;
+import org.bukkit.potion.PotionType;
+
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.core.attributes.MachineTier;
 import io.github.thebusybiscuit.slimefun4.core.attributes.MachineType;
@@ -8,7 +24,7 @@ import io.github.thebusybiscuit.slimefun4.core.attributes.Radioactivity;
 import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
 import io.github.thebusybiscuit.slimefun4.utils.LoreBuilder;
-import lombok.experimental.UtilityClass;
+
 import me.voper.slimeframe.implementation.groups.Groups;
 import me.voper.slimeframe.implementation.items.components.PrimeComponents;
 import me.voper.slimeframe.implementation.items.components.UtilsComponents;
@@ -18,21 +34,10 @@ import me.voper.slimeframe.utils.Colors;
 import me.voper.slimeframe.utils.HeadTextures;
 import me.voper.slimeframe.utils.Lore;
 import me.voper.slimeframe.utils.RandomItemStacks;
-import net.md_5.bungee.api.ChatColor;
-import org.bukkit.Color;
-import org.bukkit.Material;
-import org.bukkit.enchantments.Enchantment;
-import org.bukkit.inventory.ItemFlag;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.PotionMeta;
-import org.bukkit.potion.PotionData;
-import org.bukkit.potion.PotionType;
-import org.jetbrains.annotations.Contract;
 
-import javax.annotation.Nonnull;
-import java.lang.reflect.Field;
-import java.util.ArrayList;
-import java.util.List;
+import lombok.experimental.UtilityClass;
+import net.md_5.bungee.api.ChatColor;
+import org.jetbrains.annotations.Contract;
 
 @UtilityClass
 public final class SFrameStacks {
@@ -600,7 +605,7 @@ public final class SFrameStacks {
             Lore.powerPerSecond(128),
             Lore.speed(1)
     );
-    
+
     public static final SlimefunItemStack ADV_CONCRETE_GENERATOR = SFrameTheme.sfStackFromTheme(
             "WF_CONCRETE_GEN_2",
             Material.NETHER_BRICKS,
@@ -1338,7 +1343,7 @@ public final class SFrameStacks {
     );
 
     static {
-        for (Field declaredField: SFrameStacks.class.getDeclaredFields()) {
+        for (Field declaredField : SFrameStacks.class.getDeclaredFields()) {
             try {
                 if (declaredField.getType() != RelicItemStack.class) continue;
                 RelicItemStack relicItemStack = (RelicItemStack) declaredField.get(null);

@@ -1,15 +1,7 @@
 package me.voper.slimeframe.implementation.listeners;
 
-import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
-import io.github.thebusybiscuit.slimefun4.libraries.dough.data.persistent.PersistentDataAPI;
-import me.voper.slimeframe.SlimeFrame;
-import me.voper.slimeframe.core.managers.RelicInventoryManager;
-import me.voper.slimeframe.core.managers.SettingsManager;
-import me.voper.slimeframe.implementation.items.relics.Relic;
-import me.voper.slimeframe.implementation.items.relics.RelicInventory;
-import me.voper.slimeframe.utils.ChatUtils;
-import me.voper.slimeframe.utils.Keys;
-import net.md_5.bungee.api.ChatColor;
+import java.util.concurrent.ThreadLocalRandom;
+
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -21,7 +13,18 @@ import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.player.PlayerFishEvent;
 import org.bukkit.inventory.ItemStack;
 
-import java.util.concurrent.ThreadLocalRandom;
+import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
+import io.github.thebusybiscuit.slimefun4.libraries.dough.data.persistent.PersistentDataAPI;
+
+import me.voper.slimeframe.SlimeFrame;
+import me.voper.slimeframe.core.managers.RelicInventoryManager;
+import me.voper.slimeframe.core.managers.SettingsManager;
+import me.voper.slimeframe.implementation.items.relics.Relic;
+import me.voper.slimeframe.implementation.items.relics.RelicInventory;
+import me.voper.slimeframe.utils.ChatUtils;
+import me.voper.slimeframe.utils.Keys;
+
+import net.md_5.bungee.api.ChatColor;
 
 public final class RelicsListener implements Listener {
 
@@ -61,7 +64,7 @@ public final class RelicsListener implements Listener {
             if (random < settings.getInt(SettingsManager.ConfigField.REACTANTS_CHANCE)) {
 
                 // Support for bedrock players
-                boolean isBedrockPlayer =  SlimeFrame.getGeyserApi() != null && SlimeFrame.getGeyserApi().isBedrockPlayer(killer.getUniqueId());
+                boolean isBedrockPlayer = SlimeFrame.getGeyserApi() != null && SlimeFrame.getGeyserApi().isBedrockPlayer(killer.getUniqueId());
                 ItemStack relic = isBedrockPlayer ? killer.getInventory().getItem(0) : killer.getInventory().getItemInOffHand();
                 String slot = isBedrockPlayer ? "第一格快捷栏" : "副手";
 
@@ -77,7 +80,7 @@ public final class RelicsListener implements Listener {
             }
         }
 
-        int kills = PersistentDataAPI.getInt(killer, Keys.KILL_COUNTER,0) + 1;
+        int kills = PersistentDataAPI.getInt(killer, Keys.KILL_COUNTER, 0) + 1;
 
         if (kills % settings.getInt(SettingsManager.ConfigField.MESO_RELIC) == 0) {
             kills = 0;

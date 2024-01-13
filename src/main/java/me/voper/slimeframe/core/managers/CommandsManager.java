@@ -1,11 +1,12 @@
 package me.voper.slimeframe.core.managers;
 
-import co.aikar.commands.PaperCommandManager;
+import java.util.Arrays;
+
 import me.voper.slimeframe.SlimeFrame;
 import me.voper.slimeframe.core.commands.Commands;
 import me.voper.slimeframe.implementation.items.relics.Relic;
 
-import java.util.Arrays;
+import co.aikar.commands.PaperCommandManager;
 
 public class CommandsManager extends PaperCommandManager {
 

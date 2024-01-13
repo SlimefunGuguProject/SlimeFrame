@@ -1,3 +1,17 @@
+# [1.6.0](https://github.com/VoperAD/SlimeFrame/compare/v1.5.1...v1.6.0) (2024-01-13)
+
+
+### Bug Fixes
+
+* add terracotta to TerracottaGenerator ([fd6f711](https://github.com/VoperAD/SlimeFrame/commit/fd6f711e0b4307f4a4bc7e58339178f19eb817e9))
+
+
+### Features
+
+* **api:** start of events api ([f500c16](https://github.com/VoperAD/SlimeFrame/commit/f500c168a74c382d149f259538580078e98958fb))
+
+
+
 ## [1.5.1](https://github.com/VoperAD/SlimeFrame/compare/v1.5.0...v1.5.1) (2024-01-01)
 
 
@@ -40,20 +54,6 @@
 
 * **items:** Condensed Plate has now a constant recipe ([3a9e198](https://github.com/VoperAD/SlimeFrame/commit/3a9e198a6202b7c8abea3b8f66e5e3f5573b1178))
 * **items:** convert only one contract at a time ([8ad7c8a](https://github.com/VoperAD/SlimeFrame/commit/8ad7c8a4e70438d40151018fa4a3c3457f14e881))
-
-
-
-# [1.4.0](https://github.com/VoperAD/SlimeFrame/compare/v1.3.2...v1.4.0) (2023-12-09)
-
-
-### Bug Fixes
-
-* **auto trader:** use static BlockPosition maps to store variables instead of non-static variables ([aca5aab](https://github.com/VoperAD/SlimeFrame/commit/aca5aab5ffa8fee701dcd46cd8b712f5d80c9ca4))
-
-
-### Features
-
-* **updater:** add logic for upgrading to major versions ([ba022c9](https://github.com/VoperAD/SlimeFrame/commit/ba022c96677341cae86d5157cfe4d872e0feef9d))
 
 
 

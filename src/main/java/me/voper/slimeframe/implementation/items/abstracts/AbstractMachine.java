@@ -1,6 +1,14 @@
 package me.voper.slimeframe.implementation.items.abstracts;
 
+import javax.annotation.Nonnull;
+
 import com.google.common.base.Preconditions;
+
+import org.bukkit.Location;
+import org.bukkit.block.Block;
+import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.inventory.ItemStack;
+
 import io.github.thebusybiscuit.slimefun4.api.SlimefunAddon;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemState;
@@ -8,15 +16,11 @@ import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.core.attributes.EnergyNetComponent;
 import io.github.thebusybiscuit.slimefun4.core.networks.energy.EnergyNetComponentType;
+
+import me.voper.slimeframe.utils.MachineUtils;
+
 import lombok.Getter;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
-import me.voper.slimeframe.utils.MachineUtils;
-import org.bukkit.Location;
-import org.bukkit.block.Block;
-import org.bukkit.event.block.BlockBreakEvent;
-import org.bukkit.inventory.ItemStack;
-
-import javax.annotation.Nonnull;
 
 public abstract class AbstractMachine extends AbstractTickingContainer implements EnergyNetComponent {
 
@@ -42,11 +46,15 @@ public abstract class AbstractMachine extends AbstractTickingContainer implement
 
     protected abstract boolean process(BlockMenu menu, Block b);
 
-    protected boolean checkCraftConditions(BlockMenu menu) { return true; }
+    protected boolean checkCraftConditions(BlockMenu menu) {
+        return true;
+    }
 
-    protected void onCraftConditionsNotMet(BlockMenu menu) {}
+    protected void onCraftConditionsNotMet(BlockMenu menu) {
+    }
 
-    protected void onCraft(BlockMenu menu) {}
+    protected void onCraft(BlockMenu menu) {
+    }
 
     @Override
     protected void onBreak(BlockBreakEvent e, BlockMenu menu, Location l) {

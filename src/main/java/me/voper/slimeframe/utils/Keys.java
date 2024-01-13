@@ -1,10 +1,12 @@
 package me.voper.slimeframe.utils;
 
-import me.voper.slimeframe.SlimeFrame;
-import org.bukkit.NamespacedKey;
-import org.jetbrains.annotations.Contract;
-
 import javax.annotation.Nonnull;
+
+import org.bukkit.NamespacedKey;
+
+import me.voper.slimeframe.SlimeFrame;
+
+import org.jetbrains.annotations.Contract;
 
 public final class Keys {
 

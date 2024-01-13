@@ -1,19 +1,22 @@
 package me.voper.slimeframe.implementation.items.gear;
 
+import javax.annotation.Nonnull;
+
+import org.bukkit.NamespacedKey;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.potion.PotionEffect;
+
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.core.attributes.ProtectionType;
 import io.github.thebusybiscuit.slimefun4.core.attributes.ProtectiveArmor;
 import io.github.thebusybiscuit.slimefun4.implementation.items.armor.SlimefunArmorPiece;
+
 import me.voper.slimeframe.core.attributes.FreezingProtection;
 import me.voper.slimeframe.implementation.groups.Groups;
 import me.voper.slimeframe.utils.Keys;
-import org.bukkit.NamespacedKey;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.potion.PotionEffect;
-import org.jetbrains.annotations.Nullable;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.Nullable;
 
 public class CryogenicArmorPiece extends SlimefunArmorPiece implements ProtectiveArmor, FreezingProtection {
 

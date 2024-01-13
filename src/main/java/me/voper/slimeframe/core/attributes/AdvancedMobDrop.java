@@ -1,11 +1,20 @@
 package me.voper.slimeframe.core.attributes;
 
-import io.github.thebusybiscuit.slimefun4.core.attributes.RandomMobDrop;
 import org.bukkit.entity.EntityType;
 
-// An alternative version of the RandomMobDrop interface that provides a bit more flexibility
+import io.github.thebusybiscuit.slimefun4.core.attributes.RandomMobDrop;
+
+/**
+ * An extension of the {@link RandomMobDrop} interface that allows for more flexibility
+ *
+ * @author VoperAD
+ * @see RandomMobDrop
+ */
 public interface AdvancedMobDrop extends RandomMobDrop {
     @Override
-    default int getMobDropChance() { return 0; }
+    default int getMobDropChance() {
+        return 0;
+    }
+
     int getMobDropChance(EntityType entity);
 }

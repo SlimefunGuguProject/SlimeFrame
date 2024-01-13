@@ -1,21 +1,25 @@
 package me.voper.slimeframe.implementation.items.machines;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.annotation.Nonnull;
+
+import org.bukkit.Material;
+import org.bukkit.inventory.ItemStack;
+
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.core.attributes.RecipeDisplayItem;
 import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
-import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
+
 import me.voper.slimeframe.implementation.items.abstracts.AbstractSelectorMachine;
 import me.voper.slimeframe.utils.MachineUtils;
-import net.md_5.bungee.api.ChatColor;
-import org.bukkit.Material;
-import org.bukkit.inventory.ItemStack;
 
-import javax.annotation.Nonnull;
-import java.util.ArrayList;
-import java.util.List;
+import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
+import net.md_5.bungee.api.ChatColor;
 
 public class DustGenerator extends AbstractSelectorMachine implements RecipeDisplayItem {
 
@@ -32,7 +36,7 @@ public class DustGenerator extends AbstractSelectorMachine implements RecipeDisp
             SlimefunItems.TIN_DUST,
             SlimefunItems.ZINC_DUST
     ));
-    
+
     public DustGenerator(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);
         this.outputAmount = 2;
@@ -71,13 +75,13 @@ public class DustGenerator extends AbstractSelectorMachine implements RecipeDisp
         MachineUtils.replaceExistingItemViewer(menu, getStatusSlot(), new CustomItemStack(Material.BARRIER,
             ChatColor.RED + "选择需要生成的矿粉！"));
     }
-    
+
     @Nonnull
     @Override
     public List<ItemStack> getDisplayRecipes() {
         List<ItemStack> dusts = new ArrayList<>(DUSTS);
         dusts.remove(MachineUtils.SELECTOR);
-        
+
         List<ItemStack> displayRecipes = new ArrayList<>();
         for (ItemStack dust : dusts) {
             ItemStack clone = dust.clone();

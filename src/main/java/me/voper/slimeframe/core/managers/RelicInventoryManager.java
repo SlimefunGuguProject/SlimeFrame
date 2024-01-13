@@ -1,18 +1,20 @@
 package me.voper.slimeframe.core.managers;
 
-import me.voper.slimeframe.SlimeFrame;
-import me.voper.slimeframe.implementation.items.relics.RelicInventory;
-import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.configuration.file.YamlConfiguration;
-import org.bukkit.entity.Player;
-import org.bukkit.inventory.Inventory;
-
-import javax.annotation.Nonnull;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
+
+import javax.annotation.Nonnull;
+
+import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.entity.Player;
+import org.bukkit.inventory.Inventory;
+
+import me.voper.slimeframe.SlimeFrame;
+import me.voper.slimeframe.implementation.items.relics.RelicInventory;
 
 public class RelicInventoryManager {
 
@@ -41,7 +43,7 @@ public class RelicInventoryManager {
     }
 
     public void saveConfig() {
-        for (Map.Entry<UUID, RelicInventory> entry: relicInventories.entrySet()) {
+        for (Map.Entry<UUID, RelicInventory> entry : relicInventories.entrySet()) {
             String path = CONFIG_PREFIX + entry.getKey() + ".";
             Inventory inventory = entry.getValue().getInventory();
             for (int i = 0; i < RelicInventory.SIZE; i++) {

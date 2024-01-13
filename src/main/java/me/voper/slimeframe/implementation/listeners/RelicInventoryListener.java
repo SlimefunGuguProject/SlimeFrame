@@ -1,9 +1,7 @@
 package me.voper.slimeframe.implementation.listeners;
 
-import io.github.thebusybiscuit.slimefun4.libraries.dough.items.ItemUtils;
-import me.voper.slimeframe.SlimeFrame;
-import me.voper.slimeframe.core.managers.RelicInventoryManager;
-import me.voper.slimeframe.implementation.items.relics.RelicInventory;
+import java.util.HashMap;
+
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -13,7 +11,11 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
-import java.util.HashMap;
+import io.github.thebusybiscuit.slimefun4.libraries.dough.items.ItemUtils;
+
+import me.voper.slimeframe.SlimeFrame;
+import me.voper.slimeframe.core.managers.RelicInventoryManager;
+import me.voper.slimeframe.implementation.items.relics.RelicInventory;
 
 public class RelicInventoryListener implements Listener {
 

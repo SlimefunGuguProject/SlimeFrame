@@ -1,5 +1,15 @@
 package me.voper.slimeframe.implementation.items.abstracts;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.annotation.Nonnull;
+import javax.annotation.ParametersAreNonnullByDefault;
+
+import org.bukkit.block.Block;
+import org.bukkit.inventory.ItemStack;
+
 import io.github.thebusybiscuit.slimefun4.api.SlimefunAddon;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
@@ -9,6 +19,10 @@ import io.github.thebusybiscuit.slimefun4.libraries.dough.inventory.InvUtils;
 import io.github.thebusybiscuit.slimefun4.utils.ChestMenuUtils;
 import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
 import io.github.thebusybiscuit.slimefun4.utils.itemstack.ItemStackWrapper;
+
+import me.voper.slimeframe.implementation.items.machines.MachineDesign;
+import me.voper.slimeframe.utils.MachineUtils;
+
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Accessors;
@@ -17,16 +31,6 @@ import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.MachineRecip
 import me.mrCookieSlime.Slimefun.api.BlockStorage;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenuPreset;
-import me.voper.slimeframe.implementation.items.machines.MachineDesign;
-import me.voper.slimeframe.utils.MachineUtils;
-import org.bukkit.block.Block;
-import org.bukkit.inventory.ItemStack;
-
-import javax.annotation.Nonnull;
-import javax.annotation.ParametersAreNonnullByDefault;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 @Getter
 @Setter
@@ -63,7 +67,9 @@ public abstract class AbstractSelectorMachine extends AbstractProcessorMachine {
             BlockStorage.addBlockInfo(b, getBlockKey(), String.valueOf(0));
         } else {
             String selector = BlockStorage.getLocationInfo(b.getLocation(), getBlockKey());
-            if (selector == null) { return; }
+            if (selector == null) {
+                return;
+            }
             menu.replaceExistingItem(getSelectorSlot(), selectionList().get(Integer.parseInt(selector)));
         }
     }
@@ -89,7 +95,9 @@ public abstract class AbstractSelectorMachine extends AbstractProcessorMachine {
                 maxedSlots += 1;
             }
         }
-        if (maxedSlots == getOutputSlots().length) { return null; }
+        if (maxedSlots == getOutputSlots().length) {
+            return null;
+        }
 
         // For each recipe, we must check if the input actually matches the recipe input
         Map<Integer, Integer> found = new HashMap<>();
@@ -110,7 +118,7 @@ public abstract class AbstractSelectorMachine extends AbstractProcessorMachine {
                 output.setAmount(production * outputAmount);
                 MachineRecipe machineRecipe = new MachineRecipe(recipe.getTicks() / 2, recipe.getInput(), new ItemStack[]{output});
 
-                if(!InvUtils.fitAll(menu.toInventory(), machineRecipe.getOutput(), getOutputSlots())) {
+                if (!InvUtils.fitAll(menu.toInventory(), machineRecipe.getOutput(), getOutputSlots())) {
                     MachineUtils.replaceExistingItemViewer(menu, getStatusSlot(), MachineUtils.NO_SPACE);
                     return null;
                 }

@@ -1,19 +1,22 @@
 package me.voper.slimeframe.utils;
 
-import lombok.experimental.UtilityClass;
-import me.voper.slimeframe.SlimeFrame;
-import me.voper.slimeframe.core.managers.SettingsManager;
-import net.md_5.bungee.api.ChatColor;
-import net.md_5.bungee.api.chat.BaseComponent;
-import net.md_5.bungee.api.chat.ComponentBuilder;
-import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
-import org.jetbrains.annotations.NotNull;
-
-import javax.annotation.Nonnull;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import javax.annotation.Nonnull;
+
+import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
+
+import me.voper.slimeframe.SlimeFrame;
+import me.voper.slimeframe.core.managers.SettingsManager;
+
+import lombok.experimental.UtilityClass;
+import net.md_5.bungee.api.ChatColor;
+import net.md_5.bungee.api.chat.BaseComponent;
+import net.md_5.bungee.api.chat.ComponentBuilder;
+import org.jetbrains.annotations.NotNull;
 
 @UtilityClass
 public final class ChatUtils {
@@ -33,7 +36,7 @@ public final class ChatUtils {
             Matcher matcher = HEX_COLOR_PATTERN.matcher(text);
             StringBuffer buffer = new StringBuffer();
 
-            while(matcher.find()) {
+            while (matcher.find()) {
                 matcher.appendReplacement(buffer, ChatColor.of("#" + matcher.group(1)).toString());
             }
 
@@ -48,7 +51,7 @@ public final class ChatUtils {
             Matcher matcher = HEX_COLOR_PATTERN.matcher(text);
             StringBuffer buffer = new StringBuffer();
 
-            while(matcher.find()) {
+            while (matcher.find()) {
                 matcher.appendReplacement(buffer, "");
             }
 
@@ -81,7 +84,7 @@ public final class ChatUtils {
         StringBuilder result = new StringBuilder();
         int length = input.length();
 
-        for(int index = length - 1; index > -1; --index) {
+        for (int index = length - 1; index > -1; --index) {
             boolean found = false;
             String color = String.valueOf(input.charAt(index));
             if ("0123456789AaBbCcDdEeFfKkLlMmNnOoRrXx".contains(color) && index - 1 >= 0) {
@@ -106,7 +109,7 @@ public final class ChatUtils {
             lines.set(0, ChatColor.WHITE + lines.get(0));
         }
 
-        for(int i = 1; i < lines.size(); ++i) {
+        for (int i = 1; i < lines.size(); ++i) {
             String pLine = lines.get(i - 1);
             String subLine = lines.get(i);
             if (subLine.length() == 0 || subLine.charAt(0) != 167) {
@@ -125,9 +128,9 @@ public final class ChatUtils {
     }
 
     public static void sendMessage(Player p, @Nonnull List<String> text) {
-        for (String m: text) {
+        for (String m : text) {
             if (PREFIX_ENABLED) {
-                p.sendMessage(parseColors(m.isBlank() ? m : PREFIX + m ));
+                p.sendMessage(parseColors(m.isBlank() ? m : PREFIX + m));
                 continue;
             }
             p.sendMessage(parseColors(m));
@@ -145,7 +148,6 @@ public final class ChatUtils {
     public static void sendMessage(Player p, String text) {
         sendMessage(p, List.of(text));
     }
-
 
 
     static {

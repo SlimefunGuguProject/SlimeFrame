@@ -1,5 +1,17 @@
 package me.voper.slimeframe.implementation.items.tools;
 
+import java.util.Optional;
+import java.util.regex.Pattern;
+
+import javax.annotation.Nonnull;
+import javax.annotation.ParametersAreNonnullByDefault;
+
+import org.bukkit.NamespacedKey;
+import org.bukkit.block.Block;
+import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
+
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
@@ -9,23 +21,15 @@ import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.implementation.items.SimpleSlimefunItem;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.data.persistent.PersistentDataAPI;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.protection.Interaction;
-import me.mrCookieSlime.Slimefun.api.BlockStorage;
-import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
+
 import me.voper.slimeframe.implementation.items.abstracts.AbstractSelectorMachine;
 import me.voper.slimeframe.utils.ChatUtils;
 import me.voper.slimeframe.utils.Colors;
 import me.voper.slimeframe.utils.Keys;
-import net.md_5.bungee.api.ChatColor;
-import org.bukkit.NamespacedKey;
-import org.bukkit.block.Block;
-import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
 
-import javax.annotation.Nonnull;
-import javax.annotation.ParametersAreNonnullByDefault;
-import java.util.Optional;
-import java.util.regex.Pattern;
+import me.mrCookieSlime.Slimefun.api.BlockStorage;
+import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
+import net.md_5.bungee.api.ChatColor;
 
 @ParametersAreNonnullByDefault
 public class SelectorConfigurator extends SimpleSlimefunItem<ItemUseHandler> {

@@ -1,14 +1,16 @@
 package me.voper.slimeframe.utils;
 
-import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
-import lombok.experimental.UtilityClass;
+import javax.annotation.ParametersAreNonnullByDefault;
+
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import javax.annotation.ParametersAreNonnullByDefault;
+import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
+
+import lombok.experimental.UtilityClass;
 
 @UtilityClass
 @ParametersAreNonnullByDefault

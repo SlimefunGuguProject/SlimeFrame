@@ -1,20 +1,23 @@
 package me.voper.slimeframe.utils;
 
-import com.google.gson.JsonElement;
-import com.google.gson.JsonParser;
-import lombok.Getter;
-import me.voper.slimeframe.SlimeFrame;
-import me.voper.slimeframe.core.managers.SettingsManager;
-import me.voper.slimeframe.implementation.listeners.WarnOperatorsListener;
-import org.apache.maven.artifact.versioning.ComparableVersion;
-import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.Nullable;
-
-import javax.annotation.Nonnull;
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.logging.Logger;
+
+import javax.annotation.Nonnull;
+
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
+
+import me.voper.slimeframe.SlimeFrame;
+import me.voper.slimeframe.core.managers.SettingsManager;
+import me.voper.slimeframe.implementation.listeners.WarnOperatorsListener;
+
+import lombok.Getter;
+import org.apache.maven.artifact.versioning.ComparableVersion;
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.Nullable;
 
 public final class AutoUpdater implements Runnable {
 

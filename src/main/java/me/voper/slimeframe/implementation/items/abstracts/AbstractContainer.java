@@ -1,5 +1,17 @@
 package me.voper.slimeframe.implementation.items.abstracts;
 
+import java.util.List;
+
+import javax.annotation.Nonnull;
+import javax.annotation.ParametersAreNonnullByDefault;
+
+import org.bukkit.Location;
+import org.bukkit.block.Block;
+import org.bukkit.entity.Player;
+import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.block.BlockPlaceEvent;
+import org.bukkit.inventory.ItemStack;
+
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
@@ -9,20 +21,11 @@ import io.github.thebusybiscuit.slimefun4.core.handlers.BlockBreakHandler;
 import io.github.thebusybiscuit.slimefun4.core.handlers.BlockPlaceHandler;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.protection.Interaction;
+
 import me.mrCookieSlime.Slimefun.api.BlockStorage;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenuPreset;
 import me.mrCookieSlime.Slimefun.api.item_transport.ItemTransportFlow;
-import org.bukkit.Location;
-import org.bukkit.block.Block;
-import org.bukkit.entity.Player;
-import org.bukkit.event.block.BlockBreakEvent;
-import org.bukkit.event.block.BlockPlaceEvent;
-import org.bukkit.inventory.ItemStack;
-
-import javax.annotation.Nonnull;
-import javax.annotation.ParametersAreNonnullByDefault;
-import java.util.List;
 
 /*
 This class is based on DynaTech's AbstractContainer class
@@ -93,21 +96,31 @@ public abstract class AbstractContainer extends SlimefunItem implements NotHoppe
     public abstract int getStatusSlot();
 
     @ParametersAreNonnullByDefault
-    protected void onNewInstance(BlockMenu menu, Block b) {}
+    protected void onNewInstance(BlockMenu menu, Block b) {
+    }
 
     protected int[] slotsAccessedByItemTransport(ItemTransportFlow itemTransportFlow) {
         switch (itemTransportFlow) {
-            case INSERT -> { return getInputSlots(); }
-            case WITHDRAW -> { return getOutputSlots(); }
-            default -> {}
+            case INSERT -> {
+                return getInputSlots();
+            }
+            case WITHDRAW -> {
+                return getOutputSlots();
+            }
+            default -> {
+            }
         }
         return new int[0];
     }
 
-    protected void onBreak(BlockBreakEvent e, BlockMenu menu, Location l) {}
+    protected void onBreak(BlockBreakEvent e, BlockMenu menu, Location l) {
+    }
 
-    protected void onPlace(BlockPlaceEvent e, Block b) {}
+    protected void onPlace(BlockPlaceEvent e, Block b) {
+    }
 
-    protected boolean openConditions(@Nonnull Player player) { return true; }
+    protected boolean openConditions(@Nonnull Player player) {
+        return true;
+    }
 
 }

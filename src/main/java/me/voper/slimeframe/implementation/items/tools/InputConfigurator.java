@@ -1,6 +1,23 @@
 package me.voper.slimeframe.implementation.items.tools;
 
+import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
+import javax.annotation.Nonnull;
+import javax.annotation.ParametersAreNonnullByDefault;
+
 import com.jeff_media.morepersistentdatatypes.DataType;
+
+import org.bukkit.Material;
+import org.bukkit.NamespacedKey;
+import org.bukkit.block.Block;
+import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.persistence.PersistentDataType;
+
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
@@ -11,29 +28,17 @@ import io.github.thebusybiscuit.slimefun4.implementation.items.SimpleSlimefunIte
 import io.github.thebusybiscuit.slimefun4.libraries.dough.data.persistent.PersistentDataAPI;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.items.ItemUtils;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.protection.Interaction;
+
+import me.voper.slimeframe.utils.ChatUtils;
+import me.voper.slimeframe.utils.Colors;
+import me.voper.slimeframe.utils.Keys;
+
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.interfaces.InventoryBlock;
 import me.mrCookieSlime.Slimefun.api.BlockStorage;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
 import me.mrCookieSlime.Slimefun.api.inventory.DirtyChestMenu;
 import me.mrCookieSlime.Slimefun.api.item_transport.ItemTransportFlow;
-import me.voper.slimeframe.utils.ChatUtils;
-import me.voper.slimeframe.utils.Colors;
-import me.voper.slimeframe.utils.Keys;
 import net.md_5.bungee.api.ChatColor;
-import org.bukkit.Material;
-import org.bukkit.NamespacedKey;
-import org.bukkit.block.Block;
-import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.persistence.PersistentDataType;
-
-import javax.annotation.Nonnull;
-import javax.annotation.ParametersAreNonnullByDefault;
-import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
 
 @SuppressWarnings("deprecation")
 @ParametersAreNonnullByDefault
@@ -151,7 +156,7 @@ public class InputConfigurator extends SimpleSlimefunItem<ItemUseHandler> {
         }
 
         int i = 0;
-        for (ItemStack itemToAdd: itemsStored) {
+        for (ItemStack itemToAdd : itemsStored) {
             if (itemToAdd != null && itemToAdd.getType() != Material.AIR) {
                 boolean worked = false;
                 for (ItemStack stack : player.getInventory()) {
@@ -189,7 +194,8 @@ public class InputConfigurator extends SimpleSlimefunItem<ItemUseHandler> {
             Method getInputSlots = aClass.getMethod("getInputSlots");
             getInputSlots.setAccessible(true);
             return (int[]) getInputSlots.invoke(item);
-        } catch (Exception ignored) {}
+        } catch (Exception ignored) {
+        }
 
         return new int[0];
     }

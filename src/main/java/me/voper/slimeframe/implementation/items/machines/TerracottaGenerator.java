@@ -1,26 +1,31 @@
 package me.voper.slimeframe.implementation.items.machines;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.annotation.Nonnull;
+
+import org.bukkit.Material;
+import org.bukkit.inventory.ItemStack;
+
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.core.attributes.RecipeDisplayItem;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
-import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
+
 import me.voper.slimeframe.implementation.groups.Groups;
 import me.voper.slimeframe.implementation.items.abstracts.AbstractSelectorMachine;
 import me.voper.slimeframe.implementation.items.multiblocks.Foundry;
 import me.voper.slimeframe.utils.MachineUtils;
-import net.md_5.bungee.api.ChatColor;
-import org.bukkit.Material;
-import org.bukkit.inventory.ItemStack;
 
-import javax.annotation.Nonnull;
-import java.util.ArrayList;
-import java.util.List;
+import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
+import net.md_5.bungee.api.ChatColor;
 
 public class TerracottaGenerator extends AbstractSelectorMachine implements RecipeDisplayItem {
 
     private static final String BLOCK_KEY = "terracota_selector";
     private static final List<ItemStack> TERRACOTTA_LIST = List.of(
             MachineUtils.SELECTOR,
+            new ItemStack(Material.TERRACOTTA),
             new ItemStack(Material.WHITE_TERRACOTTA),
             new ItemStack(Material.ORANGE_TERRACOTTA),
             new ItemStack(Material.MAGENTA_TERRACOTTA),
@@ -80,8 +85,8 @@ public class TerracottaGenerator extends AbstractSelectorMachine implements Reci
     @Override
     public List<ItemStack> getDisplayRecipes() {
         final List<ItemStack> displayRecipes = new ArrayList<>();
-        for (ItemStack itemStack: TERRACOTTA_LIST) {
-            if (!itemStack.getType().name().endsWith("_TERRACOTTA")) continue;
+        for (ItemStack itemStack : TERRACOTTA_LIST) {
+            if (!itemStack.getType().name().endsWith("TERRACOTTA")) continue;
             displayRecipes.add(recipes.get(0).getInput()[0]);
             ItemStack clone = itemStack.clone();
             clone.setAmount(outputAmount * production);

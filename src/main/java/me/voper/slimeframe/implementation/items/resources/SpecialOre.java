@@ -1,26 +1,30 @@
 package me.voper.slimeframe.implementation.items.resources;
 
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Stream;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+import javax.annotation.ParametersAreNonnullByDefault;
+
+import org.bukkit.Material;
+import org.bukkit.inventory.ItemStack;
+
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.core.attributes.NotPlaceable;
 import io.github.thebusybiscuit.slimefun4.core.attributes.RecipeDisplayItem;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
-import lombok.Getter;
+
 import me.voper.slimeframe.implementation.groups.Groups;
 import me.voper.slimeframe.utils.Keys;
 import me.voper.slimeframe.utils.Utils;
-import org.bukkit.Material;
-import org.bukkit.inventory.ItemStack;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-import javax.annotation.ParametersAreNonnullByDefault;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Stream;
+import lombok.Getter;
 
 @Getter
 @ParametersAreNonnullByDefault
@@ -38,7 +42,7 @@ public final class SpecialOre extends SlimefunItem implements NotPlaceable, Comp
         this.rarity = rarity;
         this.disenchantable = false;
         this.enchantable = false;
-        for (Material m: source) {
+        for (Material m : source) {
             SOURCE_ORE_MAP.put(m, this);
         }
     }
