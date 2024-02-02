@@ -16,7 +16,6 @@ import lombok.experimental.UtilityClass;
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.chat.BaseComponent;
 import net.md_5.bungee.api.chat.ComponentBuilder;
-import org.jetbrains.annotations.NotNull;
 
 @UtilityClass
 public final class ChatUtils {
@@ -31,7 +30,7 @@ public final class ChatUtils {
         return color != null ? color.toString() : Character.toString(character);
     }
 
-    public static String parseColors(@NotNull String text) {
+    public static String parseColors(@Nonnull String text) {
         if (HEX_COLOR_SUPPORT) {
             Matcher matcher = HEX_COLOR_PATTERN.matcher(text);
             StringBuffer buffer = new StringBuffer();
@@ -79,8 +78,8 @@ public final class ChatUtils {
         return text.replaceAll("[&][0-9A-Fa-fk-orx]", "").replaceAll(String.valueOf('Â'), "").replaceAll("[§][0-9A-Fa-fk-orx]", "");
     }
 
-    @NotNull
-    public static String getLastColors(@NotNull String input) {
+    @Nonnull
+    public static String getLastColors(@Nonnull String input) {
         StringBuilder result = new StringBuilder();
         int length = input.length();
 
@@ -104,7 +103,7 @@ public final class ChatUtils {
         return result.toString();
     }
 
-    public static void applyLastColorToFollowingLines(@NotNull List<String> lines) {
+    public static void applyLastColorToFollowingLines(@Nonnull List<String> lines) {
         if (lines.get(0).length() == 0 || lines.get(0).charAt(0) != 167) {
             lines.set(0, ChatColor.WHITE + lines.get(0));
         }
@@ -119,7 +118,7 @@ public final class ChatUtils {
 
     }
 
-    public static void sendMessage(CommandSender sender, @NotNull String text) {
+    public static void sendMessage(CommandSender sender, @Nonnull String text) {
         if (sender instanceof Player p) {
             p.sendMessage(parseColors(text));
         } else {

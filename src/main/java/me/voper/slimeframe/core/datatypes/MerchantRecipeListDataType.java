@@ -18,7 +18,6 @@ import org.bukkit.util.io.BukkitObjectOutputStream;
 
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 
-import org.jetbrains.annotations.Contract;
 import org.yaml.snakeyaml.external.biz.base64Coder.Base64Coder;
 
 public class MerchantRecipeListDataType implements PersistentDataType<byte[], List<MerchantRecipe>> {
@@ -199,7 +198,6 @@ public class MerchantRecipeListDataType implements PersistentDataType<byte[], Li
         }
 
         @Nonnull
-        @Contract("_ -> new")
         public static SerializableSlimefunItemStack deserialize(Map<String, Object> args) {
             return new SerializableSlimefunItemStack(ItemStack.deserialize(args));
         }

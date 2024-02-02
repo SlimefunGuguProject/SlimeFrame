@@ -37,7 +37,6 @@ import me.voper.slimeframe.utils.RandomItemStacks;
 
 import lombok.experimental.UtilityClass;
 import net.md_5.bungee.api.ChatColor;
-import org.jetbrains.annotations.Contract;
 
 @UtilityClass
 public final class SFrameStacks {
@@ -50,7 +49,6 @@ public final class SFrameStacks {
     public static final SFrameTheme PRIME_COMPONENTS_THEME = new SFrameTheme(ChatColor.GOLD, Groups.PRIME_COMPONENTS_NAME);
 
     @Nonnull
-    @Contract("_ -> new")
     public static ItemStack enchantedItem(@Nonnull Material m) {
         return new CustomItemStack(m, (meta) -> {
             meta.addEnchant(Enchantment.LUCK, 1, false);

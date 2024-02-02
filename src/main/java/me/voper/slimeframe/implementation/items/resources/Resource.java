@@ -15,8 +15,6 @@ import io.github.thebusybiscuit.slimefun4.implementation.items.RadioactiveItem;
 import me.voper.slimeframe.implementation.groups.Groups;
 import me.voper.slimeframe.utils.Utils;
 
-import org.jetbrains.annotations.Contract;
-
 public class Resource extends SlimefunItem implements NotPlaceable, NotHopperable {
 
     public Resource(SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
@@ -50,7 +48,6 @@ public class Resource extends SlimefunItem implements NotPlaceable, NotHopperabl
     }
 
     @Nonnull
-    @Contract("_, _, _ -> new")
     public static SlimefunItem createRadioactive(SlimefunItemStack itemStack, Radioactivity radioactivity, ItemStack[] recipe) {
         return new RadioactiveItem(Groups.RESOURCES, radioactivity, itemStack, RecipeType.ENHANCED_CRAFTING_TABLE, recipe);
     }

@@ -15,7 +15,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.With;
 import net.md_5.bungee.api.ChatColor;
-import org.jetbrains.annotations.Contract;
 
 @Getter
 @AllArgsConstructor
@@ -38,7 +37,6 @@ public class SFrameTheme {
     }
 
     @Nonnull
-    @Contract("_, _, _, _, _ -> new")
     public static SlimefunItemStack sfStackFromTheme(String id, ItemStack itemStack, SFrameTheme theme, String name, String... lore) {
         List<String> coloredLore = new ArrayList<>();
         for (String s : lore) {
@@ -52,7 +50,6 @@ public class SFrameTheme {
     }
 
     @Nonnull
-    @Contract("_, _, _, _, _ -> new")
     public static SlimefunItemStack sfStackFromTheme(String id, String texture, SFrameTheme theme, String name, String... lore) {
         List<String> coloredLore = new ArrayList<>();
         for (String s : lore) {
@@ -66,7 +63,6 @@ public class SFrameTheme {
     }
 
     @Nonnull
-    @Contract("_, _, _, _, _ -> new")
     public static SlimefunItemStack sfStackFromTheme(String id, Material material, SFrameTheme theme, String name, String... lore) {
         return sfStackFromTheme(id, new ItemStack(material), theme, name, lore);
     }

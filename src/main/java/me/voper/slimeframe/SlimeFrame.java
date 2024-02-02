@@ -5,6 +5,7 @@ import java.util.Set;
 import java.util.logging.Level;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 import org.bukkit.Bukkit;
 import org.bukkit.block.Block;
@@ -28,8 +29,6 @@ import net.guizhanss.guizhanlib.updater.UpdaterConfig;
 import net.guizhanss.guizhanlibplugin.updater.GuizhanUpdater;
 import org.bstats.bukkit.Metrics;
 import org.geysermc.geyser.api.GeyserApi;
-import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.Nullable;
 
 public class SlimeFrame extends JavaPlugin implements SlimefunAddon {
 
@@ -143,7 +142,6 @@ public class SlimeFrame extends JavaPlugin implements SlimefunAddon {
         return instance.relicInventoryManager;
     }
 
-    @Contract(pure = true)
     public static @Nullable GeyserApi getGeyserApi() {
         return instance.supportedPluginManager.isGeyser() ? instance.geyserApi : null;
     }

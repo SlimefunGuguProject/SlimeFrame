@@ -6,6 +6,7 @@ import java.net.URL;
 import java.util.logging.Logger;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
@@ -16,8 +17,6 @@ import me.voper.slimeframe.implementation.listeners.WarnOperatorsListener;
 
 import lombok.Getter;
 import org.apache.maven.artifact.versioning.ComparableVersion;
-import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.Nullable;
 
 public final class AutoUpdater implements Runnable {
 
@@ -160,13 +159,11 @@ public final class AutoUpdater implements Runnable {
         }
 
         @Nonnull
-        @Contract(pure = true)
         public String getDownloadUrl() {
             return "https://github.com/VoperAD/SlimeFrame/releases/download/" + tagName + "/" + jarName;
         }
 
         @Nonnull
-        @Contract(pure = true)
         public String getCleanVersion() {
             return tagName.replace("v", "");
         }

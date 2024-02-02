@@ -6,8 +6,6 @@ import org.bukkit.NamespacedKey;
 
 import me.voper.slimeframe.SlimeFrame;
 
-import org.jetbrains.annotations.Contract;
-
 public final class Keys {
 
     // Categories
@@ -59,7 +57,6 @@ public final class Keys {
     public static final NamespacedKey RELIC_REFINEMENT = createKey("wf_relic_refinement");
 
     @Nonnull
-    @Contract("_ -> new")
     public static NamespacedKey createKey(@Nonnull String key) {
         return new NamespacedKey(SlimeFrame.getInstance(), key);
     }
