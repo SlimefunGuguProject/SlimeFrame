@@ -1,3 +1,12 @@
+## [1.6.1](https://github.com/VoperAD/SlimeFrame/compare/v1.6.0...v1.6.1) (2024-04-28)
+
+
+### Bug Fixes
+
+* update orokin wand lore to 64 uses left ([#7](https://github.com/VoperAD/SlimeFrame/issues/7)) ([3cfada7](https://github.com/VoperAD/SlimeFrame/commit/3cfada78f312025cf8b1092fa54a843109c54674))
+
+
+
 # [1.6.0](https://github.com/VoperAD/SlimeFrame/compare/v1.5.1...v1.6.0) (2024-01-13)
 
 
@@ -44,16 +53,6 @@
 ### Bug Fixes
 
 * **serialization:** temporary fix for the problem derived from moving the MerchantRecipeListDataType to another package ([afe11dd](https://github.com/VoperAD/SlimeFrame/commit/afe11dd98bbaaed1ae1b1c4bc3fa0b04c63a7473))
-
-
-
-## [1.4.1](https://github.com/VoperAD/SlimeFrame/compare/v1.4.0...v1.4.1) (2023-12-19)
-
-
-### Bug Fixes
-
-* **items:** Condensed Plate has now a constant recipe ([3a9e198](https://github.com/VoperAD/SlimeFrame/commit/3a9e198a6202b7c8abea3b8f66e5e3f5573b1178))
-* **items:** convert only one contract at a time ([8ad7c8a](https://github.com/VoperAD/SlimeFrame/commit/8ad7c8a4e70438d40151018fa4a3c3457f14e881))
 
 
 

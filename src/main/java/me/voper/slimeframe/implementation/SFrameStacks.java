@@ -131,7 +131,7 @@ public final class SFrameStacks {
             "该权杖拥有收集部分特殊方块的能力。",
             "例如：强化深板岩、紫水晶母岩。",
             "",
-            Lore.usesLeft(32)
+            Lore.usesLeft(64)
     );
 
     public static final SlimefunItemStack PRIME_OROKIN_WAND = SFrameTheme.sfStackFromTheme(
