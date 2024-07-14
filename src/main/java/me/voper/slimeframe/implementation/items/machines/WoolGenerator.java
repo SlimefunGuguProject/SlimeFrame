@@ -1,7 +1,9 @@
 package me.voper.slimeframe.implementation.items.machines;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
@@ -25,25 +27,33 @@ import net.md_5.bungee.api.ChatColor;
 public class WoolGenerator extends AbstractSelectorMachine implements RecipeDisplayItem {
 
     private static final String BLOCK_KEY = "wool_selector";
+    private static final Map<Material, ItemStack> OUTPUT_MAPPER;
     private static final List<ItemStack> WOOLS = List.of(
             MachineUtils.SELECTOR,
-            new ItemStack(Material.WHITE_WOOL),
-            new ItemStack(Material.ORANGE_WOOL),
-            new ItemStack(Material.MAGENTA_WOOL),
-            new ItemStack(Material.LIGHT_BLUE_WOOL),
-            new ItemStack(Material.YELLOW_WOOL),
-            new ItemStack(Material.LIME_WOOL),
-            new ItemStack(Material.PINK_WOOL),
-            new ItemStack(Material.GRAY_WOOL),
-            new ItemStack(Material.LIGHT_GRAY_WOOL),
-            new ItemStack(Material.CYAN_WOOL),
-            new ItemStack(Material.PURPLE_WOOL),
-            new ItemStack(Material.BLUE_WOOL),
-            new ItemStack(Material.BROWN_WOOL),
-            new ItemStack(Material.GREEN_WOOL),
-            new ItemStack(Material.RED_WOOL),
-            new ItemStack(Material.BLACK_WOOL)
+            MachineUtils.selectorItem(Material.WHITE_WOOL),
+            MachineUtils.selectorItem(Material.ORANGE_WOOL),
+            MachineUtils.selectorItem(Material.MAGENTA_WOOL),
+            MachineUtils.selectorItem(Material.LIGHT_BLUE_WOOL),
+            MachineUtils.selectorItem(Material.YELLOW_WOOL),
+            MachineUtils.selectorItem(Material.LIME_WOOL),
+            MachineUtils.selectorItem(Material.PINK_WOOL),
+            MachineUtils.selectorItem(Material.GRAY_WOOL),
+            MachineUtils.selectorItem(Material.LIGHT_GRAY_WOOL),
+            MachineUtils.selectorItem(Material.CYAN_WOOL),
+            MachineUtils.selectorItem(Material.PURPLE_WOOL),
+            MachineUtils.selectorItem(Material.BLUE_WOOL),
+            MachineUtils.selectorItem(Material.BROWN_WOOL),
+            MachineUtils.selectorItem(Material.GREEN_WOOL),
+            MachineUtils.selectorItem(Material.RED_WOOL),
+            MachineUtils.selectorItem(Material.BLACK_WOOL)
     );
+
+    static {
+        OUTPUT_MAPPER = new HashMap<>();
+        WOOLS.subList(1, WOOLS.size()).forEach(item -> {
+            OUTPUT_MAPPER.put(item.getType(), new ItemStack(item.getType()));
+        });
+    }
 
     public WoolGenerator(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);
@@ -80,6 +90,12 @@ public class WoolGenerator extends AbstractSelectorMachine implements RecipeDisp
     @Override
     public String getBlockKey() {
         return BLOCK_KEY;
+    }
+
+    @Nonnull
+    @Override
+    protected ItemStack getOutput(@Nonnull ItemStack item) {
+        return OUTPUT_MAPPER.get(item.getType());
     }
 
     @Nonnull

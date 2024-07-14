@@ -1,7 +1,9 @@
 package me.voper.slimeframe.implementation.items.machines;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Nonnull;
 
@@ -23,26 +25,34 @@ import net.md_5.bungee.api.ChatColor;
 public class TerracottaGenerator extends AbstractSelectorMachine implements RecipeDisplayItem {
 
     private static final String BLOCK_KEY = "terracota_selector";
-    private static final List<ItemStack> TERRACOTTA_LIST = List.of(
+    private static final Map<Material, ItemStack> OUTPUT_MAPPER;
+    private static final List<ItemStack> TERRACOTTAS = List.of(
             MachineUtils.SELECTOR,
-            new ItemStack(Material.TERRACOTTA),
-            new ItemStack(Material.WHITE_TERRACOTTA),
-            new ItemStack(Material.ORANGE_TERRACOTTA),
-            new ItemStack(Material.MAGENTA_TERRACOTTA),
-            new ItemStack(Material.LIGHT_BLUE_TERRACOTTA),
-            new ItemStack(Material.YELLOW_TERRACOTTA),
-            new ItemStack(Material.LIME_TERRACOTTA),
-            new ItemStack(Material.PINK_TERRACOTTA),
-            new ItemStack(Material.GRAY_TERRACOTTA),
-            new ItemStack(Material.LIGHT_GRAY_TERRACOTTA),
-            new ItemStack(Material.CYAN_TERRACOTTA),
-            new ItemStack(Material.PURPLE_TERRACOTTA),
-            new ItemStack(Material.BLUE_TERRACOTTA),
-            new ItemStack(Material.BROWN_TERRACOTTA),
-            new ItemStack(Material.GREEN_TERRACOTTA),
-            new ItemStack(Material.RED_TERRACOTTA),
-            new ItemStack(Material.BLACK_TERRACOTTA)
+            MachineUtils.selectorItem(Material.TERRACOTTA),
+            MachineUtils.selectorItem(Material.WHITE_TERRACOTTA),
+            MachineUtils.selectorItem(Material.ORANGE_TERRACOTTA),
+            MachineUtils.selectorItem(Material.MAGENTA_TERRACOTTA),
+            MachineUtils.selectorItem(Material.LIGHT_BLUE_TERRACOTTA),
+            MachineUtils.selectorItem(Material.YELLOW_TERRACOTTA),
+            MachineUtils.selectorItem(Material.LIME_TERRACOTTA),
+            MachineUtils.selectorItem(Material.PINK_TERRACOTTA),
+            MachineUtils.selectorItem(Material.GRAY_TERRACOTTA),
+            MachineUtils.selectorItem(Material.LIGHT_GRAY_TERRACOTTA),
+            MachineUtils.selectorItem(Material.CYAN_TERRACOTTA),
+            MachineUtils.selectorItem(Material.PURPLE_TERRACOTTA),
+            MachineUtils.selectorItem(Material.BLUE_TERRACOTTA),
+            MachineUtils.selectorItem(Material.BROWN_TERRACOTTA),
+            MachineUtils.selectorItem(Material.GREEN_TERRACOTTA),
+            MachineUtils.selectorItem(Material.RED_TERRACOTTA),
+            MachineUtils.selectorItem(Material.BLACK_TERRACOTTA)
     );
+
+    static {
+        OUTPUT_MAPPER = new HashMap<>();
+        TERRACOTTAS.subList(1, TERRACOTTAS.size()).forEach(item -> {
+            OUTPUT_MAPPER.put(item.getType(), new ItemStack(item.getType()));
+        });
+    }
 
     public TerracottaGenerator(SlimefunItemStack item, ItemStack[] recipe) {
         super(Groups.MACHINES, item, Foundry.RECIPE_TYPE, recipe);
@@ -62,7 +72,7 @@ public class TerracottaGenerator extends AbstractSelectorMachine implements Reci
     @Nonnull
     @Override
     public List<ItemStack> selectionList() {
-        return TERRACOTTA_LIST;
+        return TERRACOTTAS;
     }
 
     @Nonnull
@@ -73,7 +83,7 @@ public class TerracottaGenerator extends AbstractSelectorMachine implements Reci
 
     @Override
     protected boolean checkCraftConditions(BlockMenu menu) {
-        return menu.getItemInSlot(getSelectorSlot()).getType().name().endsWith("_TERRACOTTA");
+        return menu.getItemInSlot(getSelectorSlot()).getType().name().endsWith("TERRACOTTA");
     }
 
     @Override
@@ -83,9 +93,15 @@ public class TerracottaGenerator extends AbstractSelectorMachine implements Reci
 
     @Nonnull
     @Override
+    protected ItemStack getOutput(@Nonnull ItemStack item) {
+        return OUTPUT_MAPPER.get(item.getType());
+    }
+
+    @Nonnull
+    @Override
     public List<ItemStack> getDisplayRecipes() {
         final List<ItemStack> displayRecipes = new ArrayList<>();
-        for (ItemStack itemStack : TERRACOTTA_LIST) {
+        for (ItemStack itemStack : TERRACOTTAS) {
             if (!itemStack.getType().name().endsWith("TERRACOTTA")) continue;
             displayRecipes.add(recipes.get(0).getInput()[0]);
             ItemStack clone = itemStack.clone();

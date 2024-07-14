@@ -1,3 +1,12 @@
+## [1.6.2](https://github.com/VoperAD/SlimeFrame/compare/v1.6.1...v1.6.2) (2024-07-14)
+
+
+### Bug Fixes
+
+* mark selector items using PDC ([96dd1e8](https://github.com/VoperAD/SlimeFrame/commit/96dd1e88d135a3516b76a79100aeec3114351032))
+
+
+
 ## [1.6.1](https://github.com/VoperAD/SlimeFrame/compare/v1.6.0...v1.6.1) (2024-04-28)
 
 
@@ -44,15 +53,6 @@
 * **machines:** add and register new relics and machines (Petrifier and Terracotta Generator) ([bfd8760](https://github.com/VoperAD/SlimeFrame/commit/bfd8760a70e8f0644376f824f779ed8b44fbc872))
 * **machines:** add Putrifier ([8b64f09](https://github.com/VoperAD/SlimeFrame/commit/8b64f09c5aff0490e352e347dcdd67753cfb0124))
 * **machines:** add Terracotta Generator ([17b6e22](https://github.com/VoperAD/SlimeFrame/commit/17b6e228d31bd752c5fbfb14ad0c64a2ec4a678a))
-
-
-
-## [1.4.2](https://github.com/VoperAD/SlimeFrame/compare/v1.4.1...v1.4.2) (2023-12-22)
-
-
-### Bug Fixes
-
-* **serialization:** temporary fix for the problem derived from moving the MerchantRecipeListDataType to another package ([afe11dd](https://github.com/VoperAD/SlimeFrame/commit/afe11dd98bbaaed1ae1b1c4bc3fa0b04c63a7473))
 
 
 

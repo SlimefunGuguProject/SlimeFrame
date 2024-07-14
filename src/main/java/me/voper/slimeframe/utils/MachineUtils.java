@@ -2,7 +2,12 @@ package me.voper.slimeframe.utils;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 
+import io.github.thebusybiscuit.slimefun4.libraries.dough.data.persistent.PersistentDataAPI;
+
+import me.voper.slimeframe.SlimeFrame;
+
 import org.bukkit.Material;
+import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
 
 import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
@@ -10,6 +15,8 @@ import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
 
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
 import net.md_5.bungee.api.ChatColor;
+
+import org.bukkit.persistence.PersistentDataType;
 
 @ParametersAreNonnullByDefault
 public final class MachineUtils {
@@ -42,5 +49,16 @@ public final class MachineUtils {
         }
     }
 
+    public static ItemStack selectorItem(Material material) {
+        return new CustomItemStack(material, meta -> {
+            PersistentDataAPI.set(meta, Keys.createKey("mark_wf"), PersistentDataType.BYTE, (byte) 1);
+        });
+    }
+
+    public static ItemStack selectorItem(ItemStack item) {
+        return new CustomItemStack(item, meta -> {
+            PersistentDataAPI.set(meta, Keys.createKey("mark_wf"), PersistentDataType.BYTE, (byte) 1);
+        });
+    }
 
 }

@@ -1,7 +1,9 @@
 package me.voper.slimeframe.implementation.items.machines;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
@@ -25,25 +27,33 @@ import net.md_5.bungee.api.ChatColor;
 public class ConcreteGenerator extends AbstractSelectorMachine implements RecipeDisplayItem {
 
     private static final String BLOCK_KEY = "concrete_selector";
-    private static final List<ItemStack> CONCRETE_LIST = List.of(
+    private static final Map<Material, ItemStack> OUTPUT_MAPPER;
+    private static final List<ItemStack> CONCRETES = List.of(
             MachineUtils.SELECTOR,
-            new ItemStack(Material.WHITE_CONCRETE),
-            new ItemStack(Material.ORANGE_CONCRETE),
-            new ItemStack(Material.MAGENTA_CONCRETE),
-            new ItemStack(Material.LIGHT_BLUE_CONCRETE),
-            new ItemStack(Material.YELLOW_CONCRETE),
-            new ItemStack(Material.LIME_CONCRETE),
-            new ItemStack(Material.PINK_CONCRETE),
-            new ItemStack(Material.GRAY_CONCRETE),
-            new ItemStack(Material.LIGHT_GRAY_CONCRETE),
-            new ItemStack(Material.CYAN_CONCRETE),
-            new ItemStack(Material.PURPLE_CONCRETE),
-            new ItemStack(Material.BLUE_CONCRETE),
-            new ItemStack(Material.BROWN_CONCRETE),
-            new ItemStack(Material.GREEN_CONCRETE),
-            new ItemStack(Material.RED_CONCRETE),
-            new ItemStack(Material.BLACK_CONCRETE)
+            MachineUtils.selectorItem(Material.WHITE_CONCRETE),
+            MachineUtils.selectorItem(Material.ORANGE_CONCRETE),
+            MachineUtils.selectorItem(Material.MAGENTA_CONCRETE),
+            MachineUtils.selectorItem(Material.LIGHT_BLUE_CONCRETE),
+            MachineUtils.selectorItem(Material.YELLOW_CONCRETE),
+            MachineUtils.selectorItem(Material.LIME_CONCRETE),
+            MachineUtils.selectorItem(Material.PINK_CONCRETE),
+            MachineUtils.selectorItem(Material.GRAY_CONCRETE),
+            MachineUtils.selectorItem(Material.LIGHT_GRAY_CONCRETE),
+            MachineUtils.selectorItem(Material.CYAN_CONCRETE),
+            MachineUtils.selectorItem(Material.PURPLE_CONCRETE),
+            MachineUtils.selectorItem(Material.BLUE_CONCRETE),
+            MachineUtils.selectorItem(Material.BROWN_CONCRETE),
+            MachineUtils.selectorItem(Material.GREEN_CONCRETE),
+            MachineUtils.selectorItem(Material.RED_CONCRETE),
+            MachineUtils.selectorItem(Material.BLACK_CONCRETE)
     );
+
+    static {
+        OUTPUT_MAPPER = new HashMap<>();
+        CONCRETES.subList(1, CONCRETES.size()).forEach(item -> {
+            OUTPUT_MAPPER.put(item.getType(), new ItemStack(item.getType()));
+        });
+    }
 
     public ConcreteGenerator(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);
@@ -63,7 +73,7 @@ public class ConcreteGenerator extends AbstractSelectorMachine implements Recipe
     @Nonnull
     @Override
     public List<ItemStack> selectionList() {
-        return CONCRETE_LIST;
+        return CONCRETES;
     }
 
     @Nonnull
@@ -85,9 +95,15 @@ public class ConcreteGenerator extends AbstractSelectorMachine implements Recipe
 
     @Nonnull
     @Override
+    protected ItemStack getOutput(@Nonnull ItemStack item) {
+        return OUTPUT_MAPPER.get(item.getType());
+    }
+
+    @Nonnull
+    @Override
     public List<ItemStack> getDisplayRecipes() {
         final List<ItemStack> displayRecipes = new ArrayList<>();
-        for (ItemStack itemStack : CONCRETE_LIST) {
+        for (ItemStack itemStack : CONCRETES) {
             if (!itemStack.getType().name().endsWith("_CONCRETE")) continue;
             displayRecipes.add(recipes.get(0).getInput()[0]);
             ItemStack clone = itemStack.clone();

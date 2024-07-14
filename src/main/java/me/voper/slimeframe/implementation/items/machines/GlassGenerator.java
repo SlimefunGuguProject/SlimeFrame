@@ -1,8 +1,6 @@
 package me.voper.slimeframe.implementation.items.machines;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Stream;
 
 import javax.annotation.Nonnull;
@@ -26,6 +24,7 @@ import net.md_5.bungee.api.ChatColor;
 public class GlassGenerator extends AbstractSelectorMachine implements RecipeDisplayItem {
 
     private static final String BLOCK_KEY = "glass_selector";
+    private static final Map<Material, ItemStack> OUTPUT_MAPPER;
     private static final List<ItemStack> GLASSES = new ArrayList<>();
 
     static {
@@ -33,8 +32,13 @@ public class GlassGenerator extends AbstractSelectorMachine implements RecipeDis
         GLASSES.addAll(SlimefunTag.GLASS_BLOCKS.stream()
                 .sorted(Comparator.comparing(Enum::name))
                 .filter(m -> !m.name().contains("TINTED"))
-                .map(ItemStack::new)
+                .map(MachineUtils::selectorItem)
                 .toList());
+
+        OUTPUT_MAPPER = new HashMap<>();
+        GLASSES.subList(1, GLASSES.size()).forEach(item -> {
+            OUTPUT_MAPPER.put(item.getType(), new ItemStack(item.getType()));
+        });
     }
 
     public GlassGenerator(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
@@ -73,6 +77,12 @@ public class GlassGenerator extends AbstractSelectorMachine implements RecipeDis
     protected void onCraftConditionsNotMet(BlockMenu menu) {
         MachineUtils.replaceExistingItemViewer(menu, getStatusSlot(), new CustomItemStack(Material.BARRIER,
             ChatColor.RED + "选择需要生产的玻璃。"));
+    }
+
+    @Nonnull
+    @Override
+    protected ItemStack getOutput(@Nonnull ItemStack item) {
+        return OUTPUT_MAPPER.get(item.getType());
     }
 
     @Nonnull

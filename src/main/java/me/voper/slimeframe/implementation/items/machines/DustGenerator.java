@@ -1,9 +1,15 @@
 package me.voper.slimeframe.implementation.items.machines;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Nonnull;
+
+import io.github.thebusybiscuit.slimefun4.libraries.dough.data.persistent.PersistentDataAPI;
+
+import me.voper.slimeframe.utils.Keys;
 
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
@@ -21,21 +27,35 @@ import me.voper.slimeframe.utils.MachineUtils;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
 import net.md_5.bungee.api.ChatColor;
 
+import org.bukkit.inventory.meta.ItemMeta;
+
 public class DustGenerator extends AbstractSelectorMachine implements RecipeDisplayItem {
 
     private static final String BLOCK_KEY = "dust_selector";
+    private static final Map<String, ItemStack> OUTPUT_MAPPER;
     private static final List<ItemStack> DUSTS = new ArrayList<>(List.of(
             MachineUtils.SELECTOR,
-            SlimefunItems.ALUMINUM_DUST,
-            SlimefunItems.COPPER_DUST,
-            SlimefunItems.GOLD_DUST,
-            SlimefunItems.IRON_DUST,
-            SlimefunItems.LEAD_DUST,
-            SlimefunItems.MAGNESIUM_DUST,
-            SlimefunItems.SILVER_DUST,
-            SlimefunItems.TIN_DUST,
-            SlimefunItems.ZINC_DUST
+            MachineUtils.selectorItem(SlimefunItems.ALUMINUM_DUST),
+            MachineUtils.selectorItem(SlimefunItems.COPPER_DUST),
+            MachineUtils.selectorItem(SlimefunItems.GOLD_DUST),
+            MachineUtils.selectorItem(SlimefunItems.IRON_DUST),
+            MachineUtils.selectorItem(SlimefunItems.LEAD_DUST),
+            MachineUtils.selectorItem(SlimefunItems.MAGNESIUM_DUST),
+            MachineUtils.selectorItem(SlimefunItems.SILVER_DUST),
+            MachineUtils.selectorItem(SlimefunItems.TIN_DUST),
+            MachineUtils.selectorItem(SlimefunItems.ZINC_DUST)
     ));
+
+    static {
+        OUTPUT_MAPPER = new HashMap<>();
+        DUSTS.subList(1, DUSTS.size()).forEach(item -> {
+            ItemStack clone = item.clone();
+            ItemMeta itemMeta = clone.getItemMeta();
+            PersistentDataAPI.remove(itemMeta, Keys.createKey("mark_wf"));
+            clone.setItemMeta(itemMeta);
+            OUTPUT_MAPPER.put(item.getItemMeta().getDisplayName(), clone);
+        });
+    }
 
     public DustGenerator(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);
@@ -74,6 +94,12 @@ public class DustGenerator extends AbstractSelectorMachine implements RecipeDisp
     protected void onCraftConditionsNotMet(BlockMenu menu) {
         MachineUtils.replaceExistingItemViewer(menu, getStatusSlot(), new CustomItemStack(Material.BARRIER,
             ChatColor.RED + "选择需要生成的矿粉！"));
+    }
+
+    @Nonnull
+    @Override
+    protected ItemStack getOutput(@Nonnull ItemStack item) {
+        return OUTPUT_MAPPER.get(item.getItemMeta().getDisplayName());
     }
 
     @Nonnull

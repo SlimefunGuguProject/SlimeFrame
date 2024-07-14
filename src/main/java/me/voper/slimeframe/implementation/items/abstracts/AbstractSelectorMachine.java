@@ -114,7 +114,7 @@ public abstract class AbstractSelectorMachine extends AbstractProcessorMachine {
 
             if (found.size() == recipe.getInput().length) {
 
-                ItemStack output = menu.getItemInSlot(getSelectorSlot()).clone();
+                ItemStack output = getOutput(menu.getItemInSlot(getSelectorSlot()));
                 output.setAmount(production * outputAmount);
                 MachineRecipe machineRecipe = new MachineRecipe(recipe.getTicks() / 2, recipe.getInput(), new ItemStack[]{output});
 
@@ -164,5 +164,8 @@ public abstract class AbstractSelectorMachine extends AbstractProcessorMachine {
     public int getSelectorSlot() {
         return MachineDesign.SELECTOR_MACHINE.selectorSlot();
     }
+
+    @Nonnull
+    protected abstract ItemStack getOutput(@Nonnull ItemStack item);
 
 }
