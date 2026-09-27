@@ -49,6 +49,7 @@ public class InputConfigurator extends SimpleSlimefunItem<ItemUseHandler> {
 
     private static final String SIMULATION_CHAMBER_ID = "MOB_SIMULATION_CHAMBER";
     private static final List<String> IE_QUARRIES = new ArrayList<>(List.of("BASIC_QUARRY", "ADVANCED_QUARRY", "VOID_QUARRY", "INFINITY_QUARRY"));
+    private static final String CULTIVATION_GARDEN_ID = "CLT_GARDEN_CLOCHE";
 
     public InputConfigurator(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);
@@ -77,7 +78,6 @@ public class InputConfigurator extends SimpleSlimefunItem<ItemUseHandler> {
                         } else {
                             p.sendMessage(item.getItemName() + ChatColor.RED + " 没有输入栏位！");
                         }
-//                        }
                     }
                 }
             }
@@ -103,6 +103,10 @@ public class InputConfigurator extends SimpleSlimefunItem<ItemUseHandler> {
 
         if (item.getId().equals(SIMULATION_CHAMBER_ID)) {
             return new int[]{37};
+        }
+
+        if (item.getId().equals(CULTIVATION_GARDEN_ID)) {
+            return new int[]{20};
         }
 
         if (IE_QUARRIES.contains(item.getId())) {

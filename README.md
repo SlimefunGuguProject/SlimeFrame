@@ -1,3 +1,7 @@
+[![en](https://img.shields.io/badge/lang-en-red.svg)](https://github.com/VoperAD/SlimeFrame/blob/main/README.md)
+[![pt-br](https://img.shields.io/badge/lang-pt--br-green.svg)](https://github.com/VoperAD/SlimeFrame/blob/main/README.pt-br.md)
+
+
 <div align="center">
   <img src="https://github.com/VoperAD/SlimeFrame/raw/main/images/SFrame-Banner.png" alt="SlimeFrame-Banner_2" width="1280" height="500">
 </div>

@@ -1,3 +1,12 @@
+# [1.7.0](https://github.com/VoperAD/SlimeFrame/compare/v1.6.2...v1.7.0) (2025-05-08)
+
+
+### Features
+
+* input configurator now works with the Garden Cloche from Cultivation ([5f1cc7b](https://github.com/VoperAD/SlimeFrame/commit/5f1cc7b29cd85e1865effd7998bbb08d1878f6bd))
+
+
+
 ## [1.6.2](https://github.com/VoperAD/SlimeFrame/compare/v1.6.1...v1.6.2) (2024-07-14)
 
 
@@ -36,23 +45,6 @@
 ### Bug Fixes
 
 * **relics:** add the concrete generator power cell as a relic reward ([96e5bd7](https://github.com/VoperAD/SlimeFrame/commit/96e5bd7c525979d74c7f316af87b383e9e94e57a))
-
-
-
-# [1.5.0](https://github.com/VoperAD/SlimeFrame/compare/v1.4.2...v1.5.0) (2023-12-26)
-
-
-### Bug Fixes
-
-* use the correct probability to get special ores with nosam pickaxes ([651c372](https://github.com/VoperAD/SlimeFrame/commit/651c372eb71a25840eaa06597be5505927b0d350))
-* use the ItemStack clone ([cfab04e](https://github.com/VoperAD/SlimeFrame/commit/cfab04e3641688d21b12a528c6382a01fc4ab6ee))
-
-
-### Features
-
-* **machines:** add and register new relics and machines (Petrifier and Terracotta Generator) ([bfd8760](https://github.com/VoperAD/SlimeFrame/commit/bfd8760a70e8f0644376f824f779ed8b44fbc872))
-* **machines:** add Putrifier ([8b64f09](https://github.com/VoperAD/SlimeFrame/commit/8b64f09c5aff0490e352e347dcdd67753cfb0124))
-* **machines:** add Terracotta Generator ([17b6e22](https://github.com/VoperAD/SlimeFrame/commit/17b6e228d31bd752c5fbfb14ad0c64a2ec4a678a))
 
 
 

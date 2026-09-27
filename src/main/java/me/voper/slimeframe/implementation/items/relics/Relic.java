@@ -84,15 +84,12 @@ public class Relic extends SlimefunItem implements NotPlaceable {
     }
 
     public static Relic create(@Nonnull RelicItemStack relicItemStack) {
-        Relic relic = null;
-        switch (relicItemStack.getRelicEra()) {
-            case LITH -> relic = new Relic(Groups.LITH, relicItemStack, LITH_RECIPE_TYPE);
-            case MESO -> relic = new Relic(Groups.MESO, relicItemStack, MESO_RECIPE_TYPE);
-            case NEO -> relic = new Relic(Groups.NEO, relicItemStack, NEO_RECIPE_TYPE);
-            case AXI -> relic = new Relic(Groups.AXI, relicItemStack, AXI_RECIPE_TYPE);
-            default -> {
-            }
-        }
+        Relic relic = switch (relicItemStack.getRelicEra()) {
+            case LITH -> new Relic(Groups.LITH, relicItemStack, LITH_RECIPE_TYPE);
+            case MESO -> new Relic(Groups.MESO, relicItemStack, MESO_RECIPE_TYPE);
+            case NEO -> new Relic(Groups.NEO, relicItemStack, NEO_RECIPE_TYPE);
+            case AXI -> new Relic(Groups.AXI, relicItemStack, AXI_RECIPE_TYPE);
+        };
         Validate.notNull(relic, "An error has occurred while creating a new relic!");
         return relic;
     }

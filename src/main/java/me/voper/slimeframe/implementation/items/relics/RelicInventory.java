@@ -56,16 +56,12 @@ public class RelicInventory {
     }
 
     public void addRandomRelic(@Nonnull Relic.Era era) {
-        RelicItemStack randomRelic = null;
-        switch (era) {
-            case LITH -> randomRelic = SFrameStacks.RANDOM_LITH_RELICS.getRandom();
-            case MESO -> randomRelic = SFrameStacks.RANDOM_MESO_RELICS.getRandom();
-            case NEO -> randomRelic = SFrameStacks.RANDOM_NEO_RELICS.getRandom();
-            case AXI -> randomRelic = SFrameStacks.RANDOM_AXI_RELICS.getRandom();
-            default -> {
-            }
-        }
-        addRelic(randomRelic);
+        addRelic(switch (era) {
+            case LITH -> SFrameStacks.RANDOM_LITH_RELICS.getRandom();
+            case MESO -> SFrameStacks.RANDOM_MESO_RELICS.getRandom();
+            case NEO -> SFrameStacks.RANDOM_NEO_RELICS.getRandom();
+            case AXI -> SFrameStacks.RANDOM_AXI_RELICS.getRandom();
+        });
     }
 
     public void addRandomRelic() {

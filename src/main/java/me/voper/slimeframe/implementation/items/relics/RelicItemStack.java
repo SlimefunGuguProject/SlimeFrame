@@ -28,13 +28,12 @@ public class RelicItemStack extends SlimefunItemStack {
 
     public RelicItemStack(ItemStack item, String name, Relic.Era era, SlimefunItemStack[] commonDrops, SlimefunItemStack[] uncommonDrops, SlimefunItemStack rareDrop) {
         super("WF_" + era.name() + "_" + ChatColor.stripColor(name).split(" ")[1], item, (itemMeta -> {
-            ChatColor nameColor;
-            switch (era) {
-                case LITH -> nameColor = ChatColor.WHITE;
-                case MESO -> nameColor = ChatColor.YELLOW;
-                case NEO -> nameColor = ChatColor.GREEN;
-                default -> nameColor = ChatColor.LIGHT_PURPLE;
-            }
+            ChatColor nameColor = switch (era) {
+                case LITH -> ChatColor.WHITE;
+                case MESO -> ChatColor.YELLOW;
+                case NEO -> ChatColor.GREEN;
+                default -> ChatColor.LIGHT_PURPLE;
+            };
 
             itemMeta.setDisplayName(nameColor + name);
             List<String> lore = new ArrayList<>();
@@ -68,14 +67,12 @@ public class RelicItemStack extends SlimefunItemStack {
     }
 
     private static ItemStack getTextureByEra(Relic.Era era) {
-        ItemStack skull;
-        switch (era) {
-            case LITH -> skull = HeadTextures.getSkull(HeadTextures.LITH_RELIC);
-            case MESO -> skull = HeadTextures.getSkull(HeadTextures.MESO_RELIC);
-            case NEO -> skull = HeadTextures.getSkull(HeadTextures.NEO_RELIC);
-            default -> skull = HeadTextures.getSkull(HeadTextures.AXI_RELIC);
-        }
-        return skull;
+        return switch (era) {
+            case LITH -> HeadTextures.getSkull(HeadTextures.LITH_RELIC);
+            case MESO -> HeadTextures.getSkull(HeadTextures.MESO_RELIC);
+            case NEO -> HeadTextures.getSkull(HeadTextures.NEO_RELIC);
+            default -> HeadTextures.getSkull(HeadTextures.AXI_RELIC);
+        };
     }
 
 }
