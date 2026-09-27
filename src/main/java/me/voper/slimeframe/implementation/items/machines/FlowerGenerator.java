@@ -3,8 +3,6 @@ package me.voper.slimeframe.implementation.items.machines;
 import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.function.Function;
-import java.util.stream.Collectors;
 
 import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
@@ -38,14 +36,22 @@ public class FlowerGenerator extends AbstractMachine {
 
     private static final int TIME = Utils.secondsToSfTicks(6);
     private static final Map<BlockPosition, Integer> PROGRESS_MAP = new HashMap<>();
-    private static final Map<Material, ItemStack> POTTED_FLOWERS_MAP = new EnumMap<Material, ItemStack>(
-            Tag.FLOWER_POTS.getValues().stream()
-                    .filter(m -> m.name().startsWith("POTTED_"))
-                    .collect(Collectors.toMap(Function.identity(), material -> {
-                        Material flower = Material.getMaterial(material.name().substring(7));
-                        return flower == null ? new ItemStack(material) : new ItemStack(flower);
-                    }))
-    );
+    private static final Map<Material, ItemStack> POTTED_FLOWERS_MAP = new EnumMap<>(Material.class);
+
+    static {
+        for (Material material : Tag.FLOWER_POTS.getValues()) {
+            if (!material.name().startsWith("POTTED_")) {
+                continue;
+            }
+
+            Material flower = material == Material.POTTED_AZALEA_BUSH ? Material.AZALEA
+                    : material == Material.POTTED_FLOWERING_AZALEA_BUSH ? Material.FLOWERING_AZALEA
+                    : Material.getMaterial(material.name().substring(7));
+            if (flower != null && flower.isItem()) {
+                POTTED_FLOWERS_MAP.put(material, new ItemStack(flower));
+            }
+        }
+    }
 
     @Setter
     private int production = 1;
@@ -61,7 +67,11 @@ public class FlowerGenerator extends AbstractMachine {
         int progress = PROGRESS_MAP.getOrDefault(blockPosition, 0);
 
         if (progress >= TIME) {
-            ItemStack output = POTTED_FLOWERS_MAP.get(pottedFlower).clone();
+            ItemStack mappedFlower = POTTED_FLOWERS_MAP.get(pottedFlower);
+            if (mappedFlower == null) {
+                return false;
+            }
+            ItemStack output = mappedFlower.clone();
             output.setAmount(production);
 
             if (menu.fits(output, getOutputSlots())) {

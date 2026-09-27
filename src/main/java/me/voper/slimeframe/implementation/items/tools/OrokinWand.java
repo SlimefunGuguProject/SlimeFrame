@@ -7,6 +7,7 @@ import java.util.stream.Stream;
 import javax.annotation.Nonnull;
 
 import com.cryptomorin.xseries.XMaterial;
+import com.cryptomorin.xseries.reflection.XReflection;
 
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
@@ -44,7 +45,7 @@ public class OrokinWand extends LimitedUseItem implements RecipeDisplayItem {
         TARGET_MATERIALS.add(Material.INFESTED_CRACKED_STONE_BRICKS);
         TARGET_MATERIALS.add(Material.INFESTED_STONE_BRICKS);
 
-        if (XMaterial.supports(20)) {
+        if (XReflection.supports(1, 20)) {
             TARGET_MATERIALS.add(XMaterial.SUSPICIOUS_GRAVEL.parseMaterial());
             TARGET_MATERIALS.add(XMaterial.SUSPICIOUS_SAND.parseMaterial());
         }
