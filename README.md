@@ -8,7 +8,7 @@
 
 ## 下载
 
-[![Build Status](https://builds.guizhanss.com/SlimefunGuguProject/SlimeFrame/main/badge.svg)](https://builds.guizhanss.com/SlimefunGuguProject/SlimeFrame/main)
+[下载 SlimeFrame](https://resources.guizhanss.com/plugin/SlimeFrame)
 
 ## 关于本附属
 
